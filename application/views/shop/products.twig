@@ -1,0 +1,404 @@
+{% include('shop/layout/header.twig')%}
+<div id="js_messages" style="display: none;">
+    <span id="add_to_cart_js">{{lang('add_to_cart_js')}}</span>
+    <span id="success_js">{{lang('success_js')}}</span>
+    <span id="failed_to_add_js">{{lang('failed_to_add_js')}}</span>
+    <span id="failed_js">{{lang('failed_js')}}</span>
+    <span id="added_to_cart_js">{{lang('added_to_cart_js')}}</span>
+</div>
+
+<!-- SHOP PAGE -->
+<section class="shop-area pt-120 pb-120 section-padding-2">
+    <div class="container-fluid">
+        <div class="row flex-row-reverse">
+
+            <div class="col-lg-9">
+
+                <!-- FILTER MOBILE VIEW -->
+                <div class="shop-topbar-wrapper d-block d-md-block d-lg-none">
+                    <div class="shop-topbar-left">
+                        <div class="view-mode nav">
+                            <a class="transform-90deg" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                                aria-controls="offcanvasExample"><i class="icon-equalizer"></i></a>
+                        </div>
+                        <!-- <div class="product-sorting-wrapper">
+                            <div class="product-show shorting-style">
+                                <label>Sort by :</label>
+                                <select>
+                                    <option value="">Default</option>
+                                    <option value=""> Name</option>
+                                    <option value=""> price</option>
+                                </select>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- END FILTER MOBILE VIEW -->
+
+                <div class="row">
+                    {% if products is not empty %}
+                    {% for pro in products%}
+                    <!--single loop item-->
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <div class="single-product-wrap mb-35">
+                            <div class="product-img product-img-zoom mb-20">
+
+                                <a href="{{BASE_URL}}shop-details/{{pro.id}}">
+                                    <img {% for file in pro.files %}
+                                        src="assets/shop/images/product/{{ file.file_name }}" {% endfor %}
+                                        title="{{pro.product_name}}">
+                                </a>
+
+                                <span class="pro-badge left bg-red">{{lang('label')}}</span>
+                                <div class="product-action-wrap"  onclick='addToCart({{pro.id}})'>
+                                    <div class="product-action-left" >
+                                        <button><i class="icon-basket-loaded"></i>{{lang('add_to_cart')}}</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-content-wrap">
+                                <div class="product-content-left">
+                                    <h4><b><a href="{{BASE_URL}}shop-details/{{pro.id}}" title="{{pro.product_name}}">{{ pro.brand_name }}&nbsp;{{pro.product_name}}
+                                     {% if pro.options %}
+                                       ( {{ pro.options }} )
+                                     {% endif %}
+                                    </a></b></h4>
+                                    {# <div class="gb">
+                                        4 GB RAM
+                                    </div> #}
+                                    <div class="product-price">
+                                        <span class="new-price">OMR&nbsp;{{pro.product_amount}}</span>
+                                        <!-- <span class="new-price">OMR 46.00</span>
+                                                <span class="old-price">OMR 66.75</span> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end single loop item-->
+                    {% endfor %}
+                    {% else %}
+                    <div class="alert alert-dark" role="alert">
+                        {{lang('empty_products')}}
+                    </div>
+
+
+                    {% endif %}
+
+                    <div class="swiper-pagination"></div>
+
+                </div>
+
+
+                <div class="text-center mt-10">
+                    {{link|raw}}
+                </div>
+            </div>
+
+            <!-- SIDE BAR -->
+            <div class="col-lg-3">
+                <div class="sidebar-wrapper sidebar-wrapper-mrg-right d-none d-md-none d-lg-block">
+                    {{form_open('','methd="post" name="filter_form" id="filter_form"')|raw}}
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas" aria-label="Close" onclick="resetForm()">{{lang('reset')}}</button>
+                        <button type="submit" class="btn btn-primary" id="filter_btn" name="filter_btn" value="filter_btn">{{lang('filter')}}</button>
+                    </div>
+                    <!-- ACCORDION -->
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+
+                                <!-- PRICE -->
+                                <div class="accordion-item price">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne1">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#panelsStayOpen-collapseOne1" aria-expanded="true"
+                                            aria-controls="panelsStayOpen-collapseOne1">
+                                            {{lang('price')}}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseOne1" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingOne1">
+                                        <div class="accordion-body">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">OMR</span>
+                                                <input type="number" name="min_amt" id="min_amt" value="{{min_amt}}" min="0" class="form-control form-control-sm" placeholder="" aria-label="Username">
+                                                <span class="input-group-text">OMR</span>
+                                                <input type="number" name="max_amt" id="max_amt" value="{{max_amt}}" min="0" class="form-control form-control-sm" placeholder="" aria-label="Server">
+                                                <!-- <button type="submit" class="btn btn-sm btn-primary" id="filter_btn" name="filter_btn" value="filter_btn"><i class="icon-cursor"></i></button> -->
+                                                
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END PRICE -->
+                            
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                            aria-controls="panelsStayOpen-collapseOne">
+                                            {{lang('category')}}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingOne">
+                                        <div class="accordion-body">
+                                            <div class="sidebar-widget shop-sidebar-border">
+                                                {% for cat in categories %}
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value='{{cat.id}}'
+                                                        id="category_{{cat.id}}" name="category[]" {% if cat.id in session_category %} checked {% endif %}>
+                                                    <label class="form-check-label" for="category_{{cat.id}}">
+                                                        {{cat.category}}
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                        <button class="accordion-button" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                            aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                                            {{lang('brand')}}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingTwo">
+                                        <div class="accordion-body">
+                                            <div class="sidebar-widget shop-sidebar-border">
+                                                {% for brand in brands %}
+                                              
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value='{{brand.id}}'
+                                                        id="brand_{{brand.id}}" name="brand[]" {% if brand.id in session_brands %} checked {% endif %}>
+                                                    <label class="form-check-label" for="brand_{{brand.id}}">
+                                                        {{brand.brand_name}}
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                        <button class="accordion-button" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                                            aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+                                            {{lang('color')}}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingThree">
+                                        <div class="accordion-body">
+                                            <div class="sidebar-widget shop-sidebar-border">
+                                                {% for clr in colors %}
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value='{{clr.id}}'
+                                                        id="color_{{clr.id}}" name="color[]" {% if clr.id in session_colors %} checked {% endif %}>
+                                                    <label class="form-check-label" for="color_{{clr.id}}" style="height: 15px; width: 15px; margin-bottom: 1px; border: 1px solid black; clear: both;background-color:{{clr.option_value}}">
+
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- END ACCORDION -->
+                    {{ form_close()|raw }}
+
+                </div>
+            </div>
+            <!-- END SIDE BAR -->
+
+
+            <!-- MOBILE FILTER OFFCANVAS -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                aria-labelledby="offcanvasExampleLabel">
+                {{form_open('','methd="post" name="mob_filter_form" id="mob_filter_form"')|raw}}
+                <div class="offcanvas-header">
+                    <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas" aria-label="Close" onclick="resetMobForm()">Reset</button> -->
+                    <button type="submit" class="btn btn-primary"  id="reset_btn" name="reset_btn" value="reset_btn">{{lang('reset')}}</button>
+                    <button type="submit" class="btn btn-primary" id="filter_btn" name="filter_btn" value="filter_btn">{{lang('filter')}}</button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="sidebar-wrapper sidebar-wrapper-mrg-right mt-0">
+
+                        
+                    <!-- ACCORDION -->
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+
+                                <!-- PRICE -->
+                                <div class="accordion-item price">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne1">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#panelsStayOpen-collapseOne1" aria-expanded="true"
+                                            aria-controls="panelsStayOpen-collapseOne1">
+                                            {{lang('price')}}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseOne1" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingOne1">
+                                        <div class="accordion-body">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">OMR</span>
+                                                <input type="number" name="min_amt" id="min_amt" value="{{min_amt}}" min="0" class="form-control form-control-sm" placeholder="" aria-label="Username">
+                                                <span class="input-group-text">OMR</span>
+                                                <input type="number" name="max_amt" id="max_amt" value="{{max_amt}}" min="0" class="form-control form-control-sm" placeholder="" aria-label="Server">
+                                                <!-- <button type="submit" class="btn btn-sm btn-primary" id="filter_btn" name="filter_btn" value="filter_btn"><i class="icon-cursor"></i></button> -->
+                                                
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END PRICE -->
+                            
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                            aria-controls="panelsStayOpen-collapseOne">
+                                            {{lang('category')}}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingOne">
+                                        <div class="accordion-body">
+                                            <div class="sidebar-widget shop-sidebar-border">
+                                                {% for cat in categories %}
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value='{{cat.id}}'
+                                                        id="category_{{cat.id}}" name="category[]" {% if cat.id in session_category %} checked {% endif %}>
+                                                    <label class="form-check-label" for="category_{{cat.id}}">
+                                                        {{cat.category}}
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                        <button class="accordion-button" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                            aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                                            {{lang('brand')}}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingTwo">
+                                        <div class="accordion-body">
+                                            <div class="sidebar-widget shop-sidebar-border">
+                                                {% for brand in brands %}
+                                              
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value='{{brand.id}}'
+                                                        id="brand_{{brand.id}}" name="brand[]" {% if brand.id in session_brands %} checked {% endif %}>
+                                                    <label class="form-check-label" for="brand_{{brand.id}}">
+                                                        {{brand.brand_name}}
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                        <button class="accordion-button" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                                            aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
+                                            {{lang('color')}}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingThree">
+                                        <div class="accordion-body">
+                                            <div class="sidebar-widget shop-sidebar-border">
+                                                {% for clr in colors %}
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value='{{clr.id}}'
+                                                        id="color_{{clr.id}}" name="color[]" {% if clr.id in session_colors %} checked {% endif %}>
+                                                    <label class="form-check-label" for="color_{{clr.id}}" style="height: 15px; width: 15px; margin-bottom: 1px; border: 1px solid black; clear: both;background-color:{{clr.option_value}}">
+
+                                                    </label>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <!-- END ACCORDION -->
+                    
+                    </div>
+                </div>
+                {{ form_close()|raw }}
+            </div>
+            <!-- END MOBILE FILTER OFFCANVAS -->
+
+        </div>
+    </div>
+</section>
+<!-- END SHOP PAGE -->
+
+{% include('shop/layout/footer.twig')%}
+<script>
+    function addToCart(product_id) {
+        $.ajax({
+            url: "cart/add_to_cart",
+            data: {
+                product_id: product_id
+            },
+            success: function (res) {
+                res= JSON.parse(res); 
+                    if (res.status == "yes")
+                    {
+                        toastr.success($('#added_to_cart_js').html())
+                        
+                        $("html,body").animate({scrollTop: 0}, "slow");
+                        $("#header_cart span").html(res.data);
+                    }
+                    else
+                    {
+                        toastr.error(res.data)
+                    }
+            }
+        });
+
+    }
+</script>
+
+<script>
+  function resetForm() {
+    var form = document.getElementById('filter_form');
+    form.reset();
+
+    var checkboxes = form.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(function (checkbox) {
+        checkbox.checked = false;
+      });
+  }
+
+  function resetMobForm() {
+    var form = document.getElementById('mob_filter_form');
+    form.reset();
+
+
+    var checkboxes = form.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(function (checkbox) {
+        checkbox.checked = false;
+      });
+  }
+  
+</script>

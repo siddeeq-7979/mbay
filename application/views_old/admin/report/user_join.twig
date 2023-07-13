@@ -1,0 +1,554 @@
+{% include('admin/partials/head-main.twig')%}
+<head>
+    <base href="{{ base_url() }}" />
+    <?= $title_meta ?>
+
+{% include('admin/partials/head-css.twig')%}
+    <link href="assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css">
+    <!-- DataTables -->
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<div id="js_messages" style="display: none;"> 
+    <span id="current_password_req_js">{{lang('current_password_req_js')}}</span>   
+    <span id="new_password_req_js">{{lang('new_password_req_js')}}</span>   
+    <span id="confirm_password_req_js">{{lang('confirm_password_req_js')}}</span>   
+    <span id="password_mismatch_js">{{lang('password_mismatch_js')}}</span>  
+
+    <span id="first_name_req_js">{{lang('first_name_req_js')}}</span>   
+    <span id="last_name_req_js">{{lang('last_name_req_js')}}</span>   
+    <span id="email_req_js">{{lang('email_req_js')}}</span>   
+    <span id="phone_number_req_js">{{lang('phone_number_req_js')}}</span>   
+
+    <span id="address_1_req_js">{{lang('address_1_req_js')}}</span>   
+    <span id="city_req_js">{{lang('city_req_js')}}</span>   
+    <span id="country_req_js">{{lang('country_req_js')}}</span>   
+    <span id="zip_code_req_js">{{lang('zip_code_req_js')}}</span>   
+    
+</div>
+
+{% include('admin/partials/body.twig')%}
+<!-- <body data-layout="horizontal"> -->
+
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    {% include('admin/partials/menu.twig')%}
+    
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+          {%include('admin/layout/notification.twig')%}
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <?= $page_title ?>
+                {% if flag == 1 %}
+                    <h4 class="panel-title">
+                        <span class="text-bold">Profile </span>
+                    </h4>
+                {% endif %}
+                {% if flag == 0 %}
+                <h4 class="panel-title">
+                        <span class="text-bold">Join Report</span>
+                </h4>
+                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            {# <div class="card-header">
+                                <h4 class="card-title"><i class="bx bx-list-ol"></i> Customer List</h4>
+                            </div> #}
+                            <div class="card-body">
+                                <div class="table-responsive">
+
+                                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Customer Name</th>
+                                                <th>E-mail </th>
+                                                {# <th>Customer group</th> #}
+                                                <th>Status </th>
+                                                <th>Date of Joining </th>
+                                                <th>View Profile </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                       
+                                       {% for data in userreport %}
+                                              {{ form_open('', 'class="save_form" id="save_form" name="save_form"')|raw }}
+                                            <tr>
+                                                <th scope="row">{{data.id }}</th>
+                                                <td>{{ data.first_name }}  &nbsp; {{ data.last_name}}</td>
+                                                <td>{{ data.email}}</td>
+                                                {# <td>Default</td> #}
+                                                <td>{{ data.user_status}}</td>
+                                                <td>{{ data.date}}</td>
+                                                <td>
+                                                    <a href="admin/join-report/{{data.mlm_user_id}}" class="btn btn-primary" title="Edit">
+                                                       <i class="fas fa-user-alt"></i>
+                                                    </a>
+                                                </td>
+                                               
+                                            </tr>
+                                              {{form_close()|raw}}
+                                       {% endfor %}  
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+                </div>
+               {% else %}
+                <div class="row">
+                    <div class="card"> <br/>
+                        <div class="col-lg-12">
+                            <div class="card" style="border: transparent">
+                                <!-- <div class="card-header">
+                                    <h4 class="card-title"> <i class="bx bxs-edit-alt"></i> Edit Customer</h4>
+                                </div> -->
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="edit-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">General</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="address-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Addresses</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="password-tab" data-bs-toggle="tab" data-bs-target="#profile1" type="button" role="tab" aria-controls="profile1" aria-selected="false">Password</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="card-body p-4">
+                                            <div class="row">
+                                                <div class="col-lg-12 ms-lg-auto">
+                                                {{ form_open('', 'class="update_form" id="update_form" name="update_form"')|raw }}
+                                                    <div class="mt-4 mt-lg-0">
+                                                     
+                                                         <div class="row mb-4">
+                                                                <label for="horizontal-firstname-input" class="col-sm-2 col-form-label">First name <span class="text-danger">*</span></label>
+                                                                
+                                                                 <input type="hidden" value="{{details.user_id}}" id="user_id" name="user_id">
+                                                                <div class="form-group col-sm-9">
+                                                                    <input type="text" class="form-control" name="first_name" id="first_name" value="{{details.first_name}}">
+                                                                    {% if login_error.first_name is defined %}<code> {{ login_error.first_name}} </code> {% endif %}
+                                                                 
+                                                                </div>
+                                                            </div>
+                                                             <div class="row mb-4">
+                                                                <label for="horizontal-firstname-input" class="col-sm-2 col-form-label">Last name <span class="text-danger">*</span></label>
+                                                                <div class="form-group col-sm-9">
+                                                                    <input type="text" class="form-control"  name="last_name" id="horizontal-firstname-input" value="{{details.last_name}}">
+                                                                 {% if login_error.last_name is defined %}<code> {{ login_error.last_name}} </code> {% endif %}
+                                                               
+                                                                </div>
+                                                            </div>
+                                                    
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">Email <span class="text-danger">*</span></label>
+                                                            <div class="col-sm-9">
+                                                                <input type="email" class="form-control" name="email" id="horizontal-email-input" readonly value="{{details.email}}">
+                                                                {% if login_error.email is defined %}<code> {{ login_error.email}} </code> {% endif %}
+
+                                                            </div>
+                                                        </div>
+
+                                                      
+                                                        <div class="row mb-4">
+                                                                <label for="horizontal-firstname-input" class="col-sm-2 col-form-label">Phone <span class="text-danger">*</span></label>
+                                                                <div class="form-group col-sm-9">
+                                                                    <input type="text" class="form-control"  name="phone_number" id="horizontal-phone-input" value="{{details.phone_number}}">
+                                                                 {% if login_error.phone_number is defined %}<code> {{ login_error.phone_number}} </code> {% endif %}
+                                                              
+                                                                </div>
+                                                            </div>
+                                                        <div class="row justify-content-end">
+                                                            <div class="col-sm-9">
+                                                                <div>
+                                                                    <button type="submit" name="general" value="general" class="btn btn-primary w-md">Submit</button>
+                                                                    {% if login_error.email is defined %}<code> {{ login_error.email}} </code> {% endif %}
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                {{form_close()|raw}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="address-tab">
+                                       
+                                        {{ form_open('', 'class="address_form" id="address_form" name="address_form"')|raw }}
+                                        <div class="card-body p-4"> 
+                                        
+                                            {# <div class="card-header">
+                                                <h5 class="card-title">Address</h5>
+                                            </div>
+                                            <br> #}
+                                            {# <div class="row">
+                                                <div class="col-lg-12 ms-lg-auto">
+                                                    <div class="mt-4 mt-lg-0">
+                                                     
+                                                        <div class="row mb-4">
+                                                                <label for="horizontal-email-input" class="col-sm-2 col-form-label">Addressline 1 <span class="text-danger">*</span></label>
+                                                                <div class="form-group col-sm-9">
+                                                                    <input type="text" class="form-control" id="address_1" name="address_1" value="{{details.address_1}}">
+                                                                </div>
+                                                            </div>
+                                                                 <input type="hidden" value="{{details.user_id}}" id="user_id" name="user_id">
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">Addressline 2 <span class="text-danger">*</span></label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="address_2" name="address_2"  value="{{details.address_2}}">
+                                                            </div>
+                                                        </div>
+                                                     
+                                                          <div class="row mb-4">
+                                                                <label for="horizontal-email-input" class="col-sm-2 col-form-label">City <span class="text-danger">*</span></label>
+                                                                <div class="form-group col-sm-9">
+                                                                    <input type="text" class="form-control" id="city"  name="city"  value="{{details.city}}">
+                                                                </div>
+                                                            </div>
+
+                                                       
+                                                         <div class="row mb-4">
+                                                                <label for="horizontal-email-input" class="col-sm-2 col-form-label">Country <span class="text-danger">*</span></label>
+                                                                <div class="form-group col-sm-9">
+                                                                    <select name="country_id" id="country_id" class="form-control search-select" tabindex='4'>
+                                                                    <option value="">Select Country</option>
+                                                                    {% for cntrs in countries %}
+                                                                        <option value="{{ cntrs.id }}" {% if details.country_id==cntrs.id %} selected {% endif %}>{{ cntrs.name|raw }}</option>
+                                                                    {% endfor %}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">State</label>
+                                                            <div class="col-sm-9">
+                                                                <span class="input-icon" id="state_span">
+                                                                    <select name="state" id="state" class="form-control search-select" tabindex='4'>
+                                                                    <option value="">{{ lang('select_a_state') }}</option>
+                                                                        {% for sts in states %}
+                                                                        <option value="{{ sts.id }}" {% if details.state==sts.id %} selected {% endif %}>{{ sts.name|raw }}</option>
+                                                                        {% endfor %}
+                                                                        </select>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                          <div class="row mb-4">
+                                                                <label for="horizontal-email-input" class="col-sm-2 col-form-label">Zip <span class="text-danger">*</span></label>
+                                                                <div class="form-group col-sm-9">
+                                                                    <input type="text" class="form-control" id="zip_code"  name="zip_code" value="{{details.zip_code}}">
+                                                                </div>
+                                                            </div>
+                                                        <div class="form-check form-check-right mb-3 ">
+                                                            <input class="form-check-input radio-button" type="radio" name="default"  checked  id="default" onclick="defaultbutton('default')" >
+
+
+                                                            <label class="form-check-label" for="default">
+                                                               Default
+                                                           </label>
+                                                       </div>
+                                                    </div> 
+                                                </div>
+                                            </div> #}
+                                          
+                                             {% if user_address  %}
+
+                                              {% for data in user_address %}
+                                                <!-- {{loop.index}} -->
+
+                                               <div class="card-header">
+                                                <h5 class="card-title">Address</h5>
+                                            </div>
+                                            
+                                            <br>
+
+                                            <div class="row">
+                                                <div class="col-lg-12 ms-lg-auto">
+                                                    <div class="mt-4 mt-lg-0">
+                                                        <div class="row mb-4">
+                                                           
+                                                            <div class="form-group col-sm-9">
+                                                                <input type="hidden" class="form-control" id="id" name="ads[{{loop.index}}][id]" value="{{data.id}}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">Addressline 1 <span class="text-danger">*</span></label>
+                                                            <div class="form-group col-sm-9">
+                                                                <input type="text" class="form-control address_1" id="address_1" name="ads[{{loop.index}}][address_1]" value="{{data.address_1}}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">Addressline 2 <span class="text-danger">*</span></label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="address_2" name="ads[{{loop.index}}][address_2]"  value="{{data.address_2}}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">City <span class="text-danger">*</span></label>
+                                                            <div class="form-group col-sm-9">
+                                                                <input type="text" class="form-control city" id="city"  name="ads[{{loop.index}}][city]"  value="{{data.city}}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">Country <span class="text-danger">*</span></label>
+                                                            <div class="form-group col-sm-9">
+                                                                <select name="ads[{{loop.index}}][country_id]" id="country_id" class="form-control search-select country_id" tabindex='4'>
+                                                                    <option value="">Select Country</option>
+                                                                    {% for cntrs in countries %}
+                                                                    <option value="{{ cntrs.id }}" {% if data.country_id == cntrs.id %} selected {% endif %}>{{ cntrs.name|raw }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">State</label>
+                                                            <div class="col-sm-9">
+                                                                <span class="input-icon" id="state_span">
+                                                                    <select name="ads[{{loop.index}}][state]" id="state" class="form-control search-select state" tabindex='4'>
+                                                                    <option value="">Select State</option>
+                                                                        {% for sts in states %}
+                                                                        <option value="{{ sts.id }}" {% if data.state_id == sts.id %} selected {% endif %}>{{ sts.name|raw }}</option>
+                                                                        {% endfor %}
+                                                                        </select>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-4">
+                                                            <label for="horizontal-email-input" class="col-sm-2 col-form-label">Zip <span class="text-danger">*</span></label>
+                                                            <div class="form-group col-sm-9">
+                                                                <input type="text" class="form-control zip_code" id="zip_code"  name="ads[{{loop.index}}][zip_code]" value="{{data.zip_code}}">
+                                                            </div>
+                                                        </div>
+
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                     
+                                              {% endfor %}
+
+                                             {% endif %}
+
+
+
+
+                                  
+                                                <input type="hidden" value="{{j}}" id="total_chq">
+                                                <div id="add_address_view">
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                        <a class="btn btn-primary" onclick="myaddresss()"><i class="bx bx-plus"></i> Add Address</a>
+                                                    </div>
+                                                </div>
+                                                {% if user_address  %}
+                                                <div class="row justify-content-end">
+                                                    <div class="col-sm-9">
+                                                        <div>
+                                                            <button type="submit" name="add_address" value="add_address"id="add_address" class="btn btn-primary w-md">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                        </div>
+                                        {{form_close()|raw}}
+                                    </div>
+                                    
+                                    <div class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="password-tab">
+
+                                        {{ form_open('', 'class="password_form" id="password_form" name="password_form"')|raw }}
+                                        <div class="card-body p-4">
+                                            <div class="mt-4 mt-lg-0">
+                                                <input type="hidden" value="{{details.user_id}}" id="user_id" name="user_id">
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-password-input" class="col-sm-2 col-form-label">Current Password <span class="text-danger">*</span></label>
+                                                    <div class="form-group col-sm-9">
+                                                        <input type="password" class="form-control" name="current_password" id="current_password">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-password-input" class="col-sm-2 col-form-label">New Password <span class="text-danger">*</span></label>
+                                                    <div class="form-group col-sm-9">
+                                                        <input type="password" class="form-control" name="password" id="password">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-4">
+                                                    <label for="horizontal-password-input" class="col-sm-2 col-form-label">Confirm Password <span class="text-danger">*</span></label>
+                                                    <div class="form-group col-sm-9">
+                                                        <input type="password" class="form-control" name="confirm_password" id="confirm_password">
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-end">
+                                                    <div class="col-sm-12">
+                                                        <div>
+                                                            <button type="submit" name="update_password" value="update_password" class="btn btn-primary w-md">Submit <i class="fa fa-arrow-circle-right"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{form_close()|raw}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div> <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+
+    {% include('admin/partials/footer.twig')%}
+    </div>
+    <!-- end main content-->
+
+</div>
+<!-- END layout-wrapper -->
+
+
+{% include('admin/partials/right-sidebar.twig')%}
+<!-- JAVASCRIPT -->
+{% include('admin/partials/vendor-scripts.twig')%}
+
+<script src="assets/js/app.js"></script>
+<script src="assets/libs/flatpickr/flatpickr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="assets/libs/dropify/dropify.min.js"></script>
+<!-- Required datatable js -->
+<script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="assets/libs/jszip/jszip.min.js"></script>
+<script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+<!-- Responsive examples -->
+<script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<!-- Datatable init js -->
+<script src="assets/js/pages/datatables.init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="assets/js/user_join.js"></script>
+<script>
+function myaddresss(){
+    var myDatfa = {{ countries|json_encode|raw }};
+    var myData = {{ states|json_encode|raw }};
+    var count = $('#total_chq').val();
+    var sum = 1;
+
+    for (var i = 0; i < count.length; i++) {
+      sum += parseInt(count[i]);
+    } 
+    var html ='<div class="card-body p-1">';
+    html +='<div class="card-header">';
+    html += '<h5 class="card-title"> Address </h5></div><br><div class="row">';
+    html += '<div class="col-lg-12 ms-lg-auto"><div class="mt-4 mt-lg-0"><div class="row mb-4">';
+    html += '<label for="horizontal-email-input" class="col-sm-2 col-form-label">Addressline 1</label><div class="col-sm-9"><input type="text" class="form-control" id="address_1" name="address['+i+'][address_1]" ></div></div>';
+
+    html += '<div class="row mb-4"><label for="horizontal-email-input" class="col-sm-2 col-form-label">Addressline 2</label><div class="col-sm-9"> <input type="text" class="form-control" id="address_2" name="address['+i+'][address_2]" ></div></div>';
+
+    html += '<div class="row mb-4"><label for="horizontal-email-input" class="col-sm-2 col-form-label">City</label><div class="col-sm-9"><input type="text" class="form-control" id="city"  name="address['+i+'][city]"> </div></div>';
+
+    html += '<div class="row mb-4"><label for="horizontal-email-input" class="col-sm-2 col-form-label">Country</label>'; 
+    html += '<div class="col-sm-9" > ';
+    html += '<select id="country_id_'+sum+'" name="address['+i+'][country]" onchange="javascript:changeCountry('+sum+')"class="form-control">';
+    html +=  ' <option value="">Select A Country</option>';
+    $.each(myDatfa, function (key, value) {
+        html += '<option value="' + value.id + '">' + value.name + '</option>';
+    });
+    html += '</select>';
+    html +='</div> </div>';
+
+    html += '<div class="row mb-4"><label for="horizontal-email-input" class="col-sm-2 col-form-label">State</label>';
+    html += '<div class="col-sm-9">';
+    html += '<span class="input-icon" id="state_span_'+ sum +'">';
+    html += '<select id="state_'+ sum +'" name="address['+i+'][state]" class="form-control">';
+    html += '<option value="">Select A State</option>';
+
+    $.each(myData, function (key, value) {
+        html += '<option value="' + value.id + '">' + value.name + '</option>';
+    });
+
+    html += '</select>';
+    html += '</span>';
+    html += '</div></div>';
+
+    html += '<div class="row mb-4"> <label for="horizontal-email-input" class="col-sm-2 col-form-label">Zip</label><div class="col-sm-9"> <input type="text" class="form-control" id="zip_code"  name="address['+i+'][zip_code]"></div> </div>';
+    
+    html += '<div><input type="radio" name="address['+i+'][default]" class="form-check-input radio-button"   onclick="defaultbutton('+i+')" id="default_'+i+'">&nbsp;<label class="form-check-label" for="default">Default</label></div>';
+    count +=1;
+    $('#total_chq').val(count);
+    $('#add_address_view').append(html);
+}
+
+</script>
+
+
+
+
+<script>
+function defaultbutton(id) {
+    var radios = document.querySelectorAll('input[type=radio]');
+  
+    var previousValue = null;
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked&& id!='default') {
+            if(i==id){
+
+
+                $('.form-check-input:checked').prop('checked', false);
+                $('#default').prop('checked', false);
+            }
+            else{
+                
+                $('.form-check-input:checked').prop('checked', true);
+                $('#default').prop('checked', false);
+            }
+        }else{
+            if(id=='default'){ 
+                $('.form-check-input:checked').prop('checked', false);
+                $('#default').prop('checked', true);
+
+            }else{ 
+            $('#default:checked').prop('checked', true);}
+        }
+    }
+  
+}
+</script>
+</body>
+
+</html>

@@ -1,0 +1,372 @@
+{% include('shop/layout/header.twig')%}
+
+<!-- SLIDER AREA -->
+
+{%if prod_view_flag==0%}
+<section class="slider-area bg-gray-10">
+    <div class="container">
+        <div class="home-slider nav-style-1 nav-style-1-modify-2 nav-style-1-orange">
+
+            <!-- SLIDER SINGLE -->
+            {% for img in slider_images %}
+                <div class="single-hero-slider single-hero-slider-hm10 single-animation-wrap">
+
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="hero-slider-content-6 slider-content-hm9 slider-content-hm10">
+                                <h1>{{ img.title}}</h1>
+                                {% if img.type == 'product' %}
+                                    <a class="btn btn-outline-dark" href="{{BASE_URL}}shop-details/{{img.pro_id}}">{{lang('shop_now')}}</a>
+                                {% elseif img.type == 'category' %}
+                                    <a class="btn btn-outline-dark" href="{{BASE_URL}}shop/{{img.cat_id}}">{{lang('shop_now')}}</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                            <div class="hm10-hero-slider-img">
+                                <img src="assets/shop/images/slider/{{ img.image}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <!-- END SLIDER SINGLE -->
+            <!-- SLIDER SINGLE -->
+            <!-- <div class="single-hero-slider single-hero-slider-hm10 single-animation-wrap">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="hero-slider-content-6 slider-content-hm9 slider-content-hm10">
+                            <h1>iPhone 14</h1>
+                                <a class="btn btn-outline-dark" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="hm10-hero-slider-img">
+                            <img src="assets/shop/images/slider/2.png" alt="Product Name">
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- END SLIDER SINGLE -->
+
+        </div>
+    </div>
+</section>
+<!-- END SLIDER AREA -->
+
+<!-- CATEGORY -->
+<section class="product-categories-area pt-70 pb-70">
+    <div class="container">
+        <div class="section-title-btn-wrap mb-25">
+            <div class="section-title-8">
+                <h2>{{lang('popular_categories')}}</h2>
+            </div>
+            <div class="btn-style-9">
+                <a href="{{BASE_URL}}products">{{lang('all_product')}}</a>
+            </div>
+        </div>
+        <div class="section-wrap-1">
+            <div class="product-categories-slider-1 nav-style-3">
+
+                <!-- CATEGORY SINGLE -->
+
+                {% for popular in popular_categories %}
+                    <div class="product-plr-1">
+                        <div class="single-product-wrap">
+                            <div class="product-img product-img-border-transparent mb-15">
+                                <a href="{{BASE_URL}}shop/{{popular.id}}">
+                                    <img {% for file in popular.files %} src="assets/shop/images/product/{{ file.file_name }}" {% endfor %} title="{{popular.category}}"  alt="{{popular.category}}">
+
+                                </a>
+                            </div>
+                            <div class="product-content-categories-2 product-content-orange text-center">
+                                <h5 class="font-width-dec"><a href="{{BASE_URL}}shop/{{popular.id}}" title="{{popular.category}}">{{popular.category}}</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- END CATEGORY SINGLE -->
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END CATEGORY -->
+
+
+<!-- DEAL OF THE DAY -->
+<section class="product-area pb-70 home-deal-area">
+    <div class="container">
+        <div class="section-title-btn-wrap mb-25 justify-content-end">
+            <div class="btn-style-9">
+                <a href="{{BASE_URL}}products">{{lang('view_all_products')}}</a>
+            </div>
+        </div>
+        <div class="section-wrap-1">
+            <div class="section-title-deal-wrap mb-30">
+                <div class="section-title-8">
+                    <h2>{{lang('deals_of_the_day')}}</h2>
+                </div>
+            </div>
+
+            <!-- SLIDER START -->
+            <div class="product-slider-active-8 dot-style-2 dot-style-2-position-static dot-style-2-mrg-3 nav-style-5 nav-style-5-modify">
+                {% for deal in deals_of_the_day %}
+                    <!-- SINGLE ITEM -->
+                    <div class="product-plr-1">
+                        <div class="single-product-wrap mb-35">
+                            <div class="product-img product-img-zoom mb-20">
+                                <!-- <a href="{{BASE_URL}}products"> -->
+                                <a href="{{BASE_URL}}product-details/{{deal.id}}" title="{{ deal.product_name }}">
+                                    <img src="assets/shop/images/product/{{ deal.first_image }}" title="{{ deal.product_name }}" alt="{{ deal.product_name }}">
+                                </a>
+                                <span class="pro-badge left bg-red">Label</span>
+                                <div class="product-action-wrap" onclick='addToCart({{deal.id}})'>
+                                    <div class="product-action-left">
+                                        <button ><i class="icon-basket-loaded"></i>{{lang('add_to_cart')}}</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="product-content-wrap">
+                                <div class="product-content-left">
+                                    <h4><a href="{{BASE_URL}}product-details/{{deal.id}}" title="{{ deal.product_name }}">{{ deal.brand }} &nbsp;{{ deal.product_name }}
+                                      {% if deal.options %}
+                                       ( {{ deal.options }} )
+                                     {% endif %}
+                                    </a></h4>
+                                    <!--gb-->
+                                    {# <div class="text-muted">
+                                        4GB RAM
+                                    </div> #}
+                                    <!--end gb-->
+                                    <div class="product-price">
+                                        <span class="new-price">OMR &nbsp;{{ deal.product_amount }}</span>
+{#                                        <span class="old-price">OMR 66.75</span>
+#}                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END SINGLE ITEM -->
+                    {% endfor %}
+                    </div>
+                    <!-- END SLIDER START -->
+
+                </div>
+            </div>
+        </section>
+        <!-- END DEAL OF THE DAY -->
+{% else %}
+
+
+
+<!-- Breadcrumb-area -->
+
+<div class="breadcrumb-area bg-gray">
+    <div class="container">
+        <div class="breadcrumb-content text-center">
+            <ul>
+                <li><a href="{{BASE_URL}}index">{{lang('home')}}</a></li>
+                <li><a href="{{BASE_URL}}products">{{lang('product')}}</a></li>
+                <li class="active">{{products.product_name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb-area -->
+
+
+
+<!-- PRODUCT DEATILS -->
+<section class="product-details-area pt-120 pb-115">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5">
+                <div class="product-details-tab">
+
+                    <!-- BIG SLIDER -->
+                    <div class="pro-dec-big-img-slider nav-style-3">
+
+                        <!--loop image-->
+                        <div class="item">
+                            <img {% for file in products.files %} src="assets/shop/images/product/{{ file.file_name }}" {% endfor %}
+                            title="{{products.product_name}}" class="img-fluid"
+                            alt="{{products.product_name}}">
+                            
+                        </div>
+                     
+                        <!--end loop image-->
+
+                    </div>
+                    <!-- END BIG SLIDER -->
+
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-md-7">
+
+                <div class="product-details-content pro-details-content-mrg">
+                    <h2>{{products.product_name}}</h2>
+                    
+                    <!--price-->
+                    <div class="pro-details-price">
+                        <span class="new-price">
+                            <r>OMR</r> &nbsp;{{products.product_amount}}
+                        </span>
+                        <!-- <span class="old-price">
+                            <r>OMR</r> 95.72
+                        </span> -->
+                    </div>
+                    <!--end price-->
+                    
+
+                    {%  if (products.quantity < 10) and (products.quantity > 0) %}
+                        <p class="text-danger my-1">
+                        Hurry, Only &nbsp; {{ products.quantity}} left!
+                    </p> 
+                    {% endif %}
+                    <!--end stock left message-->
+
+                    <!--outofstock-->
+                    <div class="d-block mt-2 mb-3">
+                        {%  if products.quantity < 1 %}
+                        <p class="text-danger mb-1">
+                            This item is currently out of stock
+                        </p>
+
+                        {{form_open('','methd="post" name="notify_whatsapp_form" id="notify_whatsapp_form"')|raw}}
+                        <div class="form-group">
+                            <div class="input-group d-inline-flex w-auto ">
+                                <input type="hidden" id="product_id" value="{{products.id}}">
+                                <input type="text" name="phone" id="phone" class="form-control shadow-none" placeholder="Your WhatsApp Number"
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn btn-primary" type="submit" id="button_addon">Notify Me</button>
+                            </div>
+                        </div>
+                        {{form_close()|raw}}
+                        {% endif %}
+                    </div>
+                    <!--end outofstock-->
+                    
+                    <h4>{{ products.description|striptags }}</h4>
+                    <!--warrenty-->
+                    <div class="product-warrenty">
+                        <div class="c-logo">
+                            <img src="assets/shop/images/brand/{{products.brand_image}}">
+                        </div>
+                        <div class="c-info">
+                            {{lang('brand_warrenty_of_1_year')}}
+                        </div>
+                    </div>
+                    <!--end warrenty-->
+
+                    <!--color-->
+                    <div class="product-color mt-3">
+                        <div class="color-title">Color</div>
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary" for="btnradio1"><span class="color"
+                                style="background-color: #000;"></span>Black</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <label class="btn btn-sm btn-outline-primary" for="btnradio2"><span class="color"
+                                    style="background-color: rgb(0, 122, 221);"></span>Blue</label>
+
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                    <label class="btn btn-sm btn-outline-primary" for="btnradio3"><span class="color"
+                                        style="background-color: rgb(85, 85, 85);"></span>Grey</label>
+                                    </div>
+                                </div>
+                                <!--end color-->
+
+                                <!--ram-->
+                                <div class="product-color ram mt-3">
+                                    <div class="color-title">RAM</div>
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio11" autocomplete="off">
+                                        <label class="btn btn-sm btn-outline-primary" for="btnradio11">2 GB</label>
+
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio22" autocomplete="off">
+                                        <label class="btn btn-sm btn-outline-primary" for="btnradio22">3 GB</label>
+                                    </div>
+                                </div>
+                                <!--end ram-->
+
+                                <!--gb-->
+                                <div class="product-color ram mt-3">
+                                    <div class="color-title">ROM</div>
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio11" autocomplete="off">
+                                        <label class="btn btn-sm btn-outline-primary" for="btnradio11">256 GB</label>
+
+                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio22" autocomplete="off">
+                                        <label class="btn btn-sm btn-outline-primary" for="btnradio22">128 GB</label>
+                                    </div>
+                                </div>
+                                <!--end gb-->
+
+                                <!--highlights-->
+                                <div class="product-highlights mt-3">
+                                    <div class="h-title">
+                                        Highlights
+                                    </div>
+                                    <div class="hightlights-single">
+                                        <ul>
+                                            <li>4 GB RAM | 64 GB ROM | Expandable Upto 1 TB</li>
+                                            <li>16.76 cm (6.6 inch) Full HD+ Display</li>
+                                            <li>50MP + 5MP + 2MP | 8MP Front Camera</li>
+                                            <li>6000 mAh Lithium Ion Battery</li>
+                                            <li>Exynos 850 Processor</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--end highlights-->
+
+                                <!--addtocart-buynow-->
+                                <div class="action-button">
+                                    <a class="btn btn-primary me-1" role="button" onclick='addToCart({{products.id}})'>Add to Cart</a>
+
+                                    <a class="btn btn-secondary" href="cart" role="button">Buy Now</a>
+                                </div>
+                                <!--end addtocart-buynow-->
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- END PRODUCT DEATILS -->a
+
+{% endif %}
+
+        {% include('shop/layout/footer.twig')%}
+
+<script>
+
+    function addToCart(product_id) { 
+    $.ajax({
+        url: "cart/add_to_cart",
+        data: {product_id: product_id},
+        success: function (res) {
+            res= JSON.parse(res); 
+                if (res.status == "yes")
+                {
+                    toastr.success('Added to cart')
+                    $("html,body").animate({scrollTop: 0}, "slow");
+                     $("#header_cart span").html(res.data);
+                }
+                else
+                {
+                    toastr.error(res.data)
+                }
+        }
+    });
+
+    }
+
+</script>

@@ -1,0 +1,182 @@
+{% include('admin/partials/head-main.twig')%}
+<head>
+    <base href="{{ base_url() }}" />
+    <?= $title_meta ?>
+
+    {% include('admin/partials/head-css.twig')%}
+    <link href="assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css">
+    <!-- DataTables -->
+    <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="assets/libs/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<div id="js_messages" style="display: none;"> 
+    <span id="status_change_successfully_js">{{lang('status_change_successfully_js')}}</span>   
+    
+</div>
+
+{% include('admin/partials/body.twig')%}
+<!-- <body data-layout="horizontal"> -->
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        {% include('admin/partials/menu.twig')%}
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                {%include('admin/layout/notification.twig')%}
+                <div class="container-fluid">
+                    <!-- start page title -->
+                    <?= $page_title ?>
+                    <h4 class="panel-title">
+                        <span class="text-bold">
+                            {{lang('order_history')}}
+                        </span>
+                    </h4>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{{lang('order_id')}}</th>
+                                                <th>{{lang('customer')}}</th>
+                                                <th>{{lang('order_date')}}</th>
+                                                <th>{{lang('total_amount')}}</th>
+                                                <th>{{lang('payment_type')}}</th>
+                                                <th>{{lang('type')}}</th>
+                                                <th>{{lang('status')}}</th>
+                                                <th>{{lang('invoice_detail')}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for orders in order_data %} 
+                                            <tr>
+                                                
+                                                <td>{{loop.index}}</td>
+                                                <td><b>MB00{{orders.order_id}}</b></td>
+                                                <td>{{orders.customer}}</td>
+                                                <td>{{orders.order_date}}</td>
+                                                <td>{{orders.total_amount}}</td> 
+
+                                               {% if orders.payment_type == 'bank_transfer' %}
+                                                <td>{{ lang(orders.payment_type) }}&nbsp; <a target='_BLANK'href="assets/images/{{orders.file_name}}" class="" title="View">
+                                                <i class="fa fa-paperclip" aria-hidden="true"></i>                                                    
+                                            </a></td>
+
+                                               {% else %}
+                                                   <td>{{ lang(orders.payment_type) }}</td>
+                                               {% endif %}
+
+                                                <td>{{orders.type}}</td> 
+
+                                                  {# {% if orders.order_status == "Complete" %}  
+                                                    <td><span class="badge badge-soft-success">{{orders.order_status}}</span>
+                                                   {%elseif orders.order_status =='Declined' %} 
+                                                   <td><span class="badge badge-soft-danger">{{orders.order_status}}</span></td>
+                                                   {%else %}
+                                                   <td><span class="badge badge-soft-warning">{{orders.order_status}}</span></td>
+                                                   {% endif %}#}    
+
+                                                    <td>
+                                                        <select class="form-select"  name="order_status" onchange="updateOrderStatus(this.value, {{ orders.order_id }})">
+                                                            <option value="">{{ lang('select') }}</option>
+                                                                    {% for sts in order_status_list %}
+                                                                        <option value="{{ sts.id }}" {% if orders.order_status==sts.status_name %} selected {% endif %}>{{ sts.status_name|raw }}</option>
+                                                                    {% endfor %}
+                                                        </select>
+                                                    </td>
+                                                   
+                                                <td>
+                                                    <a href="admin/invoice-details/{{orders.order_id}}" class="btn btn-primary" title="View">
+                                                       <i class="bx bx-show-alt"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                           </tbody>
+                                       </table>
+                                   </div>
+                               </div>
+                           </div> 
+                       </div>
+                       {% include('admin/partials/footer.twig')%}
+                   </div>
+                   <!-- end main content-->
+               </div>
+           </div>
+           <!-- END layout-wrapper -->
+
+           <!-- JAVASCRIPT -->
+           {% include('admin/partials/vendor-scripts.twig')%}
+           <script src="assets/js/app.js"></script>
+           <script src="assets/libs/flatpickr/flatpickr.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+           <script src="assets/libs/dropify/dropify.min.js"></script>
+           <!-- Required datatable js -->
+           <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+           <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+           <!-- Buttons examples -->
+           <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+           <script src="assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+           <script src="assets/libs/jszip/jszip.min.js"></script>
+           <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
+           <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
+           <script src="assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+           <script src="assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+           <script src="assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+           <!-- Responsive examples -->
+           <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+           <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+           <!-- pristine js -->
+           <script src="assets/libs/pristinejs/pristine.min.js"></script>
+           <!-- form validation -->
+           <script src="assets/js/pages/form-validation.init.js"></script>
+           <!-- Datatable init js -->
+           <script src="assets/js/pages/datatables.init.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+    function updateOrderStatus(element,id) {
+        var order_status =element;
+        var order_id = id;
+        var msg = $("#status_change_successfully_js").html();
+        $.ajax({
+            url: "admin/member/update_order_status",
+            data: {
+                order_status: order_status,
+                order_id: order_id
+            },
+            success: function (result) {
+                if (result == "yes") {
+                    var flag = "success";
+                    var title = $('#success_js').html();
+                    show_notification(flag, title, msg);
+                     // alert('Error: The condition is not met.');
+                    //location.reload(true);
+                }else {
+                    var flag = "error";
+                    var title = $('#success_js').html();
+                    // show_notification(flag, title, msg);
+                    //location.reload(true);
+                }
+            }
+        });
+    }
+
+</script>
+
+    </body>
+
+</html>

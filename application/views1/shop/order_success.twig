@@ -1,0 +1,25 @@
+{% include('shop/layout/header.twig')%}
+<!-- ORDER SUCCESS -->
+        <section class="order-success-area bg-white pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card text-center">
+                            <h3 class="card-header">Your order has been received</h3>
+                            <div class="card-body">
+                                <div class="done-icon">
+                                    <img src="assets/images/icon-img/done-tick.svg">
+                                </div>
+                              <h4 class="card-title mt-3">Thank you for your purchase!</h4>
+                              <h5 class="card-title mt-3">Your order ID is : <span>MB00{{order_id}}</span></h5>
+                              <p class="card-text">you will receive an order confirmation email with details of your order.</p>
+                              <a href="#" class="btn btn-primary">CONTINUE SHOPPING</a>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END ORDER SUCCESS-->
+
+{% include('shop/layout/footer.twig')%}
