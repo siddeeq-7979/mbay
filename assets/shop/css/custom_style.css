@@ -143,10 +143,12 @@
 .shop-area .accordion-body {
     padding: 0 0 16px;
 }
+
 .shop-area .accordion-button:after {
     background-size: 100%;
     width: 15px;
     height: 15px;
+
 }
 
 .shop-area .accordion-button:not(.collapsed)::after {
@@ -210,8 +212,9 @@
 .single-product-wrap .product-content-wrap .product-content-left span.new-price {
     color: #e91e63;
 }
+
 .shop-area .single-product-wrap .product-content-wrap .product-content-left span.new-price {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .pro-pagination-style ul li a.active {
@@ -402,7 +405,7 @@
     padding-left: 25px;
 }
 
-.product-details-area .action-button a {
+.product-details-area .action-button button {
     padding: 18px 50px 17px;
     display: inline-block;
     font-size: 16px;
@@ -550,6 +553,7 @@
 .your-order-area .d-flex {
     align-items: center;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .your-order-area .flex-grow-1 p {
@@ -568,8 +572,9 @@
     margin-right: -15px;
 }
 
-.your-order-area .place-order a {
+.your-order-area .place-order button {
     background-color: #008fff;
+    border-radius: 0;
 }
 
 
@@ -682,36 +687,45 @@
     background-color: inherit;
     color: #000;
 }
+
 .b-top-dashed {
     border-top: dashed 1px #000 !important;
 }
+
 .single-product-wrap .product-content-wrap .product-content-left h4 {
     font-weight: 500;
 }
+
 .single-product-wrap .product-img span.pro-badge {
     top: 0;
     font-weight: 500;
 }
+
 .single-product-wrap .product-img span.pro-badge.left {
     left: 0;
 }
+
 .hero-slider-content-6 h1 {
     line-height: 45px;
     text-transform: capitalize;
 }
+
 .shop-area .gb {
     color: #878787;
     font-size: 14px;
     word-wrap: break-word;
 }
+
 .app-area .app-header p {
     font-size: 18px;
     line-height: 24px;
 
 }
+
 .app-area .app-header {
     position: relative;
 }
+
 .app-area .app-header .app-logo {
     position: absolute;
     right: 0;
@@ -722,9 +736,11 @@
 .app-area .app-header .app-logo img {
     max-width: 285px;
 }
+
 .app-area .andorid-ios-tab {
     margin-top: 20px;
 }
+
 .app-area .andorid-ios-tab h4 {
     font-size: 14px;
     font-weight: 700;
@@ -741,16 +757,20 @@
     padding-bottom: 10px;
     color: rgb(175, 175, 175);
 }
+
 .app-area .andorid-ios-tab .nav-tabs .nav-link .platform-icon {
     margin-right: 8px;
 }
+
 .app-area .andorid-ios-tab .nav-tabs .nav-link.active {
     border-bottom: 3px solid #008fff !important;
     color: #000 !important;
 }
+
 .app-area .andorid-ios-tab .instructions-steps {
     padding-left: 15px;
 }
+
 .app-area .andorid-ios-tab .instructions-steps li {
     border-left: 2px dashed hsl(0deg 0% 0% / 24%);
     line-height: 30px;
@@ -758,11 +778,12 @@
     padding-left: 25px;
     position: relative;
 }
+
 .app-area .andorid-ios-tab .instructions-steps li:before {
     background: #9e9e9e;
     border-radius: 8px;
     color: #fff;
-    color: var(--color-white,#fff);
+    color: var(--color-white, #fff);
     content: attr(data-number);
     display: inline-block;
     height: 30px;
@@ -772,58 +793,73 @@
     text-align: center;
     width: 30px;
 }
+
 .app-area .andorid-ios-tab .instructions-steps .instructions-steps-title {
     display: inline-block;
     font-size: 14px;
     line-height: 20px;
     vertical-align: middle;
-} 
+}
+
 .service-area .service-wrap {
     margin-top: inherit;
     padding: 50px 25px;
 }
+
 .service-area .service-wrap .single-service-wrap {
     margin-bottom: 0;
 }
+
 .service-area .single-service-wrap .service-icon i {
     color: #ff0000;
 }
+
 .checkout-main-area .nav-pills {
     margin-bottom: 25px;
 }
+
 .checkout-main-area .nav-pills .nav-link {
     color: #000;
     font-size: 16px;
 }
+
 .checkout-main-area .nav-pills .nav-link.active {
     color: #fff;
 }
+
 .home-slider .btn {
     border-radius: 100px;
     font-size: 14px;
 }
+
 .cart-area .empty-cart {
     max-width: 200px;
     margin: auto;
     display: block;
 }
+
 .cart-area .empty-cart-title {
     font-size: 20px;
     text-align: center;
     margin: 25px auto;
 }
+
 .mobile-view-search .dropdown-menu {
     width: inherit;
 }
+
 .mobile-view-search .dropdown-menu .dropdown-item .flex-shrink-0 img {
     max-width: 50px;
 }
+
 .mobile-view-search .dropdown-menu .dropdown-item .flex-grow-1 img {
     max-width: 50px;
 }
+
 .mobile-view-search .dropdown-menu .dropdown-item .flex-grow-1 h5 {
     margin: 0;
 }
+
 .mobile-view-search .dropdown-menu .dropdown-item .flex-grow-1 p {
     margin: 0;
 }
@@ -832,10 +868,117 @@
     background-color: transparent;
 }
 
+.cart-area .color-option {
+    display: flex;
+    align-items: center;
+    color: #6c757d;
+}
 
+.cart-area .color-option .color {
+    height: 11px;
+    width: 11px;
+    border-radius: 10px;
+    margin: 0 4px;
+}
 
+.cart-area .p-name-link {
+    font-weight: 600;
+}
 
+.order-success-area .card {
+    border: none;
+}
 
+.order-success-area .card .card-header {
+    border: none;
+    background: none;
+}
+
+.order-success-area .card .done-icon {
+    margin: auto;
+    background-color: #6aae27;
+    border-radius: 100px;
+    padding: 7px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+}
+
+.order-success-area .card .done-icon img {
+    filter: brightness(0) invert(1);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.slick-slide img {
+    margin: 0 auto;
+}
+
+.account-area .nav-pills .nav-link i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.aside-menu {
+    border: 1px solid #cbd3d9;
+    padding: 35px;
+    border-radius: 6px;
+}
+
+.account-area .nav-pills .nav-link {
+    color: #777777;
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.account-area .nav-pills .nav-link:last-child {
+    margin-bottom: 0;
+}
+
+.account-area .nav-pills .nav-link.active {
+    background-color: #f6f7fb;
+    color: #008fff;
+}
+
+.account-area .card {
+    border: none;
+}
+
+.account-area .card .card-header {
+    border: 0;
+    background: none;
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+.account-area .orders .table-responsive {
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.account-area .orders .table-responsive::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+}
+
+.account-area .address-edit {
+    display: none;
+}
+.payment-slip {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+
+    border-color: #dee2e6;
+
+    background-color: #dee2e6;
+}
 
 
 
@@ -856,32 +999,87 @@
                                                 RESPONSIVE AREA
 =======================================================================================================================*/
 @media (max-width: 1199.98px) {
+    .account-area .card .card-header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .account-area .card .card-body {
+        padding: 0 0 1rem 0;
+    }
+
     .single-product-wrap .product-content-wrap .product-content-left span {
         font-size: 14px;
+    }
+
+    .account-area .nav-pills {
+        overflow-x: scroll;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+    }
+
+    .account-area .nav-pills {
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .account-area .nav-pills::-webkit-scrollbar {
+        display: none;
+        /* Safari and Chrome */
+    }
+
+    .account-area .nav-pills .nav-link {
+        margin-bottom: 0;
+    }
+
+    .aside-menu {
+        margin-bottom: 15px;
     }
 }
 
 @media (max-width: 767.98px) {
+    .home-deal-area .slick-dots {
+        display: none !important;
+    }
+    .hm10-hero-slider-img {
+        margin-left: 0px;
+        padding-top: 30px;
+        text-align: center;
+        margin-right: 0;
+    }
+     .aside-menu {
+        border: 1px solid #cbd3d9;
+        padding: 15px;
+        border-radius: 6px;
+    }
     .app-area .app-header h1 {
         max-width: 65%;
     }
+
     .app-area .app-header .app-logo img {
         max-width: 148px;
     }
+
     .app-area .app-header .app-logo {
         right: 0;
         top: -14px;
         z-index: 0;
     }
+
     .shop-area .single-product-wrap .product-content-wrap .product-content-left span.new-price {
         font-size: 14px;
     }
+
     .single-product-wrap .product-content-wrap .product-content-left span.old-price {
         margin-left: 5px;
     }
+
     .product-details-content.pro-details-content-mrg .pro-details-price {
         margin: 5px 0 0 0;
     }
+
     .slider-area .btn-style-1 a.btn-1-padding-4 {
         padding: 4px 20px;
     }
@@ -960,7 +1158,7 @@
         position: absolute;
         width: 88px;
         left: 0;
-        z-index: -1;
+        z-index: 1;
         padding: 0;
     }
 
@@ -1024,12 +1222,15 @@
     .service-area .service-wrap {
         padding: 35px 25px;
     }
+
     .service-area .service-wrap .single-service-wrap {
         justify-content: flex-start;
     }
+
     .service-area .service-wrap .row {
         gap: 25px;
     }
+
     .product-details-area .action-button {
         display: flex;
         white-space: nowrap;

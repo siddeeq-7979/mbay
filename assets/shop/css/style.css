@@ -3784,7 +3784,7 @@ textarea:focus {
 
 .header-login-regi a i {
   font-size: 20px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .header-login-regi a:hover {
@@ -19305,7 +19305,7 @@ h3.cart-page-title {
   }
 }
 
-.your-order-area .place-order a {
+.your-order-area .place-order button {
   background-color: #ff2f2f;
   display: block;
   cursor: pointer;
@@ -19319,7 +19319,7 @@ h3.cart-page-title {
   text-align: center;
 }
 
-.your-order-area .place-order a:hover {
+.your-order-area .place-order button:hover {
   background-color: #333;
 }
 

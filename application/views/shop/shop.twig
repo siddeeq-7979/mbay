@@ -61,7 +61,7 @@
                                             <img {% for file in pro.files %} src="assets/shop/images/product/{{ file.file_name }}"{% endfor %} title="{{pro.product_name}}">
                                         </a>
                                         
-                                        <span class="pro-badge left bg-red">{{lang('label')}}</span>
+                                        {# <span class="pro-badge left bg-red">{{lang('label')}}</span> #}
                                         <div class="product-action-wrap" onclick='addToCart({{pro.id}})'>
                                             <div class="product-action-left">
                                                 <button ><i class="icon-basket-loaded"></i>{{lang('add_to_cart')}}</button>
@@ -71,10 +71,8 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-content-left">
-                                             <h4><b><a href="{{BASE_URL}}shop-details/{{pro.id}}" title="{{pro.product_name}}">{{ pro.brand }}&nbsp; {{pro.product_name}} 
-                                    {% if pro.options %}
-                                       ( {{ pro.options }} )
-                                     {% endif %}</a></b></h4>
+                                             <h4><b><a href="{{BASE_URL}}shop-details/{{pro.id}}" title="{{pro.product_name}}">{{pro.product_name}}</a></b>
+                                     </h4>
                                              {# <div class="gb">
                                                 4 GB RAM
                                              </div> #}
@@ -108,12 +106,8 @@
                             {{form_open('','methd="post" name="side_bar_form" id="side_bar_form"')|raw}}
                             <!-- ACCORDION -->
                             <div class="accordion" id="accordionPanelsStayOpenExample">
-                                <div class="offcanvas-header">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas" aria-label="Close" onclick="resetForm()">{{lang('reset')}}</button>
-                                    <button type="submit" class="btn btn-primary" id="filter_btn" name="filter_btn" value="filter_btn">{{lang('filter')}}</button>
-                                        
-                                </div>
-                            </div>
+                                
+                                
 
                                 <!-- PRICE -->
                                 <div class="accordion-item price">
@@ -139,37 +133,7 @@
                                     </div>
                                 </div>
                                 <!-- END PRICE -->
-                            
-                                <!-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseOne">
-                                            Category
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="panelsStayOpen-headingOne">
-                                        <div class="accordion-body">
-                                            <div class="sidebar-widget shop-sidebar-border">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault1">
-                                                    <label class="form-check-label" for="flexCheckDefault1">
-                                                        Smartphone
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault2">
-                                                    <label class="form-check-label" for="flexCheckDefault2">
-                                                        Tablets
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
+                        
                             
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -224,6 +188,12 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="mt-3 d-flex">
+                                    <button type="submit" class="btn btn-sm btn-primary me-1" id="filter_btn" name="filter_btn" value="filter_btn">{{lang('filter')}}</button>
+                                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="offcanvas" aria-label="Close" onclick="resetForm()">{{lang('reset')}}</button>
+                                </div>
+
                             </div>
                             <!-- END ACCORDION -->
                             {{ form_close()|raw }}
@@ -272,37 +242,7 @@
                                     </div>
                                 </div>
                                 <!-- END PRICE -->
-                            
-                                <!-- <div class="accordion-item">
-                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseOne">
-                                            Category
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                        aria-labelledby="panelsStayOpen-headingOne">
-                                        <div class="accordion-body">
-                                            <div class="sidebar-widget shop-sidebar-border">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault1">
-                                                    <label class="form-check-label" for="flexCheckDefault1">
-                                                        Smartphone
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault2">
-                                                    <label class="form-check-label" for="flexCheckDefault2">
-                                                        Tablets
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
+                        
                             
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingTwo">

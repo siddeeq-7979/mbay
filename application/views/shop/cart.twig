@@ -48,18 +48,19 @@
                                                         alt=""></a>
                                             </td>
                                             <td class="product-name"  style="line-height: 1.1">
-                                                <a href="#">{{car.name}}</a>
+                                                <a href="#" class="p-name-link">{{car.name}}</a>
+
                                                     <!-- if -5 quantity label -->
                                                     {%  if (car.quantity < 10) and (car.quantity > 0) %}
-                                                    <span class="d-block text-success"> Only  &nbsp;{{car.quantity}} left in stock, order now.</span>
+                                                    <span class="d-block text-success"> Only &nbsp;{{car.quantity}} left in stock, order now.</span>
                                                     {% endif %}
 
                                                     {% for key,op_value in car.option_value %}
-                                                    <br/>
+                                                   
                                                         {%  if key == 'Color' %}
-                                                        <span style="font-size:11px;color:gray">  {{ key}} : <span  style="background-color:{{op_value}}">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</span> </span>
+                                                        <span class="color-option">{{ key}} <span class="ms-1 me-1">:</span><span class="color" style="background-color:{{op_value}}"></span> </span>
                                                           {% else %}
-                                                           <span style="font-size:11px;color:gray"> {{ key}} :{{op_value}} </span> 
+                                                           <span class="d-block text-muted">{{ key}} <span class="ms-1 me-1">:</span> {{op_value}}</span> 
                                                         {% endif %}
                                                     {% endfor %}
 
@@ -72,7 +73,9 @@
                                                 <a class="d-block" onclick="clearProduct('{{car.rowid}}')">{{lang('remove')}}</a>
                                             </td>
                                             <!-- <td class="product-price-cart"><span class="amount">{{car.price}}</span></td> -->
-                                            <td>OMR&nbsp;<span class="product-subtotal" id="product_amount_total_{{car.rowid}}">{{car.subtotal}}</span></td>
+                                            <td class="product-subtotal">
+                                            OMR&nbsp;<span class="product-subtotal" id="product_amount_total_{{car.rowid}}">{{car.subtotal}}</span>
+                                            </td>
                                         </tr>
                                         <!--end loop item -->
                                         {% endfor %}
