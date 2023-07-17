@@ -65,12 +65,13 @@ class CI_Cart {
 	 */
 	public $product_name_rules = '\w \-\.\:';
 
+
 	/**
 	 * only allow safe product names
 	 *
 	 * @var bool
 	 */
-	public $product_name_safe = TRUE;
+	public $product_name_safe = FALSE;
 
 	// --------------------------------------------------------------------------
 
@@ -127,10 +128,10 @@ class CI_Cart {
 	 * @return	bool
 	 */
 	public function insert($items = array())
-	{
+	{ 
 		// Was any cart data passed? No? Bah...
 		if ( ! is_array($items) OR count($items) === 0)
-		{
+		{ 
 			log_message('error', 'The insert method must be passed an array containing data.');
 			return FALSE;
 		}
@@ -142,14 +143,14 @@ class CI_Cart {
 
 		$save_cart = FALSE;
 		if (isset($items['id']))
-		{
+		{ 
 			if (($rowid = $this->_insert($items)))
 			{
 				$save_cart = TRUE;
 			}
 		}
 		else
-		{
+		{ 
 			foreach ($items as $val)
 			{
 				if (is_array($val) && isset($val['id']))
@@ -164,7 +165,7 @@ class CI_Cart {
 
 		// Save the cart data if the insert was successful
 		if ($save_cart === TRUE)
-		{
+		{ 
 			$this->_save_cart();
 			return isset($rowid) ? $rowid : TRUE;
 		}
@@ -193,7 +194,7 @@ class CI_Cart {
 
 		// Does the $items array contain an id, quantity, price, and name?  These are required
 		if ( ! isset($items['id'], $items['qty'], $items['price'], $items['name']))
-		{
+		{ 
 			log_message('error', 'The cart array must contain a product ID, quantity, price, and name.');
 			return FALSE;
 		}
@@ -205,7 +206,7 @@ class CI_Cart {
 
 		// If the quantity is zero or blank there's nothing for us to do
 		if ($items['qty'] == 0)
-		{
+		{ 
 			return FALSE;
 		}
 
