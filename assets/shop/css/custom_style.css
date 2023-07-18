@@ -977,6 +977,9 @@
     flex-direction: column;
     margin-top: 5px;
 }
+.single-product-wrap .product-content-wrap .product-content-left span.old-price {
+    text-decoration:none;
+}
 
 
 
