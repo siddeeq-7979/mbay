@@ -766,7 +766,7 @@ body {}
     transform: rotateY(180deg);
 }
 .header-cart-2 a span {
-    left: -12px !important;  
+    left: 10px !important;  
 }
 .app-area .app-header .app-logo {
     left: 0;
@@ -807,11 +807,10 @@ body {}
 .dot-style-2 ul li {
     margin: 0 0 0 9px !important;
 }
-.header-cart-2 a span {
-    left: 12px !important;
-}
+
 .header-cart-2 a i {
     margin-left: 20px;
+    margin-right: 0 !important;
 }
 .single-product-wrap .product-img .product-action-wrap .product-action-left button i {
     margin-left: 15px;
