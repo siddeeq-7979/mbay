@@ -46,6 +46,7 @@
         slidesToScroll: 1,
         fade: false,
         loop: true,
+        rtl: true,
         dots: false,
         arrows: true,
         prevArrow: '<span class="pro-slider-icon-1-prev"><i class="icon-arrow-left"></i></span>',
