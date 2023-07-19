@@ -985,7 +985,12 @@
 .single-product-wrap .product-content-wrap .product-content-left span.old-price {
     text-decoration:none;
 }
-
+.your-order-area .your-order-wrap .payment-method .sin-payment input {
+    margin-right: 10px;
+}
+.your-order-area .your-order-wrap .payment-method .sin-payment label {
+    margin: 0 !important;
+}
 
 
 
@@ -1005,6 +1010,9 @@
                                                 RESPONSIVE AREA
 =======================================================================================================================*/
 @media (max-width: 1199.98px) {
+    .account-area .card {
+        border: none !important;
+    }
     .account-area .card .card-header {
         padding-left: 0;
         padding-right: 0;

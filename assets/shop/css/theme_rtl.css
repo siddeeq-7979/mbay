@@ -853,9 +853,17 @@ body {}
 .your-order-area .your-order-wrap .payment-method .sin-payment input {
     float: right !important;
 }
+.upload_payment_slip {
+    margin: 0 !important;
+}
+.your-order-area .your-order-wrap .payment-method .sin-payment input {
+    margin-left: 10px;
+    margin-right: 0 !important;
+}
 .your-order-area .your-order-wrap .payment-method .sin-payment label {
     margin: 0px 21px 0 0 !important;
 }
+
 .billing-info-wrap h3:before {
     right: 0;
 }
@@ -879,7 +887,15 @@ body {}
 .mobile-header-active .clickalbe-sidebar-wrap .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li.menu-item-has-children .menu-expand {
     right: 95%;
 }
+.mobile-view-search .dropdown-menu {
 
+    left: 0 !important;
+    right: 0;
+}
+.account-area .nav-pills .nav-link i {
+    margin-left: 10px;
+    margin-right: 0 !important;
+}
 
 
 
