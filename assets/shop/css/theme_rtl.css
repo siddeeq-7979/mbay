@@ -876,6 +876,9 @@ body {}
     left: 20px;
     right: inherit !important;
 }
+.mobile-header-active .clickalbe-sidebar-wrap .mobile-header-content-area .mobile-menu-wrap nav .mobile-menu li.menu-item-has-children .menu-expand {
+    right: 95%;
+}
 
 
 
