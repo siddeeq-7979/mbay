@@ -794,6 +794,94 @@ body {}
     left: -2px;
     right: inherit !important;
 }
+[type=email], [type=number], [type=tel], [type=url] {
+    direction: rtl;
+}
+.nav-style-5.nav-style-5-modify>span.sidebar-icon-next {
+    margin-left: 30px;
+}
+.nav-style-5>span {
+    left: 0;
+    right: inherit !important;
+}
+.dot-style-2 ul li {
+    margin: 0 0 0 9px !important;
+}
+.header-cart-2 a span {
+    left: 12px !important;
+}
+.header-cart-2 a i {
+    margin-left: 20px;
+}
+.single-product-wrap .product-img .product-action-wrap .product-action-left button i {
+    margin-left: 15px;
+}
+.product-details-area .product-highlights .hightlights-single ul li {
+    padding: 0 16px 8px 0 !important;
+}
+.pro-details-quality .cart-plus-minus .qtybutton.inc {
+    left: 0px ;
+    right: inherit !important;
+}
+.cart-table-content {
+    text-align: right;
+}
+.cart-area .cart-table-content table tbody>tr td {
+    text-align: right !important;
+}
+.grand-totall .title-wrap h4.cart-bottom-title {
+    padding-left: 18px;
+    padding-right: 0 !important;
+}
+.grand-totall .total-shipping ul li span {
+    float: left !important;
+}
+.grand-totall h5 span {
+    float: left !important;
+}
+.grand-totall h4.grand-totall-title span {
+    float: left !important;
+}
+.cart-area .cart-table-content table thead>tr th {
+    text-align: right !important;
+}
+.your-order-area h3:before {
+    right: 0;
+}
+.your-order-area .your-order-wrap .your-order-info ul li span {
+    float: left !important;
+}
+.your-order-area .your-order-wrap .payment-method .sin-payment input {
+    float: right !important;
+}
+.your-order-area .your-order-wrap .payment-method .sin-payment label {
+    margin: 0px 21px 0 0 !important;
+}
+.billing-info-wrap h3:before {
+    right: 0;
+}
+.cstm-inppt {
+    margin-left: 15px;
+    margin-right: 0 !important;
+}
+.mobile-header-active {
+    -webkit-transform: translate(200px, 0) !important;
+    transform: translate(200px, 0) !important;
+    right: 0;
+}
+.mobile-header-active.sidebar-visible {
+    -webkit-transform: translate(0, 0) !important;
+    transform: translate(0, 0) !important;
+}
+.mobile-header-active .clickalbe-sidebar-wrap .sidebar-close {
+    left: 20px;
+    right: inherit !important;
+}
+
+
+
+
+
 /*=====================================================================================================================
                                                 RESPONSIVE AREA
 =======================================================================================================================*/

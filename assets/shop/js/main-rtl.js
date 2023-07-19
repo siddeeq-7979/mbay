@@ -123,6 +123,7 @@
         autoplaySpeed: 3000,
         fade: false,
         loop: true,
+        rtl:true,
         dots: true,
         arrows: true,
         prevArrow: '<span class="sidebar-icon-prev"><i class="icon-arrow-left"></i></span>',

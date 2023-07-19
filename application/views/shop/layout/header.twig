@@ -93,10 +93,7 @@
                                             placeholder="{{lang('what_are_you_looking_for')}}"
                                             aria-label="Recipient's username" aria-describedby="button-addon2"
                                             id="search_box">
-                                        <!-- <button class="btn btn-outline-secondary" type="button" id="button-addon2" >
-                                                <i class="icon-magnifier"></i>
-                                            </button> -->
-                                        <a href="{{BASE_URL}}search-details/15" class="btn btn-outline-secondary"
+                                        <a href="javascript:void(0)" class="btn btn-outline-secondary"
                                             type="button" id="button-addon2"> <i class="icon-magnifier"></i></a>
                                     </div>
                                 </div>
@@ -117,7 +114,7 @@
                                     </div>
                                     {% endif %}
                                     <!--language-->
-                                    {# {%if MLM_LANG_CODE =='en' %} 
+                                     {%if MLM_LANG_CODE =='en' %} 
                                             <div class="header-login-regi">
                                                 <a href="javascript:;" onclick="switchLanguage('ar');" title="">عربى </a>
                                             </div> 
@@ -125,7 +122,7 @@
                                             <div class="header-login-regi">
                                                 <a href="javascript:;" onclick="switchLanguage('en');" title="">English</a>
                                             </div> 
-                                        {%endif%} #}
+                                        {%endif%} 
                                     <!--end language-->
 
                                     {% if items %}
@@ -183,7 +180,7 @@
                         <div class="col-7">
                             <div class="header-action header-action-flex">
                                 <!--language-->
-                                {# <div class="same-style-wrap language-swicher">
+                                 <div class="same-style-wrap language-swicher">
                                     <div class="same-style same-style-border language-wrap">
                                         <a class="language-dropdown-active" href="#">{{MLM_LANG_CODE}}<i
                                                 class="icon-arrow-down"></i></a>
@@ -201,7 +198,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div> #}
+                                </div>
                                 <!--end language-->
                                 <!--cart-->
                                 {% if items %}
