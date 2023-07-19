@@ -244,6 +244,11 @@
 
 .shop-area .offcanvas {
     background-color: #f6f6f6;
+    overflow-y: scroll;
+    height: 100vh;
+}
+.offcanvas.offcanvas-start {
+    width: 300px;
 }
 
 .btn-primary {
