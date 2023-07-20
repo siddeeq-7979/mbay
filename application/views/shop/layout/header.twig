@@ -10,7 +10,8 @@
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="robots" content="noindex, follow" />
+    <meta name="author" content="mbay" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1," />
     <base href="{{BASE_URL}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
 
@@ -33,12 +34,16 @@
     <meta name="twitter:description" content="Shop the best electronics online in Oman. Free shipping, top prices, and a wide selection of products. Visit us today for great deals!" />
     <!-- END Twitter OG Tag -->
 
+    <link rel="preload" href="assets/shop/fonts/Simple-Line-Iconsb26c.woff2?v=2.4.0" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/shop/fonts/ElegantIcons.woff" as="font" type="font/woff2" crossorigin>
+
     <link rel="icon" type="image/png" sizes="48x48" href="assets/images/logos/{{COMPANY_FAV_ICON}}">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logos/{{COMPANY_FAV_ICON}}">
 
     <!-- BASE CSS -->
     {%if MLM_LANG_CODE =='en' %}
-    <link rel="stylesheet" href="assets/shop/css/vendor/bootstrap.min.css">
+    <link rel="preload" href="assets/shop/css/vendor/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/shop/css/vendor/bootstrap.min.css"></noscript>
     {%elseif MLM_LANG_CODE =='ar' %}
     <link rel="stylesheet" href="assets/shop/css/vendor/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="assets/shop/css/theme_rtl.css">
