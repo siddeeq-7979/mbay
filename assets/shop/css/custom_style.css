@@ -996,6 +996,7 @@
 
 .mobile-view-search .dropdown-menu .dropdown-item .search-item p {
     margin: 0;
+    white-space: nowrap;
 }
 
 .mobile-view-search .dropdown-menu .dropdown-item:active {
