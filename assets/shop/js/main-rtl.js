@@ -290,6 +290,7 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         fade: false,
+        rtl: true,
         loop: true,
         dots: false,
         arrows: true,
