@@ -1,4 +1,19 @@
 {% include('shop/layout/header.twig')%}
+
+<!-- Breadcrumb-area -->
+        <div class="breadcrumb-area bg-gray">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <ul>
+                        <li><a href="{{BASE_URL}}index">{{lang('home')}}</a></li>
+                        <!-- <li><a href="{{BASE_URL}}shop">{{lang('shop')}}</a></li> -->
+                        <li class="active">Products</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Breadcrumb-area -->
+
 <div id="js_messages" style="display: none;">
     <span id="add_to_cart_js">{{lang('add_to_cart_js')}}</span>
     <span id="success_js">{{lang('success_js')}}</span>
