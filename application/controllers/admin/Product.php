@@ -111,7 +111,25 @@ class Product extends Base_Controller {
                 } else {
                     $this->loadPage(lang('product_deletion_failed'), 'product-manage', 'danger');
                 } 
-            } else {
+            }elseif ($action == "inactivate") {
+                $res = $this->product_model->changeProductStatus($product_id, 0);
+                if ($res) {
+                    $data['product_id'] = $product_id;
+                    $this->helper_model->insertActivity($loged_user_id, 'product_inactivated', $data);
+                    $this->loadPage(lang('product_inactivated'), 'product-manage');
+                } else {
+                    $this->loadPage(lang('product_inactivation_failed'), 'product-manage', 'danger');
+                }
+            }elseif ($action == "activate") {
+                $res = $this->product_model->changeProductStatus($product_id, 1);
+                if ($res) {
+                    $data['product_id'] = $product_id;
+                    $this->helper_model->insertActivity($loged_user_id, 'product_activated', $data);
+                    $this->loadPage(lang('product_activated'), 'product-manage');
+                } else {
+                    $this->loadPage(lang('product_activation_failed'), 'product-manage', 'danger');
+                }
+            }else {
                 $this->loadPage(lang('invalid_action'), 'product-manage', 'danger');
             }
         }

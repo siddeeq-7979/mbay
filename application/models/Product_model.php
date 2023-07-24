@@ -206,6 +206,7 @@ class Product_model extends CI_Model {
                 }elseif($max_amt!=''){
                     $this->db->where('product_amount <=',$max_amt);
                 }
+                $this->db->where("pro.status",1);
                 
                 $res =$this->db->get();
         $i = 0;
@@ -883,7 +884,7 @@ class Product_model extends CI_Model {
 
     function getProductLists() {
         $data = array();
-        $res = $this->db->select("id, product_name, description, product_amount, category, quantity")
+        $res = $this->db->select("id, product_name, description, product_amount, category, quantity, status")
                 ->from("products")
                 ->get();
         $i = 0;
@@ -894,6 +895,7 @@ class Product_model extends CI_Model {
             $data[$i]['description'] = $row->description;
             $data[$i]['product_amount'] = $row->product_amount;
             $data[$i]['quantity'] = $row->quantity;
+            $data[$i]['status'] = $row->status;
             $i++;
         }
         return $data;
@@ -978,6 +980,8 @@ class Product_model extends CI_Model {
                 }
                 $this->db->where("cat.cat_nav", 1);
                 $this->db->where("cat.id", $cat_id);
+                $this->db->where("pro.status",1);
+
                 $res = $this->db->get();
 
         $i = 0;
@@ -1484,5 +1488,4 @@ class Product_model extends CI_Model {
     }
 
     
-
 }

@@ -81,14 +81,18 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'leadmlmsoftware_mbay',
-	'password' => 'rpewtHNf1Pjh',
-	'database' => 'leadmlmsoftware_mbay',
+	// 'hostname' => 'localhost',
+	// 'username' => 'leadmlmsoftware_mbay',
+	// 'password' => 'rpewtHNf1Pjh',
+	// 'database' => 'leadmlmsoftware_mbay',
 	// 'hostname' => 'localhost',
 	// 'username' => 'root',
 	// 'password' => '',
-	// 'database' => 'mbay',
+
+	'hostname' => '192.168.1.19',
+	'username' => 'root',
+	'password' => 'Root@123',
+	'database' => 'mbay',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => 'mlm_',
 	'pconnect' => FALSE,

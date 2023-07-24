@@ -714,11 +714,30 @@ class Shop extends Base_Controller {
         $active = 2;
         $this->load->model('member_model');
         $invoice_details = $this->member_model->getInvoiceDetails($ord_id);
+        $pro_total = $invoice_details['products']['0']['product_total'];
+        $matches = array();
+        preg_match('/\d+/', $pro_total, $matches);
+        if (isset($matches[0])) {
+              $number = intval($matches[0]); 
+        } else {
+              $number = 0;
+        }
+        $vat = ($number * 5)/100;
+        $total = $invoice_details['total_amount'];
+        preg_match('/\d+/', $total, $matches);
+        if (isset($matches[0])) {
+              $total_amount = intval($matches[0]); 
+        } else {
+              $total_amount = 0;
+        }
+        $grand_total = $total_amount + $vat;
         if (!$invoice_details) {
             $this->loadPage(lang('invalid_link'), 'account/' . $active, 'warning');
         }
         $this->setData('invoice_details', $invoice_details);
         $this->setData('active', $active);
+        $this->setData('vat', $vat);
+        $this->setData('grand_total', $grand_total);
         $this->loadView();
     }
 

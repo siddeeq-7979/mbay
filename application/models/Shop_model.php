@@ -168,11 +168,13 @@ function getAllProductNames($query) {
         if ($query != '') {
             $res = $this->db->select("id,product_name,product_amount,images")
                     ->from('products')
+                    ->where('status',1)
                     ->like('product_name', trim($query))
                     ->get();
         } else {
             $res = $this->db->select("product_name")
                     ->from('products')
+                    ->where('status',1)
                     ->get();
         }
        $json=[];

@@ -1789,6 +1789,7 @@ class Member_model extends CI_Model {
                 $ord['products'][$i]['quantity'] = $op['quantity'];
                 $ord['products'][$i]['product_total'] = $this->helper_model->currency_conversion($op['amount'] * $op['quantity']);
                 $ord['products'][$i]['options'] = unserialize($op['option_value']);
+                $ord['products'][$i]['vat'] = ($op['amount'] * $op['quantity'] * 5)/100;
                 $i++;
                 $total += $op['amount'] * $op['quantity'];
             }

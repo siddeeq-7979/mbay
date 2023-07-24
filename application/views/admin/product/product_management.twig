@@ -21,7 +21,12 @@
     <span id="canceled_js">{{lang('canceled_js')}}</span>
     <span id="product_safe_js">{{lang('product_safe_js')}}</span>
     <span id="delete_this_product_js">{{lang('delete_this_product_js')}}</span>
+    <span id="activate_this_product_js">{{lang('activate_this_product_js')}}</span>
     <span id="delete_it_js">{{lang('delete_it_js')}}</span>
+    <span id="activate_it_js">{{lang('activate_it_js')}}</span>
+    <span id="inactivate_this_product_js">{{lang('inactivate_this_product_js')}}</span>
+    <span id="inactivate_it_js">{{lang('inactivate_it_js')}}</span>
+    
 </div>
 {% include('admin/partials/body.twig')%}
 <!-- <body data-layout="horizontal"> -->
@@ -118,6 +123,14 @@
                                                 <label>Sort Order</label>
                                                 <input type="text" class="form-control" name="sort_order"
                                                        id="sort_order" value="{{ product.sort_order }}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label>Brand Warrenty</label>
+                                                <input type="text" class="form-control" name="brand_warrenty" id="brand_warrenty"
+                                                       value="" />
                                             </div>
                                         </div>
                                         <!-- <div class="col-xl-6 col-md-6">
@@ -235,7 +248,9 @@
                                                     <td>{{row.product_name}}</td>
                                                     <td>{{row.product_amount}}</td>
                                                     <td>{{row.quantity}}</td>
-                                                    <td><a href="{{BASE_URL}}admin/product-manage/edit/{{row.id}}" button type="submit" class="btn btn-primary"><i
+                                                    <td>{% if row.status %}<a href="javascript:product_inactivate({{row.id}})" button type="submit" class="btn btn-primary"><i
+                                                                class="fa fa-times"></i></a>&nbsp;{% else%}<a href="javascript:product_activate({{row.id}})" button type="submit" class="btn btn-primary"><i
+                                                                class="fa fa-check"></i></a>&nbsp;{% endif %}<a href="{{BASE_URL}}admin/product-manage/edit/{{row.id}}" button type="submit" class="btn btn-primary"><i
                                                                 class="fas fa-pencil-alt"></i></a>&nbsp;<a href="javascript:product_delete({{row.id}})" button type="submit" class="btn btn-danger"><i class="fa fa-trash fa fa-white"></i></a>
                                                             </td>
                                                 </tr>
@@ -352,7 +367,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 },
                 product_amount: {
                     required: true,
-                    digits: true
+                    number: true,
+                    min:0
                 },
                 category: {
                     required: true,
