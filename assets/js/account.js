@@ -150,6 +150,19 @@ var validate_account_form = function () {
         });
 };
 
+$.validator.addMethod("validPass", function () {
+    var isSuccess = false;
+    $.ajax({url: "shop/check_current_password",
+        data: {current_password: $("#current_password").val()},
+        async: false,
+        success:
+        function (msg) {
+            isSuccess = msg === "yes" ? true : false
+        }
+    });
+    return isSuccess;
+}, "Incorrect Password");
+
 var validate_password_change_form = function () {
     var form = $('#password_details');
     var errorHandler2 = $('.errorHandler', form);
@@ -165,6 +178,7 @@ var validate_password_change_form = function () {
                 
                 current_password: {
                     required: true,
+                    validPass: true
                 },
                 password: {
                     required: true,
@@ -179,7 +193,9 @@ var validate_password_change_form = function () {
             messages: {
                 
                 current_password: {
-                    required: $('#city_req_js').html()
+                    required: $('#city_req_js').html(),
+                    validPass: $('#inv_current_password_js').html()
+
                 },
                 password: {
                     required: $('#country_req_js').html()

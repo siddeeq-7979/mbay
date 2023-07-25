@@ -3116,6 +3116,20 @@ class Helper_model extends CI_Model {
         }
         return $phone_number;
     }
+
+    function checkUserCurrentPasswod($user_id, $password) {
+        echo $user_id;die;
+        $id = 0;
+        $query = $this->db->select('mlm_user_id')
+                ->where('password', hash("sha256", $password))
+                ->where('mlm_user_id', $user_id)
+                ->limit(1)
+                ->get('user');
+        foreach ($query->result() as $row) {
+            $id = $row->mlm_user_id;
+        }
+        return $id;
+    }
 }
 
 ?>

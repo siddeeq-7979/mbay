@@ -81,7 +81,7 @@
                     <div class="d-block mt-2 mb-3">
                         {%  if pro.quantity < 1 %}
                         <p class="text-danger mb-1">
-                            This item is currently out of stock
+                            {{lang('out_stock')}}
                         </p>
 
                         {{form_open('','methd="post" name="notify_whatsapp_form" id="notify_whatsapp_form"')|raw}}

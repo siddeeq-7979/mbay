@@ -195,6 +195,17 @@ $lang['you_will_receive'] = 'You will Receive';
 $lang['continue_shopping'] = 'Continue Shopping';
 $lang['brand_warrenty_1_year'] = 'Brand warrenty 1 year';
 $lang['buy_now'] = 'Buy Now';
+$lang['choose_shipping_address'] = 'CHOOSE SHIPPING ADDRESS';
+$lang['add_new_address'] = 'Add New Address';
+$lang['introducing_cod']= 'Introducing COD - Cash on Delivery! Shop now and pay later at your doorstep. No online payments or card details required. Simply select COD during checkout, and our delivery team will collect the cash payment upon arrival. Enjoy the convenience and peace of mind with our COD service. Happy shopping!';
+$lang['make_ur_payment']= 'Make your payment directly into our bank account, and please use your Order ID as the payment reference. After uploading your payment screenshot, the admin will verify your order.';
+$lang['qr_payment'] = 'QR Payment';
+$lang['get_the_latest'] = 'Get the latest tech products at affordable prices at mbay in Oman! Our electronics store offers a wide range of mobile phones, accessories, wearable devices, and tablets. Enjoy convenient online shopping and find the best deals for your next tech upgrade.';
+$lang['my_account'] = 'My Account';
+$lang['out_stock'] = 'This item is currently out of stock';
+
+
+
 
 
 
