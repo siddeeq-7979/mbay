@@ -900,6 +900,9 @@ body {}
     margin-left: 0 !important;
     margin-right: 10px;
 }
+.main-menu.main-menu-padding-1>nav>ul>li:last-child, .main-menu.main-menu-padding-2>nav>ul>li:last-child, .main-menu.main-menu-padding-3>nav>ul>li:last-child, .pr-0 {
+    padding-left: 0;
+}
 
 
 
