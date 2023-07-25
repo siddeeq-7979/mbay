@@ -207,6 +207,7 @@ $lang['notify'] = 'Notify Me';
 $lang['highlights'] = 'Highlights';
 $lang['brand_warrenty'] = 'Brand Warranty';
 $lang['year'] = 'Year';
+$lang['vat_included'] = 'VAT Included';
 
 
 

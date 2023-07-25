@@ -219,6 +219,8 @@ $lang['notify'] = 'أشعرني، أعلمني، بلغني';
 $lang['highlights'] = 'يسلط الضوء';
 $lang['brand_warrenty'] = 'ضمان العلامة التجارية';
 $lang['year'] = 'سنة';
+$lang['vat_included'] = 'شامل ضريبة القيمة المضافة';
+
 
 
 

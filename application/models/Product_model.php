@@ -245,7 +245,7 @@ class Product_model extends CI_Model {
      */
     function getProductDetails($prod_id) {
         $data = array();
-        $res = $this->db->select("id,status,product_name,brand,description,images,product_amount,product_pv,product_code,recurring_type,product_type,inv_cat,investment_amount,expiry_date,quantity,special,category,sub_category, sort_order, keyword,deal_of_the_day")
+        $res = $this->db->select("id,status,product_name,brand,description,images,product_amount,product_pv,product_code,recurring_type,product_type,inv_cat,investment_amount,expiry_date,quantity,special,category,sub_category, sort_order, keyword,deal_of_the_day,warranty")
                 ->from("products")
                 ->where('id', $prod_id)
                 ->limit(1)
@@ -273,6 +273,7 @@ class Product_model extends CI_Model {
             $data['sort_order'] = $row->sort_order;
             $data['keyword'] = $row->keyword;
             $data['deal_of_the_day'] = $row->deal_of_the_day;
+            $data['warranty'] = $row->warranty;
         }
         return $data;
     }
