@@ -154,7 +154,7 @@
 														<th>Quantity</th>
 														<th>VAT %</th>
 														<th>VAT Amount</th>
-														<th>Price</th>
+														<th>Total Amount</th>
 													</tr>
 												</thead>
 
@@ -196,10 +196,7 @@
 														<th scope="row" colspan="5" class="text-end">Sub Total</th>
 														<td class="text-end">{{ invoice_details.total }}</td>
 													</tr>
-													<tr>
-														<th scope="row" colspan="5" class="text-end">Value Added Tax</th>
-														<td class="text-end">{{ vat }}</td>
-													</tr>
+													
 													{% if invoice_details.discount > 0 %}
 													<tr>
 														<th scope="row" colspan="5" class="text-end">Discount</th>

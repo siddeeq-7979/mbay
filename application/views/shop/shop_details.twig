@@ -91,7 +91,7 @@
                                 <input type="text" name="phone" id="phone" class="form-control shadow-none"
                                     placeholder="Your WhatsApp Number" aria-label="Recipient's username"
                                     aria-describedby="button-addon2">
-                                <button class="btn btn-primary" type="submit" id="button_addon">Notify Me</button>
+                                <button class="btn btn-primary" type="submit" id="button_addon">{{lang('notify')}}</button>
                             </div>
                         </div>
                         {{form_close()|raw}}
@@ -107,9 +107,11 @@
                             <!-- <img src="assets/shop/images/warranty/samsung.jpg"> -->
                             <img src="assets/shop/images/brand/{{pro.brand_image}}">
                         </div>
+                        {%  if pro.warranty %}
                         <div class="c-info">
-                            {{lang('brand_warrenty_1_year')}}
+                            {{lang('brand_warrenty')}}&nbsp; {{ pro.warranty}} &nbsp;{{lang('year')}}
                         </div>
+                        {% endif %}
                     </div>
                     <!--end warrenty-->
 
@@ -166,7 +168,7 @@
                      <!--highlights-->
                             <div class="product-highlights mt-3">
                                 <div class="h-title">
-                                    Highlights
+                                    {{lang('highlights')}}
                                 </div>
                                 <div class="hightlights-single">
                                     {{ pro.description|raw }}

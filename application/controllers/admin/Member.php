@@ -1365,7 +1365,7 @@ class Member extends Base_Controller {
         } else {
               $total_amount = 0;
         }
-        $grand_total = $total_amount + $vat;
+        $grand_total = $total_amount;
        
         if (!$invoice_details) {
             $this->loadPage(lang('invalid_link'), 'order-history', 'warning');

@@ -88,10 +88,9 @@
                                             <th>No.</th>
                                             <th>Item</th>
                                             <th>Quantity</th>
-                                            <th>Rate</th>
                                             <th>VAT %</th>
                                             <th>VAT Amount</th>
-                                            <!-- <th>Price</th> -->
+                                            <th>Total Amount</th>
                                         </tr>
                                     </thead>
 
@@ -104,15 +103,15 @@
                                             </td>
                                             <td>
                                                 {{ ord_pro.quantity }}
-                                            </td>
-                                             <td>
-                                            {{ ord_pro.amount }}
-                                            </td>
+                                            </td>                                           
                                             <td>
                                             5%
                                             </td>
                                             <td>
                                             {{ ord_pro.vat }}
+                                            </td>
+                                            <td>
+                                            {{ ord_pro.amount }}
                                             </td>
                                            
                                         </tr>
@@ -122,10 +121,7 @@
                                             <th scope="row" colspan="5" class="text-end">Sub Total</th>
                                             <td class="text-end">{{ invoice_details.total }}</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row" colspan="5" class="text-end">Value Added Tax</th>
-                                            <td class="text-end">{{ vat }}</td>
-                                        </tr>
+                                        
                                         {% if invoice_details.discount > 0 %}
                                         <tr>
                                             <th scope="row" colspan="5" class="text-end">Discount</th>
@@ -159,7 +155,7 @@
                                         <tr>
                                             <th scope="row" colspan="5" class="text-end">Total Amount</th>
                                             <td class="border-0 text-end">
-                                                <b>{{ grand_total }}</b>
+                                                <b>OMR &nbsp;{{ grand_total }}</b>
                                             </td>
                                         </tr>
                                     </tbody>

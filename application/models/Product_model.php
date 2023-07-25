@@ -81,6 +81,7 @@ class Product_model extends CI_Model {
                 ->set('images', serialize($images))
                 // ->set('keyword', $data['keyword'])
                 ->set('deal_of_the_day', $deal_of_the_day)
+                ->set('warranty', $data['brand_warranty'])
                 ->set('date', date("Y-m-d H:i:s"))
                 ->insert('products');
 
@@ -884,18 +885,20 @@ class Product_model extends CI_Model {
 
     function getProductLists() {
         $data = array();
-        $res = $this->db->select("id, product_name, description, product_amount, category, quantity, status")
+        $res = $this->db->select("id, product_name, description, product_amount, category, quantity, status, brand")
                 ->from("products")
                 ->get();
         $i = 0;
         foreach ($res->result() as $row) {
             $data[$i]['id'] = $row->id;
             $data[$i]['product_name'] = $row->product_name;
-            $data[$i]['category'] = $row->category;
+            $data[$i]['category'] = $this->getCatName($row->category);
             $data[$i]['description'] = $row->description;
             $data[$i]['product_amount'] = $row->product_amount;
             $data[$i]['quantity'] = $row->quantity;
             $data[$i]['status'] = $row->status;
+            $data[$i]['brand'] = $this->getBrandName($row->brand);
+
             $i++;
         }
         return $data;
@@ -1006,7 +1009,7 @@ class Product_model extends CI_Model {
     
     function getProductDtls($pro_id) {
         $data = array();
-        $res = $this->db->select("pro.id, product_name, pro.category, pro.description, product_amount, product_pv, quantity, pro.sort_order, pro.keyword, images, bnd.image, bnd.brand_name")
+        $res = $this->db->select("pro.id, product_name, pro.category, pro.description, product_amount, product_pv, quantity, pro.sort_order, pro.keyword, images, bnd.image, bnd.brand_name, pro.warranty")
                 ->from("products as pro")
                 ->join("category as cat", 'cat.id = pro.category', 'inner')
                 ->join("brand_settings as bnd", 'bnd.id = pro.brand', 'inner')
@@ -1028,6 +1031,7 @@ class Product_model extends CI_Model {
             $data[$i]['brand_image'] = $row->image;
             $data[$i]['brand_name'] = $row->brand_name;
             $data[$i]['files'] = $this->getAllFiles($row->images);
+            $data[$i]['warranty'] = $row->warranty;
             $i ++;
         }
         return $data;

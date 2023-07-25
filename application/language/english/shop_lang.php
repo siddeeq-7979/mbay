@@ -203,6 +203,10 @@ $lang['qr_payment'] = 'QR Payment';
 $lang['get_the_latest'] = 'Get the latest tech products at affordable prices at mbay in Oman! Our electronics store offers a wide range of mobile phones, accessories, wearable devices, and tablets. Enjoy convenient online shopping and find the best deals for your next tech upgrade.';
 $lang['my_account'] = 'My Account';
 $lang['out_stock'] = 'This item is currently out of stock';
+$lang['notify'] = 'Notify Me';
+$lang['highlights'] = 'Highlights';
+$lang['brand_warrenty'] = 'Brand Warranty';
+$lang['year'] = 'Year';
 
 
 
