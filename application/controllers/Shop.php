@@ -750,16 +750,4 @@ class Shop extends Base_Controller {
         $this->loadView();
     }
 
-    public function check_current_password() {
-        $this->load->helper('security');
-        $post = $this->security->xss_clean($this->input->get());
-        $user_id = $this->aauth->getId();
-        echo $user_id;die;
-        if ($this->helper_model->checkUserCurrentPasswod($user_id, $post['current_password'])) {
-            echo 'yes';
-            exit;
-        }
-        echo 'no';
-    }
-
 }

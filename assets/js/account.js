@@ -152,7 +152,7 @@ var validate_account_form = function () {
 
 $.validator.addMethod("validPass", function () {
     var isSuccess = false;
-    $.ajax({url: "shop/check_current_password",
+    $.ajax({url: "register/check_current_password",
         data: {current_password: $("#current_password").val()},
         async: false,
         success:

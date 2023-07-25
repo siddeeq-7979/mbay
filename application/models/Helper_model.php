@@ -3118,7 +3118,6 @@ class Helper_model extends CI_Model {
     }
 
     function checkUserCurrentPasswod($user_id, $password) {
-        echo $user_id;die;
         $id = 0;
         $query = $this->db->select('mlm_user_id')
                 ->where('password', hash("sha256", $password))
