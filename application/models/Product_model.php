@@ -1377,6 +1377,7 @@ class Product_model extends CI_Model {
                 ->set('price_change', $data['edit_price_change'])
                 ->where('id', $data['val_id'])
                 ->update('product_option_values');
+                // echo $this->db->last_query();die;
         if ($this->db->affected_rows() > 0) {
             return true;
         }

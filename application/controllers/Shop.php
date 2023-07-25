@@ -743,8 +743,12 @@ class Shop extends Base_Controller {
 
 
     public function order_success($order_id) {
+        $this->load->model('product_model');
         $decrypt_id = $this->helper_model->decode($order_id);
         $user_name = ($this->aauth->getUserType() == 'employee') ? $this->helper_model->getAdminUsername() : $this->aauth->getUserName();
+        $nav_category = $this->product_model->getNavCategoryLists();
+
+        $this->setData('nav_category', $nav_category);
         $this->setData('user_name', $user_name);
         $this->setData('order_id', $decrypt_id);      
         $this->loadView();
