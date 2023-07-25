@@ -335,7 +335,7 @@ class Product_model extends CI_Model {
      * @return type
      */
     function updateProduct($data, $files = array()) {
-        // print_r($files));die;
+        // print_r($data);die;
         $currency_ratio = 1;
         if ($this->dbvars->MULTI_CURRENCY_STATUS > 0) {
             $currency_ratio = $this->main->get_usersession('mlm_data_currency', 'currency_ratio');
@@ -375,6 +375,7 @@ class Product_model extends CI_Model {
                 // ->set('keyword', $data['keyword'])
                 ->set('sort_order', $data['sort_order'])
                 ->set('category', $data['category'])
+                ->set('warranty', $data['brand_warranty'])
                 ->set('images', serialize($files))
                 ->where('id', $data['update_product'])
                 ->update('products');
