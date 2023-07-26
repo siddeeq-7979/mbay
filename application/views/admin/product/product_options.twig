@@ -630,6 +630,7 @@
             data:{id:id},
             dataType:'json',
             success:function(result){
+                // console.log(result)
                 $("#editProModal").modal('toggle');
                 $("#val_id").val(result.id);
                 // $("#edit_option_id").val("COLOUR");

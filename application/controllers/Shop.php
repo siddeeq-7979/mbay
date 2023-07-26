@@ -224,7 +224,9 @@ class Shop extends Base_Controller {
         } else {
             // $this->loadPage(lang('invalid_party'), 'shop-details', 'danger');
         }
-        $this->setData('option_data', $this->product_model->getProductOptionData($pro_id));
+        $option_data = $this->product_model->getProductOptionData($pro_id);
+        // print_r($option_data);die;
+        $this->setData('option_data', $option_data);
         $this->setData('party_id', $party_id);
         $this->setData('nav_category', $nav_category);
         $this->setData('products', $products);

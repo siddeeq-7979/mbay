@@ -1324,7 +1324,7 @@ class Product_model extends CI_Model {
             $data[$i]['id'] = $row->id;
             $data[$i]['pro_id'] = $row->pro_id;
             $data[$i]['option_id'] = $row->option_id;
-            $data[$i]['option_name'] = $this->getOptionDetails($row->option_id)['option_name'];
+            $data[$i]['option_name'] = $this->getOptionDetails($row->option_id);
             $data[$i]['option_value'] = $this->getProOptionValue($row->option_value);
             $data[$i]['quantity'] = $row->quantity;
             $data[$i]['price'] = $row->price;
