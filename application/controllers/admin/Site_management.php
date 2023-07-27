@@ -517,7 +517,7 @@ class Site_management extends Base_Controller {
             $this->load->helper('security');
             $post = $this->security->xss_clean($this->input->post());
             $config['upload_path'] = FCPATH . 'assets/shop/images/slider/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $new_name = 'slider_' . time();
             $config['file_name'] = $new_name;
             $this->load->library('upload', $config);
@@ -562,7 +562,7 @@ class Site_management extends Base_Controller {
 
             $slider_image = $this->site_management_model->getSliderImage($post['update_slider']);
             $config['upload_path'] = FCPATH . 'assets/shop/images/slider/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $new_name = 'slider' . time();
             $config['file_name'] = $new_name;
             $this->load->library('upload', $config);
