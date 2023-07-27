@@ -147,6 +147,7 @@ class Product_model extends CI_Model {
                 $this->db->join("product_option_values as pro_opt", 'pro_opt.pro_id = pro.id', 'left');
                 $this->db->join("option_values as opt", 'opt.id = pro_opt.option_value', 'left');
                 $this->db->group_by("pro.id");
+                $this->db->order_by("pro.date","DESC");
 
 
                 if($limit!=''&& $offset!='')

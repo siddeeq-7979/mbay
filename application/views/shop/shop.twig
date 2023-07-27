@@ -51,6 +51,7 @@
                         <!-- END FILTER MOBILE VIEW -->
 
                         <div class="row">
+                            {% if products %}
                             {% for pro in products%}
                             <!--single loop item-->
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
@@ -86,8 +87,14 @@
                             </div>
                             <!--end single loop item-->
                             {% endfor %}
-                          
-                        </div>
+
+                            {% else %}
+                            <div class="col-md-6 mx-auto"></div>
+                            <div class="alert alert-danger" role="alert" align="center">
+                              {{lang('empty_products')}}
+                          </div>
+                      </div>
+                      {% endif %}
                         
 
                     </div>

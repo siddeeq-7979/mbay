@@ -208,6 +208,8 @@ $lang['highlights'] = 'Highlights';
 $lang['brand_warrenty'] = 'Brand Warranty';
 $lang['year'] = 'Year';
 $lang['vat_included'] = 'VAT Included';
+$lang['empty_products'] = 'Empty Products';
+
 
 
 
