@@ -356,7 +356,7 @@ class Cart extends Base_Controller {
                     $short_name = substr($product_details['product_name'], 0, 15) . '...';
                 }
 
-                $option_value_data = $option_value=null;
+                $option_value_data = $option_value = null;
                 $option_value_price =0;
                 if(null != $this->session->userdata('product_option_data')){
                     $option_data = $this->session->userdata('product_option_data');
@@ -377,26 +377,28 @@ class Cart extends Base_Controller {
                      $option_value = $this->shop_model->optionValueName($option_value_data);
                 }else{
                     $res_da = $this->defaultOptionData($product_id);
+
                     if($res_da){
-                    foreach ($res_da as $res_val) {
-                        $option_data[$product_id][$res_val['option_id']] = $res_val['id'];
+                        foreach ($res_da as $res_val) {
+                            $option_data[$product_id][$res_val['option_id']] = $res_val['id'];
+                        }
+
+                        if(isset($option_data[$product_id])){
+                            $option_value_data =$option_data[$product_id];
+
+                            foreach ($option_value_data as $option_value) {
+                                $op_data =  $this->product_model->getProOptions($option_value);
+                                if($op_data['price_change'] == '-'){
+                                 $option_value_price -= $op_data['price'];
+                                }else{
+                                 $option_value_price += $op_data['price'];
+                                }
+                             }
+
+                        }
                     }
-                    if(isset($option_data[$product_id])){
-                        $option_value_data =$option_data[$product_id];
-
-                        foreach ($option_value_data as $option_value) {
-                            $op_data =  $this->product_model->getProOptions($option_value);
-                            if($op_data['price_change'] == '-'){
-                             $option_value_price -= $op_data['price'];
-                            }else{
-                             $option_value_price += $op_data['price'];
-                            }
-                         }
-
-                    }
-                }
-
                      $option_value = $this->shop_model->optionValueName($option_value_data);
+                     
                 }
                 
                 $this->session->unset_userdata('product_option_data');
@@ -459,18 +461,21 @@ class Cart extends Base_Controller {
         $data = [];
         
         $product_id = $get['product_id'];
-        $option_id = $get['option_id'];
-        $option_value_id = $get['option_value_id'];
+        $option_id = $get['option_id']??'';
+        $option_value_id = $get['option_value_id']??'';
 
         // if(!isset($data[$product_id])){
         //     $data[$product_id] =[];
         // }
 
         if($this->session->userdata('product_option_data')){
+           
             $data = $this->session->userdata('product_option_data');
          }else{
             //sreee
+           
             $res_da = $this->defaultOptionData($product_id);
+
             if($res_da){
 
                 foreach ($res_da as $res_val) {
@@ -510,7 +515,6 @@ class Cart extends Base_Controller {
                 ->where('pro_id', $pro_id)
                 ->where('default_value', 1)
                 ->get('product_option_values');
-
         if ($query->num_rows() > 0) {
           
             return  $query->result_array();

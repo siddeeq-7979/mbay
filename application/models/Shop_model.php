@@ -434,18 +434,19 @@ function getAllProductNames($query) {
     function optionValueName($option_value_id) { 
       
         $data = array();
-        $query = $this->db->select('option_values.option_id,option_values.option_value,options.option_name')
-                ->join('option_values', 'option_values.id = product_option_values.option_value', 'left')
-                ->join('options', 'options.id = product_option_values.option_id', 'left')
-                ->where_in('product_option_values.id', $option_value_id)
-                ->get('product_option_values');
+        if($option_value_id){
+            $query = $this->db->select('option_values.option_id,option_values.option_value,options.option_name')
+                    ->join('option_values', 'option_values.id = product_option_values.option_value')
+                    ->join('options', 'options.id = product_option_values.option_id')
+                    ->where_in('product_option_values.id', $option_value_id)
+                    ->get('product_option_values');
+            if ($query->num_rows() > 0) {
 
-        if ($query->num_rows() > 0) {
-        
-            foreach ($query->result_array() as $row) {
-                $data[$row['option_name']] = $row['option_value'];
+                foreach ($query->result_array() as $row) {
+                    $data[$row['option_name']] = $row['option_value'];
+                }
             }
-        }
+         }
         return $data;
     }
 

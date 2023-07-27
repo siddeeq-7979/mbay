@@ -158,6 +158,7 @@ class Shop extends Base_Controller {
         $user_id = ($this->aauth->getUserType() == 'employee') ? $this->base_model->getAdminUserId() : $this->aauth->getId();
 
         $cart = $this->cart->contents();
+        // print_r($cart);die;
         $items = $this->cart->total_items();
         if ($items == 0) {
             $this->loadPage(lang('Cart Is Empty'), './', 'warning');
