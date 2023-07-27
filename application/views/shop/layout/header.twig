@@ -38,13 +38,11 @@
     <link rel="preload" href="assets/shop/fonts/ElegantIcons.woff" as="font" type="font/woff2" crossorigin>
 
     <!-- PWA  -->
-    <link rel="manifest" href="./manifest.json">
+    <link rel="manifest" href="assets/manifest.json">
     <script type="text/javascript">
-		if ("serviceWorker" in navigator) {
-			window.addEventListener("load", () => {
-				navigator.serviceWorker && navigator.serviceWorker.register("./sw.js");
-			});
-		}
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register("assets/sw.js");
+        }
 	</script>
 
     <link rel="icon" type="image/png" sizes="48x48" href="assets/images/logos/{{COMPANY_FAV_ICON}}">
