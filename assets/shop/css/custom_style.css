@@ -965,10 +965,6 @@
 .your-order-area .your-order-wrap .payment-method .sin-payment label {
     margin: 0 !important;
 }
-.sidebar-wrapper.sidebar-wrapper-mrg-right {
-    position: sticky;
-    top: 0;
-}
 .shop-area .offcanvas-body {
     padding-bottom: 100px;
 }
