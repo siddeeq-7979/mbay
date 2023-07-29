@@ -973,6 +973,9 @@
     display: flex;
     border-bottom: 1px solid #eee;
 }
+.serach-main:last-child {
+    border-bottom: none;
+}
 .mobile-view-search .dropdown-menu {
     width: inherit;
     max-height: 255px;
