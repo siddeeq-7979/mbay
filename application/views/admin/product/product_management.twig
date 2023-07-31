@@ -253,8 +253,8 @@
                                                     <td>{{row.brand}}</td>
                                                     <td>{{row.product_amount}}</td>
                                                     <td>{{row.quantity}}</td>
-                                                    <td>{% if row.status %}<a href="javascript:product_inactivate({{row.id}})" button type="submit" class="btn btn-primary"><i
-                                                                class="fa fa-times"></i></a>&nbsp;{% else%}<a href="javascript:product_activate({{row.id}})" button type="submit" class="btn btn-primary"><i
+                                                    <td>{% if row.status %}<a href="javascript:product_inactivate({{row.id}})" button type="submit" class="btn btn-warning"><i
+                                                                class="fa fa-times"></i></a>&nbsp;{% else%}<a href="javascript:product_activate({{row.id}})" button type="submit" class="btn btn-success"><i
                                                                 class="fa fa-check"></i></a>&nbsp;{% endif %}<a href="{{BASE_URL}}admin/product-manage/edit/{{row.id}}" button type="submit" class="btn btn-primary"><i
                                                                 class="fas fa-pencil-alt"></i></a>&nbsp;<a href="javascript:product_delete({{row.id}})" button type="submit" class="btn btn-danger"><i class="fa fa-trash fa fa-white"></i></a>
                                                             </td>
