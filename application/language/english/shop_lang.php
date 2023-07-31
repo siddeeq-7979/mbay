@@ -211,6 +211,30 @@ $lang['vat_included'] = 'VAT Included';
 $lang['empty_products'] = 'Empty Products';
 
 
+$lang['mbay_app_on_home_screen'] = 'mbay app on your Home screen';
+$lang['enjoy_like_a_native_app'] = 'Enjoy mbay like a native app.';
+$lang['fast_secure_totally_free'] = 'Fast, more secure, and totally free!';
+$lang['works_better_with'] = 'Works better with Chrome, Opera, Safari, and Samsung Internet';
+$lang['to_get_mbay_right_on_phone'] = 'To get mbay right on your home screen follow our guides:';
+$lang['android'] = 'Android';
+$lang['ios'] = 'iOS';
+$lang['load_mbay_in_chrome'] = 'Load mbay.com in the Chrome Web Browser';
+$lang['tap_the_dots'] = 'Tap the 3 dots in the top right corner';
+$lang['select_add_to_home_screen'] = 'Select "Add to Home screen" from the
+                                            available options';
+$lang['Chrome_will_open_a_prompt'] = 'Chrome will open a prompt and you will be
+                                            able to add mbay icon to your home screen. Change the App name if you want
+                                            to2';
+$lang['launch_the_app'] = 'Launch the app to ensure the install has
+                                            been successful. That`s it. Enjoy!';
+$lang['load_in_the_app'] = 'Load mbay.com in the Safari Web
+                                            Browser';
+$lang['tap_share_icon'] = 'Tap the share icon';
+
+$lang['change_the_app_name'] = 'Change the App name if you want to';
+
+
+
 
 
 

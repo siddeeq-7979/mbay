@@ -220,7 +220,26 @@ $lang['highlights'] = 'يسلط الضوء';
 $lang['brand_warrenty'] = 'ضمان العلامة التجارية';
 $lang['year'] = 'سنة';
 $lang['vat_included'] = 'شامل ضريبة القيمة المضافة';
+$lang['mbay_app_on_home_screen'] = 'تطبيق mbay على شاشتك الرئيسية';
+$lang['enjoy_like_a_native_app'] = 'استمتع بـ mbay مثل التطبيق الأصلي.';
+$lang['fast_secure_totally_free'] = 'سريع وأكثر أمانًا ومجاني تمامًا!';
+$lang['works_better_with'] = 'يعمل بشكل أفضل مع Chrome و Opera و Safari و Samsung Internet';
+$lang['to_get_mbay_right_on_phone'] = 'للحصول على mbay مباشرة على شاشتك الرئيسية ، اتبع إرشاداتنا:';
+$lang['android'] = 'ذكري المظهر';
+$lang['ios'] = 'iOS';
+$lang['load_mbay_in_chrome'] = 'قم بتحميل mbay.com في متصفح الويب Chrome';
+$lang['tap_the_dots'] = 'اضغط على النقاط الثلاث في الزاوية اليمنى العليا';
+$lang['select_add_to_home_screen'] = 'اضغط على النقاط في الزاوية العليا';
+$lang['Chrome_will_open_a_prompt'] = 'سيفتح Chrome موجهًا وستكون كذلك
+                                            قادر على إضافة أيقونة mbay إلى شاشتك الرئيسية. قم بتغيير اسم التطبيق إذا كنت تريد ذلك
+                                            ل';
+$lang['launch_the_app'] = 'قم بتشغيل التطبيق للتأكد من تثبيت التثبيت
+                                            كانت ناجحة. هذا كل شيء. يتمتع!';
+$lang['load_in_the_app'] = 'قم بتحميل mbay.com في Safari Web
+                                            المستعرض';
+$lang['tap_share_icon'] = 'اضغط على أيقونة المشاركة';
 
+$lang['change_the_app_name'] = 'قم بتغيير اسم التطبيق إذا كنت تريد ذلك';
 
 
 
