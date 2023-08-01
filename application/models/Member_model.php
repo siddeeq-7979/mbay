@@ -2000,6 +2000,46 @@ class Member_model extends CI_Model {
         return $ord;
     }
 
+    function getProDetails($ord_id) {
+        $data = array();
+        $query = $this->db->select("product_id,quantity")
+                ->from("order_products")
+                ->where('order_id',$ord_id)
+                ->get();
+        $i = 0;
+        foreach ($query->result_array() as $row) {
+            $data[$i]['product_id'] = $row['product_id'];
+            $data[$i]['quantity'] = $row['quantity'];
+            $i++;
+        }
+        return $data;
+    }
+
+    function decreaseProQuantity($pro_id,$qty) {
+        $quantity = 0;
+        $query = $this->db->select('quantity')
+                ->where('id', $pro_id)
+                ->limit(1)
+                ->get('products');
+        if ($query->num_rows() > 0) {
+            $quantity = $query->row()->quantity;
+            $updated_qty = $quantity-$qty;
+            $qty_update = $this->updateQuantity($pro_id,$updated_qty);
+        }
+
+    }
+
+     public function updateQuantity($pro_id,$updated_qty) {
+         $this->db->set('quantity ', "$updated_qty")
+                ->where('id ', $pro_id)
+                ->update('products');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    
 
 
 }

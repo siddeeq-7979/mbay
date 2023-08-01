@@ -1339,6 +1339,13 @@ class Member extends Base_Controller {
         
         $affected_rows = $this->db->affected_rows();
         if ($affected_rows > 0) {
+            if($request['order_status'] == '1'){
+               $pro_details = $this->member_model->getProDetails($request['order_id']); 
+               foreach($pro_details as $pro){
+                $pro_quantity = $this->member_model->decreaseProQuantity($pro['product_id'],$pro['quantity']);
+               }
+            }
+           
              echo 'yes';
               exit;
         }
