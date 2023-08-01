@@ -595,11 +595,6 @@ class Site_management extends Base_Controller {
                 //     }
                 // }
             }
-            else{
-                                $error = $this->upload->display_errors();
-                                print_r($error);die;
-                            }
-            print_r($slider_image);die;
             $res = $this->site_management_model->updateSlider($post, $slider_image);
             if ($res) {
                 $this->helper_model->insertActivity($loged_user_id, 'slider_updated', $post);
