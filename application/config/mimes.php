@@ -179,5 +179,7 @@ return array(
 	'odt'	=>	'application/vnd.oasis.opendocument.text',
 	'odm'	=>	'application/vnd.oasis.opendocument.text-master',
 	'ott'	=>	'application/vnd.oasis.opendocument.text-template',
-	'oth'	=>	'application/vnd.oasis.opendocument.text-web'
+	'oth'	=>	'application/vnd.oasis.opendocument.text-web',
+	'avif' => array('image/avif', 'image/avif-sequence'),
+    'webp' => array('image/webp', 'image/webp-gallery', 'image/webp-ll', 'image/webp-sequence'),
 );
