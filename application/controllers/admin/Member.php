@@ -1333,7 +1333,6 @@ class Member extends Base_Controller {
 
     public function update_order_status() {
         $request = $this->input->get();
-        // dd($request);
         $this->db->where('id', $request['order_id']);
         $this->db->update('orders', array('order_status' => $request['order_status']));
         
@@ -1345,7 +1344,6 @@ class Member extends Base_Controller {
                 $pro_quantity = $this->member_model->decreaseProQuantity($pro['product_id'],$pro['quantity']);
                }
             }
-           
              echo 'yes';
               exit;
         }
