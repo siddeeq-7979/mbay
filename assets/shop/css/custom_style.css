@@ -1001,7 +1001,10 @@
 .hero-slider-content-6.slider-content-hm9 p {
     font-size: 18px;
 }
-
+.fade:not(.show) {
+    opacity: 0;
+    display: none;
+}
 
 
 
