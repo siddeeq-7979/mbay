@@ -1005,7 +1005,14 @@
     opacity: 0;
     display: none;
 }
-
+.ul-list {
+    list-style: decimal;
+    padding-left: 15px;
+}
+.ul-list li {
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
 
 
 

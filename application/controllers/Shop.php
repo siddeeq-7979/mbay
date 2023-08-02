@@ -188,6 +188,16 @@ class Shop extends Base_Controller {
         $this->loadView();
     }
 
+    public function warranty() {
+        $user_name = ($this->aauth->getUserType() == 'employee') ? $this->helper_model->getAdminUsername() : $this->aauth->getUserName();
+        $this->setData('user_name', $user_name);
+        $this->load->model('product_model');
+        $nav_category = $this->product_model->getNavCategoryLists();
+
+        $this->setData('nav_category', $nav_category);
+        $this->loadView();
+    }
+
     public function contact() {
         $user_name = ($this->aauth->getUserType() == 'employee') ? $this->helper_model->getAdminUsername() : $this->aauth->getUserName();
         $this->setData('user_name', $user_name);
