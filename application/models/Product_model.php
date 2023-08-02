@@ -948,7 +948,7 @@ class Product_model extends CI_Model {
         return $data;
     }
 
-    function getProducts($cat_id,$min_amt='',$max_amt='',$brand=[],$color=[]) {
+    function getProducts($cat_id,$min_amt='',$max_amt='',$brand=[],$color=[],$limit='',$offset = '') {
 
         $data = array();
         $this->db->select("pro.id, pro.product_name, pro.category, pro.description, pro.product_amount, pro.product_pv, pro.quantity, pro.sort_order, pro.keyword, pro.images, pro.brand");
@@ -958,6 +958,11 @@ class Product_model extends CI_Model {
         $this->db->join("product_option_values as pro_opt", 'pro.id = pro_opt.pro_id', 'left');
         $this->db->join("option_values as opt","opt.id=pro_opt.option_value","left");
         $this->db->group_by("pro.id");
+
+                if($limit!=''&& $offset!='')
+                {
+                  $this->db->limit($offset,$limit);
+                }
 
 
                 if($min_amt!='' && $max_amt!='' && is_array($brand) && is_array($color) && count($brand)>0 && count($color)>0){
@@ -989,6 +994,7 @@ class Product_model extends CI_Model {
                 $this->db->where("pro.status",1);
 
                 $res = $this->db->get();
+                // echo $this->db->last_query();die;
 
         $i = 0;
         foreach ($res->result() as $row) {
@@ -1493,6 +1499,26 @@ class Product_model extends CI_Model {
             $i++;
         }
         return $data;
+    }
+
+    function getProductsCount($cat_id){
+
+        $data = array();
+        $res = $this->db->select("id")
+                ->where("category",$cat_id)
+                ->where("category",$cat_id)
+                ->where("status",1)
+                ->from("products")
+                ->get();
+
+        $i = 0;
+        foreach ($res->result_array() as $row) {
+           $data[$i]['id'] = $row['id'];
+            $i++;
+        }
+        return $data;
+
+
     }
 
     

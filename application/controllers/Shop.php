@@ -94,6 +94,43 @@ class Shop extends Base_Controller {
 
         $this->load->model('product_model');
         $nav_category = $this->product_model->getNavCategoryLists();
+        $pro = $this->product_model->getProductsCount($cat_id);
+// print_r($pro);
+        $this->load->library('pagination');
+        $config = array();
+        // $config['base_url'] = base_url() . "shop";
+        $config['base_url'] = base_url() . "shop/" . $cat_id;
+        $config['total_rows'] = count($pro);
+        $config['per_page'] = 2;
+        $config['num_links'] = 10;
+        $config["uri_segment"] = 2;
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Prev';
+        $config['first_link'] = false;
+        $config['last_link'] = false;
+        $config['full_tag_open'] = '<ul class="pagination justify-content-center">';
+        $config['full_tag_close'] = '</ul>';
+        $config['attributes'] = ['class' => 'page-link'];
+        $config['first_tag_open'] = '<li class="page-item">';
+        $config['first_tag_close'] = '</li>';
+        $config['prev_tag_open'] = '<li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_tag_open'] = '<li class="page-item">';
+        $config['next_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li class="page-item">';
+        $config['last_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close'] = '<span class="sr-only"></span></span></li>';
+        $config['num_tag_open'] = '<li class="page-item">';
+        $config['num_tag_close'] = '</li>';
+
+        $this->pagination->initialize($config);
+
+
+        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        $pagination["links"] = $this->pagination->create_links();
+
+
         $min_amt=$max_amt='';
         $brand=[];
         $color=[];
@@ -126,8 +163,12 @@ class Shop extends Base_Controller {
 
         $products = '';
         if ($cat_id) {
-            $products = $this->product_model->getProducts($cat_id,$min_amt,$max_amt,$brand,$color);
+            $products = $this->product_model->getProducts($cat_id,$min_amt,$max_amt,$brand,$color,$config['per_page'], $page);
+
+
         }
+
+       // echo $config['per_page'].'---'. $page;die;
         $cat_name = $this->product_model->getCatName($cat_id);
         $this->setData('min_amt', $min_amt);
         $this->setData('max_amt', $max_amt);
@@ -140,6 +181,7 @@ class Shop extends Base_Controller {
         $this->setData('session_colors', $set_colors);
         $this->setData('nav_category', $nav_category);
         $this->setData('products', $products);
+        $this->setData('link', $pagination["links"]);
         $this->setData('items', $this->cart->total_items());
 
         $this->loadView();
