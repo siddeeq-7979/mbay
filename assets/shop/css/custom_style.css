@@ -391,8 +391,7 @@
     color: #212121;
     padding: 0 0 8px 16px;
     position: relative;
-    display: flex;
-    align-items: center;
+
 }
 
 .product-details-area .product-highlights .hightlights-single ul li:after {
