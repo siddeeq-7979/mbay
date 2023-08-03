@@ -99,10 +99,12 @@ class Shop extends Base_Controller {
         $color=[];
         $brands = $this->product_model->getAllBrands();
         $colors = $this->product_model->getAllColors();
-        if ($this->input->post('filter_btn') || null !== $this->input->post('min_amt')) {
 
+        if ($this->input->post('filter_btn') || null !== $this->input->post('min_amt')) {
+            
             $this->load->helper('security');
             $post = $this->security->xss_clean($this->input->post());
+ 
             $brand=(isset($post['brand']))?$post['brand']:[];
             $color=(isset($post['color']))?$post['color']:[];
             $min_amt = $post['min_amt'];
@@ -122,8 +124,8 @@ class Shop extends Base_Controller {
         $config = array();
         $config['base_url'] = base_url() . "shop/" . $cat_id;
         $config['total_rows'] = $pro;
-        $config['per_page'] = 3;
-        $config['num_links'] = 10;
+        $config['per_page'] = 8;
+        $config['num_links'] = 2;
         $config["uri_segment"] = 3;
         $config['next_link'] = 'Next';
         $config['prev_link'] = 'Prev';
@@ -172,6 +174,7 @@ class Shop extends Base_Controller {
 
         $this->loadView();
     }
+
 
     public function cart() {
         $user_name = ($this->aauth->getUserType() == 'employee') ? $this->helper_model->getAdminUsername() : $this->aauth->getUserName();
@@ -330,6 +333,7 @@ class Shop extends Base_Controller {
         if ($this->input->post('shop_checkout')) {
             $this->load->helper('security');
             $checkout_data = $this->security->xss_clean($this->input->post());
+
                 $config['upload_path'] = FCPATH . 'assets/images/';
                 $config['allowed_types'] = 'jpg|png|jpeg';
                 $new_name = 'slip_' . time();
@@ -389,7 +393,6 @@ class Shop extends Base_Controller {
                 else {
                     $this->loadPage('Update address from account', 'checkout', 'danger');
                 }
-                
 
                 if ($order_id) {
                     $encrypt_id = $this->helper_model->encode($order_id);
@@ -655,6 +658,7 @@ class Shop extends Base_Controller {
             
             $this->load->helper('security');
             $post = $this->security->xss_clean($this->input->post());
+ 
             $brand=(isset($post['brand']))?$post['brand']:[];
             $color=(isset($post['color']))?$post['color']:[];
             $category=(isset($post['category']))?$post['category']:[];
@@ -684,8 +688,8 @@ class Shop extends Base_Controller {
         $config = array();
         $config['base_url'] = base_url() . "products";
         $config['total_rows'] = $products;
-        $config['per_page'] = 3;
-        $config['num_links'] = 10;
+        $config['per_page'] = 8;
+        $config['num_links'] = 2;
         $config["uri_segment"] = 2;
 
 
