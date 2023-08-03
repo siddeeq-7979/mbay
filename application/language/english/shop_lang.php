@@ -209,6 +209,7 @@ $lang['brand_warrenty'] = 'Brand Warranty';
 $lang['year'] = 'Year';
 $lang['vat_included'] = 'VAT Included';
 $lang['empty_products'] = 'Empty Products';
+$lang['warranty'] = 'Warranty';
 
 
 $lang['mbay_app_on_home_screen'] = 'mbay app on your Home screen';

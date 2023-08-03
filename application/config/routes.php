@@ -378,6 +378,7 @@ $route['shop/(:any)'] = 'shop/shop/$1';
 $route['shop/(:any)/(:num)'] = 'shop/shop/$1/$2';
 $route['cart'] = 'shop/cart';
 $route['about-us'] = 'shop/about_us';
+$route['warranty'] = 'shop/warranty';
 $route['contact'] = 'shop/contact';
 $route['app'] = 'shop/app';
 $route['shop-details'] = 'shop/shop_details';
