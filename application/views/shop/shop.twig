@@ -100,6 +100,10 @@
                             </ul>
                         </div> -->
 
+                        <div class="text-center mt-10">
+                            {{link|raw}}
+                        </div>
+
                     </div>
 
                     <!-- SIDE BAR -->
@@ -107,9 +111,10 @@
                         <div class="sidebar-wrapper sidebar-wrapper-mrg-right d-none d-md-none d-lg-block">
                             {{form_open('','methd="post" name="side_bar_form" id="side_bar_form"')|raw}}
                             <!-- ACCORDION -->
-                            <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <div class="accordion" id="">
                                 <div class="offcanvas-header">
                                     <button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas" aria-label="Close" onclick="resetForm()">{{lang('reset')}}</button>
+                                    <!-- <button type="submit" class="btn btn-primary"  id="reset_btn" name="reset_btn" value="reset_btn">{{lang('reset')}}</button> -->
                                     <button type="submit" class="btn btn-primary" id="filter_btn" name="filter_btn" value="filter_btn">{{lang('filter')}}</button>
                                         
                                 </div>
@@ -239,6 +244,9 @@
                         {{form_open('','methd="post" name="mob_side_bar_form" id="mob_side_bar_form"')|raw}}
                         <div class="offcanvas-header">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="offcanvas" aria-label="Close" onclick="resetMobForm()">{{lang('reset')}}</button>
+                            <!-- <button type="reset" class="btn btn-primary" id="reset_btn" name="reset_btn" value="reset_btn">
+                                {{lang('reset')}}
+                            </button> -->
                             <button type="submit" class="btn btn-primary" id="filter_btn" name="filter_btn" value="filter_btn">{{lang('lang')}}</button>
                         </div>
                         <div class="offcanvas-body">
@@ -400,23 +408,25 @@
 <script>
   function resetForm() {
     var form = document.getElementById('side_bar_form');
-    form.reset();
 
     var checkboxes = form.querySelectorAll('input[type="checkbox"]');
       checkboxes.forEach(function (checkbox) {
         checkbox.checked = false;
       });
+          form.submit();
+
 
   }
 
   function resetMobForm() {
     var form = document.getElementById('mob_side_bar_form');
-    form.reset();
+    
 
     var checkboxes = form.querySelectorAll('input[type="checkbox"]');
       checkboxes.forEach(function (checkbox) {
         checkbox.checked = false;
       });
+      form.submit();
   }
   
 </script>

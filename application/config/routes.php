@@ -375,6 +375,7 @@ $route['(:any)/new-theme'] = '$1/home/theme';
 $route['login-register'] = 'shop/login_register';
 $route['shop'] = 'shop/shop';
 $route['shop/(:any)'] = 'shop/shop/$1';
+$route['shop/(:any)/(:num)'] = 'shop/shop/$1/$2';
 $route['cart'] = 'shop/cart';
 $route['about-us'] = 'shop/about_us';
 $route['contact'] = 'shop/contact';

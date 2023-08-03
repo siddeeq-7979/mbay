@@ -93,17 +93,38 @@ class Shop extends Base_Controller {
         $user_type = $this->aauth->getUserType();
 
         $this->load->model('product_model');
+
+        $min_amt=$max_amt='';
+        $brand=[];
+        $color=[];
+        $brands = $this->product_model->getAllBrands();
+        $colors = $this->product_model->getAllColors();
+        if ($this->input->post('filter_btn') || null !== $this->input->post('min_amt')) {
+
+            $this->load->helper('security');
+            $post = $this->security->xss_clean($this->input->post());
+            $brand=(isset($post['brand']))?$post['brand']:[];
+            $color=(isset($post['color']))?$post['color']:[];
+            $min_amt = $post['min_amt'];
+            $max_amt = $post['max_amt'];
+            $this->session->set_userdata('session_brand' , $brand);
+            $this->session->set_userdata('session_color' , $color);
+
+        }
+        $set_brands=(null !==$this->session->userdata('session_brand'))?$this->session->userdata('session_brand'):[]; 
+        $set_colors=(null !==$this->session->userdata('session_color'))?$this->session->userdata('session_color'):[]; 
+
+        $brand=$set_brands;
+        $color=$set_colors;
         $nav_category = $this->product_model->getNavCategoryLists();
-        $pro = $this->product_model->getProductsCount($cat_id);
-// print_r($pro);
+        $pro = $this->product_model->getProductsCount($cat_id,$min_amt,$max_amt,$brand,$color);
         $this->load->library('pagination');
         $config = array();
-        // $config['base_url'] = base_url() . "shop";
         $config['base_url'] = base_url() . "shop/" . $cat_id;
-        $config['total_rows'] = count($pro);
-        $config['per_page'] = 2;
+        $config['total_rows'] = $pro;
+        $config['per_page'] = 3;
         $config['num_links'] = 10;
-        $config["uri_segment"] = 2;
+        $config["uri_segment"] = 3;
         $config['next_link'] = 'Next';
         $config['prev_link'] = 'Prev';
         $config['first_link'] = false;
@@ -126,49 +147,14 @@ class Shop extends Base_Controller {
 
         $this->pagination->initialize($config);
 
-
-        $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $pagination["links"] = $this->pagination->create_links();
-
-
-        $min_amt=$max_amt='';
-        $brand=[];
-        $color=[];
-        $brands = $this->product_model->getAllBrands();
-        $colors = $this->product_model->getAllColors();
-        $set_brands=[];
-        $set_colors=[];
-        if ($this->input->post('filter_btn')) {
-            
-            $this->load->helper('security');
-            $post = $this->security->xss_clean($this->input->post());
- 
-            $brand=(isset($post['brand']))?$post['brand']:[];
-            $color=(isset($post['color']))?$post['color']:[];
-            $min_amt = $post['min_amt'];
-            $max_amt = $post['max_amt'];
-            if(count($brand)>0){
-                $this->session->set_userdata('session_brand' , $brand);
-                $set_brands=$this->session->userdata('session_brand');
-            }else{
-                $this->session->unset_userdata('session_brand');
-            }
-            if(count($color)>0){
-                $this->session->set_userdata('session_color' , $color);
-                $set_colors=$this->session->userdata('session_color');
-            }else{
-                $this->session->unset_userdata('session_color');
-            }
-        }
-
         $products = '';
         if ($cat_id) {
             $products = $this->product_model->getProducts($cat_id,$min_amt,$max_amt,$brand,$color,$config['per_page'], $page);
 
-
         }
-
-       // echo $config['per_page'].'---'. $page;die;
+      
         $cat_name = $this->product_model->getCatName($cat_id);
         $this->setData('min_amt', $min_amt);
         $this->setData('max_amt', $max_amt);
@@ -334,7 +320,6 @@ class Shop extends Base_Controller {
         if ($this->input->post('shop_checkout')) {
             $this->load->helper('security');
             $checkout_data = $this->security->xss_clean($this->input->post());
-
                 $config['upload_path'] = FCPATH . 'assets/images/';
                 $config['allowed_types'] = 'jpg|png|jpeg';
                 $new_name = 'slip_' . time();
@@ -388,7 +373,13 @@ class Shop extends Base_Controller {
             }
 
             if ($payment_status) {
-                $order_id = $this->shop_model->insertOrder($this->aauth->getId(), $checkout_data, $cart, $total_items, $total_amount, $total_pv, $order_status,$upload_data);
+                if($checkout_data['chooseAddress']){
+                  $order_id = $this->shop_model->insertOrder($this->aauth->getId(), $checkout_data, $cart, $total_items, $total_amount, $total_pv, $order_status,$upload_data);  
+                }
+                else {
+                    $this->loadPage('Choose Address', 'checkout', 'danger');
+                }
+                
 
                 if ($order_id) {
                     $encrypt_id = $this->helper_model->encode($order_id);
@@ -644,8 +635,37 @@ class Shop extends Base_Controller {
         $this->setData('user_name', $user_name);
 
         $this->load->model('product_model');
+
+        $min_amt=$max_amt='';
+        $brand=[];
+        $color=[];
+        $category=[];
+
+        if ($this->input->post('filter_btn') || null !== $this->input->post('min_amt')) {
+            
+            $this->load->helper('security');
+            $post = $this->security->xss_clean($this->input->post());
+            $brand=(isset($post['brand']))?$post['brand']:[];
+            $color=(isset($post['color']))?$post['color']:[];
+            $category=(isset($post['category']))?$post['category']:[];
+            $min_amt = $post['min_amt'];
+            $max_amt = $post['max_amt'];
+            $this->session->set_userdata('session_brand' , $brand);
+            $this->session->set_userdata('session_color' , $color);
+            $this->session->set_userdata('session_category' , $category);
+
+        }
+        $set_brands=(null !==$this->session->userdata('session_brand'))?$this->session->userdata('session_brand'):[]; 
+        $set_color=(null !==$this->session->userdata('session_color'))?$this->session->userdata('session_color'):[];
+        $set_category=(null !==$this->session->userdata('session_category'))?$this->session->userdata('session_category'):[]; 
+
+        $brand=$set_brands;
+        $color=$set_color;
+        $category=$set_category;
+
+
         $nav_category = $this->product_model->getNavCategoryLists();
-        $products = $this->product_model->getAllPros();
+        $products = $this->product_model->getAllProCount($min_amt,$max_amt,$brand,$category,$color);
         $cart = $this->cart->contents();
         $cart_amount = $this->cart->total();
 
@@ -653,8 +673,8 @@ class Shop extends Base_Controller {
         $this->load->library('pagination');
         $config = array();
         $config['base_url'] = base_url() . "products";
-        $config['total_rows'] = count($products);
-        $config['per_page'] = 12;
+        $config['total_rows'] = $products;
+        $config['per_page'] = 3;
         $config['num_links'] = 10;
         $config["uri_segment"] = 2;
 
@@ -683,48 +703,6 @@ class Shop extends Base_Controller {
 
         $page = ($this->uri->segment(2)) ? $this->uri->segment(2) : 0;
         $pagination["links"] = $this->pagination->create_links();
-
-
-        $min_amt=$max_amt='';
-        $brand=[];
-        $category=[];
-        $color=[];
-        $set_brands=[];
-        $set_category=[];
-        $set_color=[];
-        if ($this->input->post('filter_btn') || $this->input->post('filter_btn')) {
-            
-            $this->load->helper('security');
-            $post = $this->security->xss_clean($this->input->post());
-            $brand=(isset($post['brand']))?$post['brand']:'';
-            $category=(isset($post['category']))?$post['category']:'';
-            $color=(isset($post['color']))?$post['color']:'';
-            $min_amt = $post['min_amt'];
-            $max_amt = $post['max_amt'];
-            if(is_array($brand) && count($brand) > 0){
-                $this->session->set_userdata('session_brand' , $brand);
-                $set_brands=$this->session->userdata('session_brand');
-            }else{
-                $this->session->unset_userdata('session_brand');
-            }
-
-            if(is_array($category) && count($category)>0){
-                $this->session->set_userdata('session_category' , $category);
-
-                $set_category=$this->session->userdata('session_category');
-            }else{
-                $this->session->unset_userdata('session_category');
-            }
-
-            if(is_array($color) && count($color)>0){
-                $this->session->set_userdata('session_color' , $color);
-                $set_color=$this->session->userdata('session_color');
-            }else{
-                $this->session->unset_userdata('session_color');
-            }
-
-        }
-        
 
         $products = $this->product_model->getAllProducts($config['per_page'], $page, $min_amt,$max_amt,$brand,$category,$color);
         $brands = $this->product_model->getAllBrands();

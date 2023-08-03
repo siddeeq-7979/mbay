@@ -146,6 +146,8 @@ class Shop_model extends CI_Model {
                         ->set('options', serialize($c['options']))
                        ->set('option_value', serialize($c['option_value']))
                         ->insert('order_products');
+
+                $this->decreaseProQuantity($c['id'],$c['qty']);
             }
            
             // if (isset($post['address_1'])) {
@@ -483,6 +485,30 @@ function getAllProductNames($query) {
         // return $data;
 
         // }
+
+    function decreaseProQuantity($pro_id,$qty) {
+        $quantity = 0;
+        $query = $this->db->select('quantity')
+                ->where('id', $pro_id)
+                ->limit(1)
+                ->get('products');
+        if ($query->num_rows() > 0) {
+            $quantity = $query->row()->quantity;
+            $updated_qty = $quantity-$qty;
+            $qty_update = $this->updateQuantity($pro_id,$updated_qty);
+        }
+
+    }
+
+     public function updateQuantity($pro_id,$updated_qty) {
+         $this->db->set('quantity ', "$updated_qty")
+                ->where('id ', $pro_id)
+                ->update('products');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
+        return false;
+    }
 
 }
 
