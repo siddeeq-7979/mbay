@@ -426,6 +426,8 @@
       checkboxes.forEach(function (checkbox) {
         checkbox.checked = false;
       });
+      sessionStorage.removeItem('session_brand');
+      sessionStorage.removeItem('session_color');
       form.submit();
   }
   

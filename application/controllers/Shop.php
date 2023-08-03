@@ -387,7 +387,7 @@ class Shop extends Base_Controller {
                   $order_id = $this->shop_model->insertOrder($this->aauth->getId(), $checkout_data, $cart, $total_items, $total_amount, $total_pv, $order_status,$upload_data);  
                 }
                 else {
-                    $this->loadPage('Choose Address', 'checkout', 'danger');
+                    $this->loadPage('Update address from account', 'checkout', 'danger');
                 }
                 
 

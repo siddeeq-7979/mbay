@@ -147,7 +147,7 @@ class Shop_model extends CI_Model {
                        ->set('option_value', serialize($c['option_value']))
                         ->insert('order_products');
 
-                $this->decreaseProQuantity($c['id'],$c['qty']);
+                $this->updateQuantity($c['id'],$c['qty']);
             }
            
             // if (isset($post['address_1'])) {
@@ -486,22 +486,22 @@ function getAllProductNames($query) {
 
         // }
 
-    function decreaseProQuantity($pro_id,$qty) {
-        $quantity = 0;
-        $query = $this->db->select('quantity')
-                ->where('id', $pro_id)
-                ->limit(1)
-                ->get('products');
-        if ($query->num_rows() > 0) {
-            $quantity = $query->row()->quantity;
-            $updated_qty = $quantity-$qty;
-            $qty_update = $this->updateQuantity($pro_id,$updated_qty);
-        }
+    // function decreaseProQuantity($pro_id,$qty) {
+    //     $quantity = 0;
+    //     $query = $this->db->select('quantity')
+    //             ->where('id', $pro_id)
+    //             ->limit(1)
+    //             ->get('products');
+    //     if ($query->num_rows() > 0) {
+    //         $quantity = $query->row()->quantity;
+    //         $updated_qty = $quantity-$qty;
+    //         $qty_update = $this->updateQuantity($pro_id,$updated_qty);
+    //     }
 
-    }
+    // }
 
-     public function updateQuantity($pro_id,$updated_qty) {
-         $this->db->set('quantity ', "$updated_qty")
+     public function updateQuantity($pro_id,$qty) {
+         $this->db->set('quantity ', "quantity -$qty",false)
                 ->where('id ', $pro_id)
                 ->update('products');
         if ($this->db->affected_rows() > 0) {
