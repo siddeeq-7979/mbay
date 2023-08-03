@@ -6,8 +6,6 @@
 {% endif %}
 
 <head>
-    <!-- Favicon -->
-
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="author" content="mbay" />
@@ -15,22 +13,19 @@
     <link rel="canonical" href="https://www.mbayoman.com/" />
     <base href="{{BASE_URL}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
-
-    <!-- <title>Best Online Electronics Store | Oman {{TITLE}}</title> -->
-   <!--  <meta name="description" content="Shop the best electronics online in Oman. Free shipping, top prices, and a wide selection of products. Visit us today for great deals!">
-    <meta name="keywords" content="Online, Electronics store"> -->
-
+    
     {% if products_status %}
+    <title>Best Online Electronics Store | Oman {{TITLE}}</title>
     <meta name="description" content="Shop the best electronics online in Oman. Free shipping, top prices, and a wide selection of products. Visit us today for great deals!">
     <meta name="keywords" content="Online, Electronics store">
-
+    
     {% elseif shop_status %}
-<title>Best Online Electronics Store | Oman {{TITLE}}</title>
+    <title>Best Online Electronics Store | Oman {{TITLE}}</title>
     <meta name="description" content="Shop the best electronics online in Oman. Free shipping, top prices, and a wide selection of products. Visit us today for great deals!">
     <meta name="keywords" content="Online, Electronics store">
 
     {% else %}
-
+    <title>Best Online Electronics Store | Oman</title>
     <meta name="description" content="Shop the best electronics online in Oman. Free shipping, top prices, and a wide selection of products. Visit us today for great deals!">
     <meta name="keywords" content="Online, Electronics store">
 
@@ -63,6 +58,7 @@
         }
 	</script>
 
+    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="48x48" href="assets/images/logos/{{COMPANY_FAV_ICON}}">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logos/{{COMPANY_FAV_ICON}}">
 
@@ -93,6 +89,7 @@
     <input type="hidden" name="path_root" id="path_root" value="{{BASE_URL}}" />
 
     <!-- Google Tag Manager -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com/" >
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
