@@ -1013,7 +1013,15 @@
     padding-left: 15px;
     padding-bottom: 10px;
 }
-
+.w-float {
+    position:fixed;
+	bottom:30px;
+	right:30px;
+    z-index:100;
+}
+.w-float img { 
+    width: 40px;
+}
 
 
 
