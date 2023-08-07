@@ -44,6 +44,8 @@
         slidesToShow: 4,
         slidesToScroll: 1,
         fade: false,
+        autoplay:true,
+        autoplaySpeed:4000,
         loop: true,
         dots: false,
         arrows: true,
