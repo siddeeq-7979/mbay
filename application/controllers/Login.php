@@ -162,7 +162,7 @@ class Login extends Base_Controller {
                 $result = $this->send_mail_model->send($user_id, '', 'forgot_password');
 
                 if ($result) {
-                    $this->loadPage(lang('successfully_send_mail'), 'login-forgot');
+                    $this->loadPage(lang('successfully_send_mail'), 'login-forgot','success');
                 } else {
                     $this->loadPage(lang('failed_to_send_mail'), 'login-forgot', 'danger');
                 }
