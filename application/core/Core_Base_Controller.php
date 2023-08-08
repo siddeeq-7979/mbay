@@ -265,17 +265,12 @@ Class Core_Base_Controller extends CI_Controller {
             if (!$this->base_model->getUserMenuPermission($this->aauth->getId(), $user_type, $currenturl) && !in_array($this->main->get_controller(), COMMON_PAGES)) {
                 $lock_status = true;
             }
-
-            // 
-            if('home/theme' ==  $currenturl){
-                $lock_status = false;
-            }
-            // 
         }
 
         if ($user_type == 'employee') {
             $user_type = 'admin';
         }
+
         if ($blacklist) {
             $this->twig->display('blacklist.twig', $this->DATA_ARR);
         } elseif ($lock_status) {

@@ -197,14 +197,14 @@ function getAllProductNames($query) {
                     ->from('seo_url')
                     ->where('seo_keyword',$seo_key)
                     ->get();
-                    if($res->num_rows() > 0){
-                        $data['status']=true;
-                        $data['seo_key']=$res->row()->seo_key;
-                        $data['seo_value']=$res->row()->seo_value;
-                        $data['seo_url']=base_url().$res->row()->seo_key.'/'.$res->row()->seo_value;
-                    }
+    if($res->num_rows() > 0){
+        $data['status']=true;
+        $data['seo_key']=$res->row()->seo_key;
+        $data['seo_value']=$res->row()->seo_value;
+        $data['seo_url']=base_url().$res->row()->seo_key.'/'.$res->row()->seo_value;
+    }
 
-                    return $data;
+    return $data;
  }
 
 

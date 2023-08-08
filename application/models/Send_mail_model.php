@@ -697,7 +697,7 @@ class Send_mail_model extends CI_Model {
                                                                     <tbody>
                                                                         <tr>
                                                                             <td style="padding-top:0;padding-bottom:0;padding-right:0;padding-left:0px" align="left">
-                                                                                <a href="' . BASE_PATH . '"><img src="' . BASE_PATH . '/assets/images/logos/' . $data['logo'] . '" width="120" height="45" border="0" alt="leadMLM" style="display:block;color:#111111;font-family:Arial,sans-serif;font-size:12px" class="CToWUd"></a>
+                                                                                <a href="' . BASE_PATH . '"><img src="' . BASE_PATH . '/assets/images/logos/' . $data['logo'] . '" width="120" height="45" border="0" alt="mbayoman" style="display:block;color:#111111;font-family:Arial,sans-serif;font-size:12px" class="CToWUd"></a>
                                                                             </td>
                                                                         </tr>
 

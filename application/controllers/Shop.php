@@ -37,6 +37,7 @@ class Shop extends Base_Controller {
 
         $this->load->model('site_management_model');
         $slider_images = $this->site_management_model->getSliderLists();
+        
         // if ($this->aauth->getId()) {
         //     $this->loadPage('', 'dashboard');
         // }
