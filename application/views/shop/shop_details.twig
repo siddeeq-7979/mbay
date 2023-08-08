@@ -81,7 +81,7 @@
                     <div class="d-block mt-2 mb-3">
                         {%  if pro.quantity < 1 %}
                         <p class="text-danger mb-1">
-                            This item is currently out of stock
+                            {{lang('out_stock')}}
                         </p>
 
                         {{form_open('','methd="post" name="notify_whatsapp_form" id="notify_whatsapp_form"')|raw}}
@@ -91,7 +91,7 @@
                                 <input type="text" name="phone" id="phone" class="form-control shadow-none"
                                     placeholder="Your WhatsApp Number" aria-label="Recipient's username"
                                     aria-describedby="button-addon2">
-                                <button class="btn btn-primary" type="submit" id="button_addon">Notify Me</button>
+                                <button class="btn btn-primary" type="submit" id="button_addon">{{lang('notify')}}</button>
                             </div>
                         </div>
                         {{form_close()|raw}}
@@ -107,9 +107,11 @@
                             <!-- <img src="assets/shop/images/warranty/samsung.jpg"> -->
                             <img src="assets/shop/images/brand/{{pro.brand_image}}">
                         </div>
+                        {%  if pro.warranty %}
                         <div class="c-info">
-                            {{lang('brand_warrenty_1_year')}}
+                            {{ pro.warranty}}
                         </div>
+                        {% endif %}
                     </div>
                     <!--end warrenty-->
 
@@ -117,7 +119,7 @@
                 {% for option in option_data %}
             
                     <div class="product-color mt-3">
-                        <div class="color-title">{{option[0]['option_name']}}</div>
+                        <div class="color-title">{{option[0]['option_name']['option_name']}}</div>
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                             
                         {% for option_item in option %}
@@ -166,7 +168,7 @@
                      <!--highlights-->
                             <div class="product-highlights mt-3">
                                 <div class="h-title">
-                                    Highlights
+                                    {{lang('highlights')}}
                                 </div>
                                 <div class="hightlights-single">
                                     {{ pro.description|raw }}

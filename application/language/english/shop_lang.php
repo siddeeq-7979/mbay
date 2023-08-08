@@ -142,7 +142,7 @@ $lang['100_sure'] = '100% Sure';
 $lang['payment_online'] = 'Payment Online';
 $lang['best_price'] = 'Best Price';
 $lang['guaranteed'] = 'Guaranteed';
-$lang['mbay_app'] = 'MBay App';
+$lang['mbay_app'] = 'mbay App';
 $lang['follow_us'] = 'Follow Us';
 $lang['need_help'] = 'Need Help?';
 $lang['whatsapp'] = 'WhatsApp';
@@ -170,7 +170,7 @@ $lang['mobile_number'] = ' Mobile Number';
 $lang['email'] = ' E Mail ';
 $lang['address_type'] = ' Address Type ';
 $lang['home'] = ' Home  ';
-$lang['current_password'] = ' Change Password  ';
+$lang['current_password'] = ' Old Password  ';
 $lang['new_password'] = ' New Password  ';
 $lang['confirm_password'] = ' Confirm Password  ';
 $lang['address2'] = ' Address 2  ';
@@ -194,7 +194,50 @@ $lang['your_order_id_is'] = 'Your Order ID Is';
 $lang['you_will_receive'] = 'You will Receive';
 $lang['continue_shopping'] = 'Continue Shopping';
 $lang['brand_warrenty_1_year'] = 'Brand warrenty 1 year';
-$lang['buy_now'] = 'Buy Now';
+$lang['buy_now'] = 'BUY NOW';
+$lang['choose_shipping_address'] = 'CHOOSE SHIPPING ADDRESS';
+$lang['add_new_address'] = 'Add New Address';
+$lang['introducing_cod']= 'Introducing COD - Cash on Delivery! Shop now and pay later at your doorstep. No online payments or card details required. Simply select COD during checkout, and our delivery team will collect the cash payment upon arrival. Enjoy the convenience and peace of mind with our COD service. Happy shopping!';
+$lang['make_ur_payment']= 'Make your payment directly into our bank account, and please use your Order ID as the payment reference. After uploading your payment screenshot, the admin will verify your order.';
+$lang['qr_payment'] = 'QR Payment';
+$lang['get_the_latest'] = 'Get the latest tech products at affordable prices at mbay in Oman! Our electronics store offers a wide range of mobile phones, accessories, wearable devices, and tablets. Enjoy convenient online shopping and find the best deals for your next tech upgrade.';
+$lang['my_account'] = 'My Account';
+$lang['out_stock'] = 'This item is currently out of stock';
+$lang['notify'] = 'Notify Me';
+$lang['highlights'] = 'Highlights';
+$lang['brand_warrenty'] = 'Brand Warranty';
+$lang['year'] = 'Year';
+$lang['vat_included'] = 'VAT Included';
+$lang['empty_products'] = 'Empty Products';
+$lang['warranty'] = 'Warranty';
+
+
+$lang['mbay_app_on_home_screen'] = 'mbay app on your Home screen';
+$lang['enjoy_like_a_native_app'] = 'Enjoy mbay like a native app.';
+$lang['fast_secure_totally_free'] = 'Fast, more secure, and totally free!';
+$lang['works_better_with'] = 'Works better with Chrome, Opera, Safari, and Samsung Internet';
+$lang['to_get_mbay_right_on_phone'] = 'To get mbay right on your home screen follow our guides:';
+$lang['android'] = 'Android';
+$lang['ios'] = 'iOS';
+$lang['load_mbay_in_chrome'] = 'Load mbay.com in the Chrome Web Browser';
+$lang['tap_the_dots'] = 'Tap the 3 dots in the top right corner';
+$lang['select_add_to_home_screen'] = 'Select "Add to Home screen" from the
+                                            available options';
+$lang['Chrome_will_open_a_prompt'] = 'Chrome will open a prompt and you will be
+                                            able to add mbay icon to your home screen. Change the App name if you want
+                                            to2';
+$lang['launch_the_app'] = 'Launch the app to ensure the install has
+                                            been successful. That`s it. Enjoy!';
+$lang['load_in_the_app'] = 'Load mbay.com in the Safari Web
+                                            Browser';
+$lang['tap_share_icon'] = 'Tap the share icon';
+
+$lang['change_the_app_name'] = 'Change the App name if you want to';
+
+
+
+
+
 
 
 

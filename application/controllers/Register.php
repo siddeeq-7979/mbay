@@ -1670,4 +1670,15 @@ class Register extends Base_Controller {
         echo $data;
         exit();
     }
+
+     public function check_current_password() {
+        $this->load->helper('security');
+        $post = $this->security->xss_clean($this->input->get());
+        $user_id = $this->aauth->getId();
+        if ($this->helper_model->checkUserCurrentPasswod($user_id, $post['current_password'])) {
+            echo 'yes';
+            exit;
+        }
+        echo 'no';
+    }
 }

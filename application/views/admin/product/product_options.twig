@@ -124,8 +124,8 @@
                                                     <div class="col-12">
                                                         <div class="card">
                                                             <div class="card-body">
-                                                               <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal" onclick="selectBoxSelected('ram_tab','1');" >Add</button></div>
-                                                               <div class="card-body">
+                                                             <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal" onclick="selectBoxSelected('ram_tab','1');" >Add</button></div>
+                                                             <div class="card-body">
 
                                                                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                                                                     <thead>
@@ -151,119 +151,119 @@
 
 
 
-                                                                        </tr>
-                                                                        {% endfor %}
-                                                                    </tbody>
-                                                                </table>
-
-
-                                                            </div>
-                                                        </div>
-                                                    </div> 
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="v-pills-rom" role="tabpanel" aria-labelledby="v-pills-rom-tab">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal"onclick="selectBoxSelected('rom_tab','2');">Add</button></div>
-                                                                <div class="card-body">
-                                                                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>#</th>
-                                                                                <th>{{lang('option_value')}}</th>
-                                                                                <th>{{lang('quantity')}}</th>
-                                                                                <th>{{lang('price')}}</th>
-                                                                                <th>{{lang('action')}}</th>
-                                                                                <th>{{lang('default')}}</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            {% for row in product_options1 %}  
-                                                                            <tr>
-                                                                                <td>{{loop.index}}</td>
-
-                                                                                <td>{{row.option_value}}</td>
-                                                                                <td>{{row.quantity}}</td>
-                                                                                <td>{{row.price}}</td>
-                                                                                <td><button type="button" onClick="editProOptModal('{{row.id}}','rom_tab')" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pencil-alt"></i></button> <a href="admin/product-options/delete/{{pro_id}}/{{row.id}}" button type="submit" class="btn btn-danger"><i class="fa fa-trash fa fa-white"></i></a></td>
-                                                                                <td>
-                                                                                {% if row.default_value == 1 %}<input type="radio" id="default1" name="default1" value="{{row.pro_id}}" onClick="editDefaultValue('{{row.id}}', '{{row.pro_id}}')" checked>{% else %}<input type="radio" id="default1" name="default1" value="{{row.pro_id}}" onClick="editDefaultValue('{{row.id}}', '{{row.pro_id}}')">{% endif %}</td>
-
                                                                             </tr>
                                                                             {% endfor %}
                                                                         </tbody>
                                                                     </table>
+
+
                                                                 </div>
                                                             </div>
                                                         </div> 
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="v-pills-color" role="tabpanel" aria-labelledby="v-pills-color-tab">
+                                                <div class="tab-pane fade" id="v-pills-rom" role="tabpanel" aria-labelledby="v-pills-rom-tab">
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="card">
                                                                 <div class="card-body">
-                                                                   <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal"onclick="selectBoxSelected('clr_tab','3');">Add</button></div>
-                                                                   <div class="card-body">
-                                                                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>#</th>
-                                                                                <th>{{lang('option_value')}}</th>
-                                                                                <th>{{lang('quantity')}}</th>
-                                                                                <th>{{lang('price')}}</th>
-                                                                                <th>{{lang('action')}}</th>
-                                                                                <th>{{lang('default')}}</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            {% for row in product_options2 %}  
-                                                                            <tr>
-                                                                                <td>{{loop.index}}</td>
+                                                                    <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal"onclick="selectBoxSelected('rom_tab','2');">Add</button></div>
+                                                                    <div class="card-body">
+                                                                        <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>#</th>
+                                                                                    <th>{{lang('option_value')}}</th>
+                                                                                    <th>{{lang('quantity')}}</th>
+                                                                                    <th>{{lang('price')}}</th>
+                                                                                    <th>{{lang('action')}}</th>
+                                                                                    <th>{{lang('default')}}</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                {% for row in product_options1 %}  
+                                                                                <tr>
+                                                                                    <td>{{loop.index}}</td>
+
+                                                                                    <td>{{row.option_value}}</td>
+                                                                                    <td>{{row.quantity}}</td>
+                                                                                    <td>{{row.price}}</td>
+                                                                                    <td><button type="button" onClick="editProOptModal('{{row.id}}','rom_tab')" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pencil-alt"></i></button> <a href="admin/product-options/delete/{{pro_id}}/{{row.id}}" button type="submit" class="btn btn-danger"><i class="fa fa-trash fa fa-white"></i></a></td>
+                                                                                    <td>
+                                                                                        {% if row.default_value == 1 %}<input type="radio" id="default1" name="default1" value="{{row.pro_id}}" onClick="editDefaultValue('{{row.id}}', '{{row.pro_id}}')" checked>{% else %}<input type="radio" id="default1" name="default1" value="{{row.pro_id}}" onClick="editDefaultValue('{{row.id}}', '{{row.pro_id}}')">{% endif %}</td>
+
+                                                                                    </tr>
+                                                                                    {% endfor %}
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="v-pills-color" role="tabpanel" aria-labelledby="v-pills-color-tab">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                         <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal"onclick="selectBoxSelected('clr_tab','3');">Add</button></div>
+                                                                         <div class="card-body">
+                                                                            <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>#</th>
+                                                                                        <th>{{lang('option_value')}}</th>
+                                                                                        <th>{{lang('quantity')}}</th>
+                                                                                        <th>{{lang('price')}}</th>
+                                                                                        <th>{{lang('action')}}</th>
+                                                                                        <th>{{lang('default')}}</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    {% for row in product_options2 %}  
+                                                                                    <tr>
+                                                                                        <td>{{loop.index}}</td>
 
 
-                                                                                <td><div   style="  height: 20px;
-                                                                                width: 20px;
-                                                                                margin-bottom: 15px;
-                                                                                border: 1px solid black;
-                                                                                clear: both;background-color:{{row.option_value}}"></div></td>
+                                                                                        <td><div   style="  height: 20px;
+                                                                                        width: 20px;
+                                                                                        margin-bottom: 15px;
+                                                                                        border: 1px solid black;
+                                                                                        clear: both;background-color:{{row.option_value}}"></div></td>
 
-                                                                                <td>{{row.quantity}}</td>
-                                                                                <td>{{row.price}}</td>
-                                                                                <td><button type="button" onClick="editProOptModal('{{row.id}}','clr_tab')" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pencil-alt"></i></button> <a href="admin/product-options/delete/{{pro_id}}/{{row.id}}" button type="submit" class="btn btn-danger"><i class="fa fa-trash fa fa-white"></i></a></td>
-                                                                                <td>
-                                                                                {% if row.default_value == 1 %}<input type="radio" id="default2" name="default2" value="{{row.pro_id}}" onClick="editDefaultValue('{{row.id}}', '{{row.pro_id}}')" checked>{% else %}<input type="radio" id="default2" name="default2" value="{{row.pro_id}}" onClick="editDefaultValue('{{row.id}}', '{{row.pro_id}}')">{% endif %}</td>
+                                                                                        <td>{{row.quantity}}</td>
+                                                                                        <td>{{row.price}}</td>
+                                                                                        <td><button type="button" onClick="editProOptModal('{{row.id}}','clr_tab')" class="btn btn-primary waves-effect waves-light"><i class="fas fa-pencil-alt"></i></button> <a href="admin/product-options/delete/{{pro_id}}/{{row.id}}" button type="submit" class="btn btn-danger"><i class="fa fa-trash fa fa-white"></i></a></td>
+                                                                                        <td>
+                                                                                            {% if row.default_value == 1 %}<input type="radio" id="default2" name="default2" value="{{row.pro_id}}" onClick="editDefaultValue('{{row.id}}', '{{row.pro_id}}')" checked>{% else %}<input type="radio" id="default2" name="default2" value="{{row.pro_id}}" onClick="editDefaultValue('{{row.id}}', '{{row.pro_id}}')">{% endif %}</td>
 
-                                                                            </tr>
-                                                                            {% endfor %}
-                                                                        </tbody>
-                                                                    </table>
+                                                                                        </tr>
+                                                                                        {% endfor %}
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> 
                                                                 </div>
-                                                            </div>
-                                                        </div> 
-                                                    </div>
-                                                </div>  
+                                                            </div>  
 
-                                                <div id="editProModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="myModalLabel">Edit Option values</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
+                                                            <div id="editProModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="myModalLabel">Edit Option values</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
 
-                                                                {{ form_open('', ' id="edit_option_value_form" name="edit_option_value_form"')|raw }}
-                                                                <input type="hidden" />
-                                                                <div class="row">
-                                                                    <input type="hidden" id="val_id" name="val_id"/>
-                                                                    <div class="col-xl-6 col-md-6">
-                                                                        <div class="form-group mb-3">
-                                                                            <label>Product Option</label>
-                                                                            <input type="text"   class="form-control" id="edit_option_id" name="edit_option_id" />
+                                                                            {{ form_open('', ' id="edit_option_value_form" name="edit_option_value_form"')|raw }}
+                                                                            <input type="hidden" />
+                                                                            <div class="row">
+                                                                                <input type="hidden" id="val_id" name="val_id"/>
+                                                                                <div class="col-xl-6 col-md-6">
+                                                                                    <div class="form-group mb-3">
+                                                                                        <label>Product Option</label>
+                                                                                        <input type="text"   class="form-control" id="edit_option_id" name="edit_option_id" />
                                                                             <!-- <select name="edit_option_id" id="edit_option_id" class="form-control search-select" tabindex='5'>
                                                                                 <option value="">{{lang('select_a_option')}}</option>
                                                                                 {% for opt in data %}
@@ -373,15 +373,15 @@
                                                             <div class="col-xl-6 col-md-6">
                                                                 <div class="form-group mb-3">
                                                                     <label>Product Option Values</label>
-                                                                <span class="input-icon" id="opt_value_span">
+                                                                    <span class="input-icon" id="opt_value_span">
                                                                     <!--  <select name="option_value" id="option_value" class="form-control search-select" tabindex='5'>
                                                                     <option value="">{{lang('select_a_option_value')}}</option>
                                                                     {% for opt_val in option_values %}
                                                                         <option style="background-color: {{opt}}"value="{{opt_val.id}}">{{opt_val.option_value}}</option>
                                                                     {% endfor %}
-                                                                    </select> -->
-                                                                </span>
-                                                                
+                                                                </select> -->
+                                                            </span>
+
                                                         </div>
                                                     </div>
 
@@ -493,9 +493,9 @@
 <script>
 
     $(function() {
-     validate_pro_option();
-     validate_edit_pro_option();
- });
+       validate_pro_option();
+       validate_edit_pro_option();
+   });
 
     $('#option_id').on('change', function (e) {
         var optionSelected = $("option:selected", this);
@@ -550,17 +550,57 @@
 
     function editProOptModal(id,tab){
 
-        
+
         if(tab=='ram_tab'){ 
-        $.ajax({
+            $.ajax({
+                url:'admin/product/get_pro_option_value',
+                data:{id:id},
+                dataType:'json',
+                success:function(result){
+                    console.log(result)
+                    $("#editProModal").modal('toggle');
+                    $("#val_id").val(result.id);
+                    // $("#edit_option_id").val("RAM");
+                    $("#edit_option_id").val(result.option_id);
+                    $("#edit_option_value").val(result.option_value);
+                    $("#edit_quantity").val(result.quantity);
+                    $("#edit_price").val(result.price);
+                    $("#edit_price_change").val(result.price_change);
+
+                    var opt_id= result.option_id;
+
+
+                    $.ajax({
+                        url:'admin/product/get_pro_option_value_details',
+                        data:{opt_id:opt_id},
+                        dataType:'json',
+                        success:function(response){
+
+                            $('#edit_option_value').html('<option >Select a Option Value</option>')
+                             $.each(response, function (key, value) {
+
+                            $('#edit_option_value').append('<option value="' + value.id + '">' + value.option_value + '</option>')
+                        });
+                            $("#edit_option_value").val(result.option_value);
+                       }
+
+                   });
+
+
+                }
+            });
+
+        }else if(tab=='rom_tab'){ 
+           $.ajax({
             url:'admin/product/get_pro_option_value',
             data:{id:id},
             dataType:'json',
             success:function(result){
                 $("#editProModal").modal('toggle');
                 $("#val_id").val(result.id);
-                $("#edit_option_id").val("RAM");
-                // $("#edit_option_value").val(result.option_value);
+                // $("#edit_option_id").val("ROM");
+                $("#edit_option_id").val(result.option_id);
+                $("#edit_option_value").val(result.option_value);
                 $("#edit_quantity").val(result.quantity);
                 $("#edit_price").val(result.price);
                 $("#edit_price_change").val(result.price_change);
@@ -568,385 +608,353 @@
                 var opt_id= result.option_id;
 
 
-                 $.ajax({
+                $.ajax({
                     url:'admin/product/get_pro_option_value_details',
                     data:{opt_id:opt_id},
                     dataType:'json',
                     success:function(response){
-                        
-                     $('#edit_option_value').html('<option >Select a Option Value</option>')
-                    $.each(response, function (key, value) {
-                       
-                    $('#edit_option_value').append('<option value="' + value.id + '">' + value.option_value + '</option>')
-                    });
-                        
+
+                        $('#edit_option_value').html('<option >Select a Option Value</option>')
+                        $.each(response, function (key, value) {
+                            $('#edit_option_value').append('<option value="' + value.id + '">' + value.option_value + '</option>')
+                        });
+                        $("#edit_option_value").val(result.option_value);
                     }
 
                 });
             }
         });
-
-    }else if(tab=='rom_tab'){ 
-         $.ajax({
+       }else if(tab=='clr_tab'){ 
+           $.ajax({
             url:'admin/product/get_pro_option_value',
             data:{id:id},
             dataType:'json',
             success:function(result){
+                // console.log(result)
                 $("#editProModal").modal('toggle');
                 $("#val_id").val(result.id);
-                $("#edit_option_id").val("ROM");
-                // $("#edit_option_value").val(result.option_value);
+                // $("#edit_option_id").val("COLOUR");
+                $("#edit_option_id").val(result.option_id);
+                $("#edit_option_value").val(result.option_value);
                 $("#edit_quantity").val(result.quantity);
                 $("#edit_price").val(result.price);
                 $("#edit_price_change").val(result.price_change);
 
-                 var opt_id= result.option_id;
+                var opt_id= result.option_id;
 
 
-                 $.ajax({
+                $.ajax({
                     url:'admin/product/get_pro_option_value_details',
                     data:{opt_id:opt_id},
                     dataType:'json',
                     success:function(response){
-                        
-                    $('#edit_option_value').html('<option >Select a Option Value</option>')
-                    $.each(response, function (key, value) {
-                    $('#edit_option_value').append('<option value="' + value.id + '">' + value.option_value + '</option>')
-                    });
-                        
+
+                        $('#edit_option_value').html('<option >Select a Option Value</option>')
+                        $.each(response, function (key, value) {
+                            $('#edit_option_value').append('<option value="' + value.id + '" style="background-color:'+value.option_value +'!important;color:#'+value.option_value +'!important;"></option>')
+                        });
+                        $("#edit_option_value").val(result.option_value);
+  
                     }
 
                 });
             }
         });
-    }else if(tab=='clr_tab'){ 
-         $.ajax({
-            url:'admin/product/get_pro_option_value',
-            data:{id:id},
-            dataType:'json',
-            success:function(result){
-                $("#editProModal").modal('toggle');
-                $("#val_id").val(result.id);
-                $("#edit_option_id").val("COLOUR");
-                // $("#edit_option_value").val(result.option_value);
-                $("#edit_quantity").val(result.quantity);
-                $("#edit_price").val(result.price);
-                $("#edit_price_change").val(result.price_change);
+       }
+   }
 
-                 var opt_id= result.option_id;
-
-
-                 $.ajax({
-                    url:'admin/product/get_pro_option_value_details',
-                    data:{opt_id:opt_id},
-                    dataType:'json',
-                    success:function(response){
-                        
-                    $('#edit_option_value').html('<option >Select a Option Value</option>')
-                    $.each(response, function (key, value) {
-                    $('#edit_option_value').append('<option value="' + value.id + '" style="background-color:'+value.option_value +'!important;color:#'+value.option_value +'!important;"></option>')
-                    });
-                        
-                    }
-
-                });
-            }
-        });
-    }
-    }
-
-    var validate_pro_option = function () {
-        var form = $('#add_pro_option_form');
-        var errorHandler1 = $('.errorHandler', form);
-        var successHandler1 = $('.successHandler', form);
-        $(form).validate({
-          ignore: [],
+   var validate_pro_option = function () {
+    var form = $('#add_pro_option_form');
+    var errorHandler1 = $('.errorHandler', form);
+    var successHandler1 = $('.successHandler', form);
+    $(form).validate({
+      ignore: [],
               errorElement: "div", // contain the error msg in a span tag
               errorClass: 'invalid-feedback',
               errorPlacement: function (error, element) { // render error placement for each input type
-               if (element.hasClass("ck-editor")) {
-                error.insertBefore(element);
-            }else if (element.attr("name") == "description") {
-                $("#errordescription").append(error);
-            } else{
-                error.appendTo($(element).closest('.form-group'));
-            }  
-        },
-
-        rules: {
-
-            option_id: {
-                required: true,
-            },
-            option_value: {
-                required: true,
-            },
-            quantity: {
-                required: true,
-                digits: true
-            },
-            price: {
-                required: true,
-                digits: true
+                 if (element.hasClass("ck-editor")) {
+                    error.insertBefore(element);
+                }else if (element.attr("name") == "description") {
+                    $("#errordescription").append(error);
+                } else{
+                    error.appendTo($(element).closest('.form-group'));
+                }  
             },
 
-        },
-        messages: {
+            rules: {
 
-            option_id: {
-                required: 'Required',
-            },
-            option_value: {
-                required: 'Required',
-            },
-            quantity: {
-                required: 'Required',
-                digits: 'Only Number Format',
-            },
-            price: {
-                required: 'Required',
-                digits: 'Only Number Format',
-            },
+                option_id: {
+                    required: true,
+                },
+                option_value: {
+                    required: true,
+                },
+                quantity: {
+                    required: true,
+                    digits: true
+                },
+                price: {
+                    required: true,
+                    number: true
+                },
 
-        },
-        invalidHandler: function(event, validator) { 
+            },
+            messages: {
 
-           successHandler1.hide();
-           errorHandler1.show();
-       },
-       highlight: function(element) {
-           $(element).closest('.form-control').removeClass('is-invalid');
+                option_id: {
+                    required: 'Required',
+                },
+                option_value: {
+                    required: 'Required',
+                },
+                quantity: {
+                    required: 'Required',
+                    digits: 'Only Number Format',
+                },
+                price: {
+                    required: 'Required',
+                    // digits: 'Only Number Format',
+                },
+
+            },
+            invalidHandler: function(event, validator) { 
+
+             successHandler1.hide();
+             errorHandler1.show();
+         },
+         highlight: function(element) {
+             $(element).closest('.form-control').removeClass('is-invalid');
                      //display Checkbox invalid Data
-           $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
+             $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
                      // display OK icon
-           $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid').find('.symbol').removeClass('ok').addClass('required');
+             $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid').find('.symbol').removeClass('ok').addClass('required');
                      // add the Bootstrap error class to the control group
-       },
+         },
               unhighlight: function(element) { // revert the change done by hightlight
                      //display Checkbox invalid Data
 
-               $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
-               $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid').find('.symbol').removeClass('ok').addClass('required');
+                 $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
+                 $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid').find('.symbol').removeClass('ok').addClass('required');
                      // set error class to the control group
-           },
-           success: function(label, element) {
+             },
+             success: function(label, element) {
                      //display Checkbox invalid Data
-               $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
-               $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid').find('.symbol').removeClass('ok').addClass('required');
+                 $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
+                 $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid').find('.symbol').removeClass('ok').addClass('required');
                      // mark the current input as valid and display OK icon
-           },
-           submitHandler: function(form) {
-               successHandler1.show();
-               errorHandler1.hide();
-               form.submit();
-           }
-       });
-    };
+             },
+             submitHandler: function(form) {
+                 successHandler1.show();
+                 errorHandler1.hide();
+                 form.submit();
+             }
+         });
+};
 
 
 
-    var validate_edit_pro_option = function () {
-        var form = $('#edit_option_value_form');
-        var errorHandler1 = $('.errorHandler', form);
-        var successHandler1 = $('.successHandler', form);
-        $(form).validate({
-          ignore: [],
+var validate_edit_pro_option = function () {
+    var form = $('#edit_option_value_form');
+    var errorHandler1 = $('.errorHandler', form);
+    var successHandler1 = $('.successHandler', form);
+    $(form).validate({
+      ignore: [],
               errorElement: "div", // contain the error msg in a span tag
               errorClass: 'invalid-feedback',
               errorPlacement: function (error, element) { // render error placement for each input type
-               if (element.hasClass("ck-editor")) {
-                error.insertBefore(element);
-            }else if (element.attr("name") == "description") {
-                $("#errordescription").append(error);
-            } else{
-                error.appendTo($(element).closest('.form-group'));
-            }  
-        },
-
-        rules: {
-
-            edit_option_id: {
-                required: true,
-            },
-            edit_option_value: {
-                required: true,
-            },
-            edit_quantity: {
-                required: true,
-                digits: true
-            },
-            edit_price: {
-                required: true,
-                digits: true
+                 if (element.hasClass("ck-editor")) {
+                    error.insertBefore(element);
+                }else if (element.attr("name") == "description") {
+                    $("#errordescription").append(error);
+                } else{
+                    error.appendTo($(element).closest('.form-group'));
+                }  
             },
 
-        },
-        messages: {
+            rules: {
 
-            edit_option_id: {
-                required: 'Required',
-            },
-            edit_option_value: {
-                required: 'Required',
-            },
-            edit_quantity: {
-                required: 'Required',
-                digits: 'Only Number Format',
-            },
-            edit_price: {
-                required: 'Required',
-                digits: 'Only Number Format',
-            },
+                edit_option_id: {
+                    required: true,
+                },
+                edit_option_value: {
+                    required: true,
+                },
+                edit_quantity: {
+                    required: true,
+                    digits: true
+                },
+                edit_price: {
+                    required: true,
+                    number: true
+                },
 
-        },
-        invalidHandler: function(event, validator) { 
+            },
+            messages: {
 
-           successHandler1.hide();
-           errorHandler1.show();
-       },
-       highlight: function(element) {
-           $(element).closest('.form-control').removeClass('is-invalid');
+                edit_option_id: {
+                    required: 'Required',
+                },
+                edit_option_value: {
+                    required: 'Required',
+                },
+                edit_quantity: {
+                    required: 'Required',
+                    digits: 'Only Number Format',
+                },
+                edit_price: {
+                    required: 'Required',
+                    // digits: 'Only Number Format',
+                },
+
+            },
+            invalidHandler: function(event, validator) { 
+
+             successHandler1.hide();
+             errorHandler1.show();
+         },
+         highlight: function(element) {
+             $(element).closest('.form-control').removeClass('is-invalid');
                      //display Checkbox invalid Data
-           $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
+             $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
                      // display OK icon
-           $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid').find('.symbol').removeClass('ok').addClass('required');
+             $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid').find('.symbol').removeClass('ok').addClass('required');
                      // add the Bootstrap error class to the control group
-       },
+         },
               unhighlight: function(element) { // revert the change done by hightlight
                      //display Checkbox invalid Data
 
-               $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
-               $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid').find('.symbol').removeClass('ok').addClass('required');
+                 $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
+                 $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid').find('.symbol').removeClass('ok').addClass('required');
                      // set error class to the control group
-           },
-           success: function(label, element) {
+             },
+             success: function(label, element) {
                      //display Checkbox invalid Data
-               $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
-               $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid').find('.symbol').removeClass('ok').addClass('required');
+                 $(element).closest('.checkbox').removeClass('is-invalid').addClass('is-valid');
+                 $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid').find('.symbol').removeClass('ok').addClass('required');
                      // mark the current input as valid and display OK icon
-           },
-           submitHandler: function(form) {
-               successHandler1.show();
-               errorHandler1.hide();
-               form.submit();
-           }
-       });
-    };
+             },
+             submitHandler: function(form) {
+                 successHandler1.show();
+                 errorHandler1.hide();
+                 form.submit();
+             }
+         });
+};
 
 
 
-    function selectBoxSelected(tab,status){
+function selectBoxSelected(tab,status){
     // alert(status);
-       $('#option_ids').val(status);
+ $('#option_ids').val(status);
 
-       if(tab=='ram_tab'){
-        $("#option_id option[value='1']").attr("selected", true);
-        var valueSelected=1;
-        $.ajax({url: "admin/product/get_option_values",
-            data: {option_id: valueSelected, tab_index: 14},
-            async: false,
-            success: function (msg) {
-                $('#opt_value_span').html(msg);
+ if(tab=='ram_tab'){
+    $("#option_id option[value='1']").attr("selected", true);
+    var valueSelected=1;
+    $.ajax({url: "admin/product/get_option_values",
+        data: {option_id: valueSelected, tab_index: 14},
+        async: false,
+        success: function (msg) {
+            $('#opt_value_span').html(msg);
 
-                $("#option_value").select2({
-                    placeholder: "Select a Option Value",
-                    allowClear: false
-                });
-            }
-        });
-    }else if(tab=='rom_tab'){
-        $("#option_id option[value='2']").attr("selected", true);
-        var valueSelected=2;
-        $.ajax({url: "admin/product/get_option_values",
-            data: {option_id: valueSelected, tab_index: 14},
-            async: false,
-            success: function (msg) {
-                $('#opt_value_span').html(msg);
+            $("#option_value").select2({
+                placeholder: "Select a Option Value",
+                allowClear: false
+            });
+        }
+    });
+}else if(tab=='rom_tab'){
+    $("#option_id option[value='2']").attr("selected", true);
+    var valueSelected=2;
+    $.ajax({url: "admin/product/get_option_values",
+        data: {option_id: valueSelected, tab_index: 14},
+        async: false,
+        success: function (msg) {
+            $('#opt_value_span').html(msg);
 
-                $("#option_value").select2({
-                    placeholder: "Select a Option Value",
-                    allowClear: false
-                });
-            }
-        });
+            $("#option_value").select2({
+                placeholder: "Select a Option Value",
+                allowClear: false
+            });
+        }
+    });
 
-    }else if(tab=='clr_tab'){
-        $("#option_id option[value='3']").attr("selected", true);
-        var valueSelected=3;
-        $.ajax({
-            url: "admin/product/get_option_values",
-            data: {option_id: valueSelected, tab_index: 14},
-            async: false,
-            dataType:'html',
-            success: function (msg) {
-                $('#opt_value_span').html(msg);
+}else if(tab=='clr_tab'){
+    $("#option_id option[value='3']").attr("selected", true);
+    var valueSelected=3;
+    $.ajax({
+        url: "admin/product/get_option_values",
+        data: {option_id: valueSelected, tab_index: 14},
+        async: false,
+        dataType:'html',
+        success: function (msg) {
+            $('#opt_value_span').html(msg);
 
 
-            }
+        }
 
-        });
+    });
 
-    }else{
-        $("#option_id option[value='1']").attr("selected", true);
-    }
+}else{
+    $("#option_id option[value='1']").attr("selected", true);
+}
 
 }
 
 
- function selectBoxSelected1(tab,status,id){
-     alert(tab);alert(status);alert(id);
-       $('#option_ids').val(status);
+function selectBoxSelected1(tab,status,id){
+   alert(tab);alert(status);alert(id);
+   $('#option_ids').val(status);
 
-       if(tab=='ram_tab'){
-        $("#option_id option[value='1']").attr("selected", true);
-        var valueSelected=1;
-        $.ajax({url: "admin/product/get_option_values",
-            data: {option_id: valueSelected, tab_index: 14},
-            async: false,
-            success: function (msg) {
-                $('#opt_value_span').html(msg);
+   if(tab=='ram_tab'){
+    $("#option_id option[value='1']").attr("selected", true);
+    var valueSelected=1;
+    $.ajax({url: "admin/product/get_option_values",
+        data: {option_id: valueSelected, tab_index: 14},
+        async: false,
+        success: function (msg) {
+            $('#opt_value_span').html(msg);
 
-                $("#option_value").select2({
-                    placeholder: "Select a Option Value",
-                    allowClear: false
-                });
-            }
-        });
-    }else if(tab=='rom_tab'){
-        $("#option_id option[value='2']").attr("selected", true);
-        var valueSelected=2;
-        $.ajax({url: "admin/product/get_option_values",
-            data: {option_id: valueSelected, tab_index: 14},
-            async: false,
-            success: function (msg) {
-                $('#opt_value_span').html(msg);
+            $("#option_value").select2({
+                placeholder: "Select a Option Value",
+                allowClear: false
+            });
+        }
+    });
+}else if(tab=='rom_tab'){
+    $("#option_id option[value='2']").attr("selected", true);
+    var valueSelected=2;
+    $.ajax({url: "admin/product/get_option_values",
+        data: {option_id: valueSelected, tab_index: 14},
+        async: false,
+        success: function (msg) {
+            $('#opt_value_span').html(msg);
 
-                $("#option_value").select2({
-                    placeholder: "Select a Option Value",
-                    allowClear: false
-                });
-            }
-        });
+            $("#option_value").select2({
+                placeholder: "Select a Option Value",
+                allowClear: false
+            });
+        }
+    });
 
-    }else if(tab=='clr_tab'){
-        $("#option_id option[value='3']").attr("selected", true);
-        var valueSelected=3;
-        $.ajax({
-            url: "admin/product/get_option_values",
-            data: {option_id: valueSelected, tab_index: 14},
-            async: false,
-            dataType:'html',
-            success: function (msg) {
-                $('#opt_value_span').html(msg);
+}else if(tab=='clr_tab'){
+    $("#option_id option[value='3']").attr("selected", true);
+    var valueSelected=3;
+    $.ajax({
+        url: "admin/product/get_option_values",
+        data: {option_id: valueSelected, tab_index: 14},
+        async: false,
+        dataType:'html',
+        success: function (msg) {
+            $('#opt_value_span').html(msg);
 
 
-            }
+        }
 
-        });
+    });
 
-    }else{
-        $("#option_id option[value='1']").attr("selected", true);
-    }
+}else{
+    $("#option_id option[value='1']").attr("selected", true);
+}
 
 }
 

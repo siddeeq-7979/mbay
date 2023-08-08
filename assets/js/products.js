@@ -156,3 +156,63 @@ function product_delete(id) {
         }
     }); 
 } 
+
+function product_activate(id) {
+    var are_you_sure_js = $('#are_you_sure_js').html();
+    var cancel_it_js = $('#cancel_it_js').html();
+    var canceled_js = $('#canceled_js').html();  
+
+    var product_safe_js = $('#product_safe_js').html();
+
+    var activate_this_product_js = $('#activate_this_product_js').html();
+    var activate_it_js = $('#activate_it_js').html();
+
+    swal({
+        title: are_you_sure_js,
+        text: activate_this_product_js,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: activate_it_js,
+        cancelButtonText: cancel_it_js,
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function (isConfirm) {
+        if (isConfirm) {
+            document.location.href = 'admin/product-manage/activate/' + id;
+        } else {
+            swal(canceled_js, product_safe_js, "error");
+        }
+    }); 
+}
+
+function product_inactivate(id) {
+    var are_you_sure_js = $('#are_you_sure_js').html();
+    var cancel_it_js = $('#cancel_it_js').html();
+    var canceled_js = $('#canceled_js').html();  
+
+    var product_safe_js = $('#product_safe_js').html();
+
+    var inactivate_this_product_js = $('#inactivate_this_product_js').html();
+    var inactivate_it_js = $('#inactivate_it_js').html();
+
+    swal({
+        title: are_you_sure_js,
+        text: inactivate_this_product_js,
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: inactivate_it_js,
+        cancelButtonText: cancel_it_js,
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function (isConfirm) {
+        if (isConfirm) {
+            document.location.href = 'admin/product-manage/inactivate/' + id;
+        } else {
+            swal(canceled_js, product_safe_js, "error");
+        }
+    }); 
+}

@@ -146,6 +146,8 @@ class Shop_model extends CI_Model {
                         ->set('options', serialize($c['options']))
                        ->set('option_value', serialize($c['option_value']))
                         ->insert('order_products');
+
+                $this->updateQuantity($c['id'],$c['qty']);
             }
            
             // if (isset($post['address_1'])) {
@@ -168,11 +170,13 @@ function getAllProductNames($query) {
         if ($query != '') {
             $res = $this->db->select("id,product_name,product_amount,images")
                     ->from('products')
+                    ->where('status',1)
                     ->like('product_name', trim($query))
                     ->get();
         } else {
             $res = $this->db->select("product_name")
                     ->from('products')
+                    ->where('status',1)
                     ->get();
         }
        $json=[];
@@ -432,18 +436,19 @@ function getAllProductNames($query) {
     function optionValueName($option_value_id) { 
       
         $data = array();
-        $query = $this->db->select('option_values.option_id,option_values.option_value,options.option_name')
-                ->join('option_values', 'option_values.id = product_option_values.option_value', 'left')
-                ->join('options', 'options.id = product_option_values.option_id', 'left')
-                ->where_in('product_option_values.id', $option_value_id)
-                ->get('product_option_values');
+        if($option_value_id){
+            $query = $this->db->select('option_values.option_id,option_values.option_value,options.option_name')
+                    ->join('option_values', 'option_values.id = product_option_values.option_value')
+                    ->join('options', 'options.id = product_option_values.option_id')
+                    ->where_in('product_option_values.id', $option_value_id)
+                    ->get('product_option_values');
+            if ($query->num_rows() > 0) {
 
-        if ($query->num_rows() > 0) {
-        
-            foreach ($query->result_array() as $row) {
-                $data[$row['option_name']] = $row['option_value'];
+                foreach ($query->result_array() as $row) {
+                    $data[$row['option_name']] = $row['option_value'];
+                }
             }
-        }
+         }
         return $data;
     }
 
@@ -480,6 +485,30 @@ function getAllProductNames($query) {
         // return $data;
 
         // }
+
+    // function decreaseProQuantity($pro_id,$qty) {
+    //     $quantity = 0;
+    //     $query = $this->db->select('quantity')
+    //             ->where('id', $pro_id)
+    //             ->limit(1)
+    //             ->get('products');
+    //     if ($query->num_rows() > 0) {
+    //         $quantity = $query->row()->quantity;
+    //         $updated_qty = $quantity-$qty;
+    //         $qty_update = $this->updateQuantity($pro_id,$updated_qty);
+    //     }
+
+    // }
+
+     public function updateQuantity($pro_id,$qty) {
+         $this->db->set('quantity ', "quantity -$qty",false)
+                ->where('id ', $pro_id)
+                ->update('products');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        }
+        return false;
+    }
 
 }
 

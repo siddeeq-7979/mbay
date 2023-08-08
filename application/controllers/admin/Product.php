@@ -31,7 +31,7 @@ class Product extends Base_Controller {
             $post = $this->security->xss_clean($this->input->post());
    
             $config['upload_path'] = FCPATH . 'assets/shop/images/product/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $this->load->library('upload', $config);
             $upload_data = array();
             
@@ -52,24 +52,24 @@ class Product extends Base_Controller {
                 if ($this->upload->do_upload()) {
                     $data_upload = $this->upload->data();
                     $upload_data[] = $data_upload;
-                    if ($this->dbvars->IMAGE_RESIZE_STATUS) {
-                        if (isset($data_upload['full_path'])) {
-                            $this->load->library('image_lib');
-                            $configer = array(
-                                'image_library' => 'gd2',
-                                'source_image' => $data_upload['full_path'],
-                                'maintain_ratio' => TRUE,
-                                'width' => 500,
-                                'height' => 500,
-                            );
-                            $this->image_lib->initialize($configer);
-                            if (!$this->image_lib->resize()) {
-                                $error['reason'] = $this->image_lib->display_errors();
-                                $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
-                            }
-                            $this->image_lib->clear();
-                        }
-                    }
+                    // if ($this->dbvars->IMAGE_RESIZE_STATUS) {
+                    //     if (isset($data_upload['full_path'])) {
+                    //         $this->load->library('image_lib');
+                    //         $configer = array(
+                    //             'image_library' => 'gd2',
+                    //             'source_image' => $data_upload['full_path'],
+                    //             'maintain_ratio' => TRUE,
+                    //             'width' => 500,
+                    //             'height' => 500,
+                    //         );
+                    //         $this->image_lib->initialize($configer);
+                    //         if (!$this->image_lib->resize()) {
+                    //             $error['reason'] = $this->image_lib->display_errors();
+                    //             $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
+                    //         }
+                    //         $this->image_lib->clear();
+                    //     }
+                    // }
                 }
             }
             $res = $this->product_model->addProduct($post, $upload_data);
@@ -111,7 +111,25 @@ class Product extends Base_Controller {
                 } else {
                     $this->loadPage(lang('product_deletion_failed'), 'product-manage', 'danger');
                 } 
-            } else {
+            }elseif ($action == "inactivate") {
+                $res = $this->product_model->changeProductStatus($product_id, 0);
+                if ($res) {
+                    $data['product_id'] = $product_id;
+                    $this->helper_model->insertActivity($loged_user_id, 'product_inactivated', $data);
+                    $this->loadPage(lang('product_inactivated'), 'product-manage');
+                } else {
+                    $this->loadPage(lang('product_inactivation_failed'), 'product-manage', 'danger');
+                }
+            }elseif ($action == "activate") {
+                $res = $this->product_model->changeProductStatus($product_id, 1);
+                if ($res) {
+                    $data['product_id'] = $product_id;
+                    $this->helper_model->insertActivity($loged_user_id, 'product_activated', $data);
+                    $this->loadPage(lang('product_activated'), 'product-manage');
+                } else {
+                    $this->loadPage(lang('product_activation_failed'), 'product-manage', 'danger');
+                }
+            }else {
                 $this->loadPage(lang('invalid_action'), 'product-manage', 'danger');
             }
         }
@@ -124,7 +142,7 @@ class Product extends Base_Controller {
 
             // $config['upload_path'] = FCPATH . 'assets/images/products/';
             $config['upload_path'] = FCPATH . 'assets/shop/images/product/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
 
             
             $this->load->library('upload', $config);
@@ -150,24 +168,24 @@ class Product extends Base_Controller {
                     $data_upload = $this->upload->data();
                     $upload_data[] = $data_upload;
 
-                    if ($this->dbvars->IMAGE_RESIZE_STATUS) {
-                        if (isset($data_upload['full_path'])) {
-                            $this->load->library('image_lib');
-                            $configer = array(
-                                'image_library' => 'gd2',
-                                'source_image' => $data_upload['full_path'],
-                                'maintain_ratio' => TRUE,
-                                'width' => 500,
-                                'height' => 500,
-                            );
-                            $this->image_lib->initialize($configer);
-                            if (!$this->image_lib->resize()) {
-                                $error['reason'] = $this->image_lib->display_errors();
-                                $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
-                            }
-                            $this->image_lib->clear();
-                        }
-                    }
+                    // if ($this->dbvars->IMAGE_RESIZE_STATUS) {
+                        // if (isset($data_upload['full_path'])) {
+                        //     $this->load->library('image_lib');
+                        //     $configer = array(
+                        //         'image_library' => 'gd2',
+                        //         'source_image' => $data_upload['full_path'],
+                        //         'maintain_ratio' => TRUE,
+                        //         'width' => 500,
+                        //         'height' => 500,
+                        //     );
+                        //     $this->image_lib->initialize($configer);
+                        //     if (!$this->image_lib->resize()) {
+                        //         $error['reason'] = $this->image_lib->display_errors();
+                        //         $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
+                        //     }
+                        //     $this->image_lib->clear();
+                        // }
+                    // }
                 }
             }
             $res = $this->product_model->updateProduct($post, $upload_data); 
@@ -744,7 +762,7 @@ class Product extends Base_Controller {
             $this->load->helper('security');
             $post = $this->security->xss_clean($this->input->post());
             $config['upload_path'] = FCPATH . 'assets/shop/images/product/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $this->load->library('upload', $config);
             $upload_data = array();
             
@@ -766,24 +784,24 @@ class Product extends Base_Controller {
                 if ($this->upload->do_upload()) {
                     $data_upload = $this->upload->data();
                     $upload_data[] = $data_upload;
-                    if ($this->dbvars->IMAGE_RESIZE_STATUS) {
-                        if (isset($data_upload['full_path'])) {
-                            $this->load->library('image_lib');
-                            $configer = array(
-                                'image_library' => 'gd2',
-                                'source_image' => $data_upload['full_path'],
-                                'maintain_ratio' => TRUE,
-                                'width' => 500,
-                                'height' => 500,
-                            );
-                            $this->image_lib->initialize($configer);
-                            if (!$this->image_lib->resize()) {
-                                $error['reason'] = $this->image_lib->display_errors();
-                                $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
-                            }
-                            $this->image_lib->clear();
-                        }
-                    }
+                    // if ($this->dbvars->IMAGE_RESIZE_STATUS) {
+                    //     if (isset($data_upload['full_path'])) {
+                    //         $this->load->library('image_lib');
+                    //         $configer = array(
+                    //             'image_library' => 'gd2',
+                    //             'source_image' => $data_upload['full_path'],
+                    //             'maintain_ratio' => TRUE,
+                    //             'width' => 500,
+                    //             'height' => 500,
+                    //         );
+                    //         $this->image_lib->initialize($configer);
+                    //         if (!$this->image_lib->resize()) {
+                    //             $error['reason'] = $this->image_lib->display_errors();
+                    //             $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
+                    //         }
+                    //         $this->image_lib->clear();
+                    //     }
+                    // }
                 }
             }
               $res = $this->product_model->addCategory($post, $upload_data);
@@ -804,7 +822,7 @@ class Product extends Base_Controller {
             $cat_image1 = unserialize($cat_image);
         
             $config['upload_path'] = FCPATH . 'assets/shop/images/product/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $this->load->library('upload', $config);
             $upload_data = array();
             $upload_data = $cat_image1;
@@ -827,24 +845,24 @@ class Product extends Base_Controller {
                 if ($this->upload->do_upload()) {
                     $data_upload = $this->upload->data();
                     $upload_data[] = $data_upload;
-                    if ($this->dbvars->IMAGE_RESIZE_STATUS) {
-                        if (isset($data_upload['full_path'])) {
-                            $this->load->library('image_lib');
-                            $configer = array(
-                                'image_library' => 'gd2',
-                                'source_image' => $data_upload['full_path'],
-                                'maintain_ratio' => TRUE,
-                                'width' => 500,
-                                'height' => 500,
-                            );
-                            $this->image_lib->initialize($configer);
-                            if (!$this->image_lib->resize()) {
-                                $error['reason'] = $this->image_lib->display_errors();
-                                $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
-                            }
-                            $this->image_lib->clear();
-                        }
-                    }
+                    // if ($this->dbvars->IMAGE_RESIZE_STATUS) {
+                    //     if (isset($data_upload['full_path'])) {
+                    //         $this->load->library('image_lib');
+                    //         $configer = array(
+                    //             'image_library' => 'gd2',
+                    //             'source_image' => $data_upload['full_path'],
+                    //             'maintain_ratio' => TRUE,
+                    //             'width' => 500,
+                    //             'height' => 500,
+                    //         );
+                    //         $this->image_lib->initialize($configer);
+                    //         if (!$this->image_lib->resize()) {
+                    //             $error['reason'] = $this->image_lib->display_errors();
+                    //             $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
+                    //         }
+                    //         $this->image_lib->clear();
+                    //     }
+                    // }
                 }
             }
             $res = $this->product_model->updateCategory($post, $upload_data);

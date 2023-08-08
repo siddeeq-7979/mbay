@@ -35,25 +35,30 @@ class Site_management extends Base_Controller {
 
             // if ($_FILES['company_logo']['error'] == 0) {
             if (isset($_FILES['company_logo']) && $_FILES['company_logo']['error'] == 0){
-                $config['upload_path'] = FCPATH . 'assets/images/logos/';
+                $config['upload_path'] = FCPATH . 'assets/images/logos';
                 // $config['upload_path'] = FCPATH . 'assets/images/logos/';
-                $config['allowed_types'] = 'jpg|png|jpeg|svg';
+                $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
                 $new_name = 'logo_' . time();
                 $config['file_name'] = $new_name;
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
+
                 if ($this->upload->do_upload('company_logo')) {
+
                     $uploadData = $this->upload->data();
                     $logo_name = $uploadData['file_name'];
                 }
+                
             }
+           
+         
 
             $fav_icon = $site_info['company_fav_icon'];
             
             if ($_FILES['company_fav_icon']['error'] == 0) {
                 // $config1['upload_path'] = FCPATH . 'assets/images/logos/';
-                $config1['upload_path'] = FCPATH . 'assets/images/logos/';
-                $config1['allowed_types'] = 'jpg|png|jpeg|svg';
+                $config1['upload_path'] = FCPATH . 'assets/images/logos';
+                $config1['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
                 $new_name = 'fav_' . time();
                 $config1['file_name'] = $new_name;
                 $this->load->library('upload', $config1);
@@ -394,7 +399,7 @@ class Site_management extends Base_Controller {
             $this->load->helper('security');
             $post = $this->security->xss_clean($this->input->post());
             $config['upload_path'] = FCPATH . 'assets/shop/images/brand/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $new_name = 'brand_' . time();
             $config['file_name'] = $new_name;
             $this->load->library('upload', $config);
@@ -404,24 +409,24 @@ class Site_management extends Base_Controller {
                 $data_upload = $this->upload->data();
                 $brand_image = $data_upload['file_name'];
 
-                if ($this->dbvars->IMAGE_RESIZE_STATUS) {
-                    if (isset($data_upload['full_path'])) {
-                        $this->load->library('image_lib');
-                        $configer = array(
-                            'image_library' => 'gd2',
-                            'source_image' => $data_upload['full_path'],
-                            'maintain_ratio' => TRUE,
-                            'width' => 500,
-                            'height' => 500,
-                        );
-                        $this->image_lib->initialize($configer);
-                        if (!$this->image_lib->resize()) {
-                            $error['reason'] = $this->image_lib->display_errors();
-                            $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
-                        }
-                        $this->image_lib->clear();
-                    }
-                }
+                // if ($this->dbvars->IMAGE_RESIZE_STATUS) {
+                //     if (isset($data_upload['full_path'])) {
+                //         $this->load->library('image_lib');
+                //         $configer = array(
+                //             'image_library' => 'gd2',
+                //             'source_image' => $data_upload['full_path'],
+                //             'maintain_ratio' => TRUE,
+                //             'width' => 500,
+                //             'height' => 500,
+                //         );
+                //         $this->image_lib->initialize($configer);
+                //         if (!$this->image_lib->resize()) {
+                //             $error['reason'] = $this->image_lib->display_errors();
+                //             $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
+                //         }
+                //         $this->image_lib->clear();
+                //     }
+                // }
             }
             $res = $this->site_management_model->addBrand($post, $brand_image);
             if ($res) {
@@ -438,7 +443,7 @@ class Site_management extends Base_Controller {
 
             $brand_image = $this->site_management_model->getBrandImage($post['update_brand']);
             $config['upload_path'] = FCPATH . 'assets/shop/images/brand/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $new_name = 'brand_' . time();
             $config['file_name'] = $new_name;
             $this->load->library('upload', $config);
@@ -446,24 +451,24 @@ class Site_management extends Base_Controller {
                 $data_upload = $this->upload->data();
                 $brand_image = $data_upload['file_name'];
 
-                if ($this->dbvars->IMAGE_RESIZE_STATUS) {
-                    if (isset($data_upload['full_path'])) {
-                        $this->load->library('image_lib');
-                        $configer = array(
-                            'image_library' => 'gd2',
-                            'source_image' => $data_upload['full_path'],
-                            'maintain_ratio' => TRUE,
-                            'width' => 500,
-                            'height' => 500,
-                        );
-                        $this->image_lib->initialize($configer);
-                        if (!$this->image_lib->resize()) {
-                            $error['reason'] = $this->image_lib->display_errors();
-                            $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
-                        }
-                        $this->image_lib->clear();
-                    }
-                }
+                // if ($this->dbvars->IMAGE_RESIZE_STATUS) {
+                //     if (isset($data_upload['full_path'])) {
+                //         $this->load->library('image_lib');
+                //         $configer = array(
+                //             'image_library' => 'gd2',
+                //             'source_image' => $data_upload['full_path'],
+                //             'maintain_ratio' => TRUE,
+                //             'width' => 500,
+                //             'height' => 500,
+                //         );
+                //         $this->image_lib->initialize($configer);
+                //         if (!$this->image_lib->resize()) {
+                //             $error['reason'] = $this->image_lib->display_errors();
+                //             $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
+                //         }
+                //         $this->image_lib->clear();
+                //     }
+                // }
             }
             $res = $this->site_management_model->updateBrand($post, $brand_image);
             if ($res) {
@@ -513,40 +518,41 @@ class Site_management extends Base_Controller {
         }
         
         if ($this->input->post('add_slider')) {
-
             $this->load->helper('security');
             $post = $this->security->xss_clean($this->input->post());
             $config['upload_path'] = FCPATH . 'assets/shop/images/slider/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $new_name = 'slider_' . time();
             $config['file_name'] = $new_name;
             $this->load->library('upload', $config);
             $slider_image = '';
 
             if ($this->upload->do_upload('image')) {
-
                 $data_upload = $this->upload->data();
                 $slider_image = $data_upload['file_name'];
+                // print_r($slider_image);die;
 
-                if ($this->dbvars->IMAGE_RESIZE_STATUS) {
-                    if (isset($data_upload['full_path'])) {
-                        $this->load->library('image_lib');
-                        $configer = array(
-                            'image_library' => 'gd2',
-                            'source_image' => $data_upload['full_path'],
-                            'maintain_ratio' => TRUE,
-                            'width' => 500,
-                            'height' => 500,
-                        );
-                        $this->image_lib->initialize($configer);
-                        if (!$this->image_lib->resize()) {
-                            $error['reason'] = $this->image_lib->display_errors();
-                            $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
-                        }
-                        $this->image_lib->clear();
-                    }
-                }
+                // if ($this->dbvars->IMAGE_RESIZE_STATUS) {
+                //     if (isset($data_upload['full_path'])) {
+                //         $this->load->library('image_lib');
+                //         $configer = array(
+                //             'image_library' => 'gd2',
+                //             'source_image' => $data_upload['full_path'],
+                //             'maintain_ratio' => TRUE,
+                //             'width' => 500,
+                //             'height' => 500,
+                //         );
+                //         $this->image_lib->initialize($configer);
+                //         if (!$this->image_lib->resize()) {
+                //             echo 123;die;
+                //             $error['reason'] = $this->image_lib->display_errors();
+                //             $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
+                //         }
+                //         $this->image_lib->clear();
+                //     }
+                // }
             }
+            // print_r($slider_image);die;
             $res = $this->site_management_model->addSlider($post, $slider_image);
             if ($res) {
                 $this->helper_model->insertActivity($loged_user_id, 'slider', $post);
@@ -562,7 +568,7 @@ class Site_management extends Base_Controller {
 
             $slider_image = $this->site_management_model->getSliderImage($post['update_slider']);
             $config['upload_path'] = FCPATH . 'assets/shop/images/slider/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['allowed_types'] = 'jpg|png|jpeg|svg|avif|webp';
             $new_name = 'slider' . time();
             $config['file_name'] = $new_name;
             $this->load->library('upload', $config);
@@ -570,24 +576,24 @@ class Site_management extends Base_Controller {
                 $data_upload = $this->upload->data();
                 $slider_image = $data_upload['file_name'];
 
-                if ($this->dbvars->IMAGE_RESIZE_STATUS) {
-                    if (isset($data_upload['full_path'])) {
-                        $this->load->library('image_lib');
-                        $configer = array(
-                            'image_library' => 'gd2',
-                            'source_image' => $data_upload['full_path'],
-                            'maintain_ratio' => TRUE,
-                            'width' => 500,
-                            'height' => 500,
-                        );
-                        $this->image_lib->initialize($configer);
-                        if (!$this->image_lib->resize()) {
-                            $error['reason'] = $this->image_lib->display_errors();
-                            $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
-                        }
-                        $this->image_lib->clear();
-                    }
-                }
+                // if ($this->dbvars->IMAGE_RESIZE_STATUS) {
+                //     if (isset($data_upload['full_path'])) {
+                //         $this->load->library('image_lib');
+                //         $configer = array(
+                //             'image_library' => 'gd2',
+                //             'source_image' => $data_upload['full_path'],
+                //             'maintain_ratio' => TRUE,
+                //             'width' => 500,
+                //             'height' => 500,
+                //         );
+                //         $this->image_lib->initialize($configer);
+                //         if (!$this->image_lib->resize()) {
+                //             $error['reason'] = $this->image_lib->display_errors();
+                //             $this->helper_model->insertFailedActivity($loged_user_id, 'resize_fail', $error);
+                //         }
+                //         $this->image_lib->clear();
+                //     }
+                // }
             }
             $res = $this->site_management_model->updateSlider($post, $slider_image);
             if ($res) {

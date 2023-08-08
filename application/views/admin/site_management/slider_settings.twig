@@ -80,7 +80,7 @@
                                         
                                          <div class="col-xl-6 col-md-6">
                                             <div class="form-group mb-3">
-                                                <label>Sub Title <span class="text-danger"> *</span> </label>
+                                                <label>Sub Title </label>
                                                 <input type="text"  class="form-control" id="subtitle" name="subtitle" value="{{ slider.subtitle }}"/>
                                             </div>
                                         </div>  
@@ -263,7 +263,7 @@
     <script>
 
         var imgUpload = $('.dropify').dropify({
-            imgFileExtensions: ["png", "jpg", "jpeg", "gif", "bmp", "svg"]
+            imgFileExtensions: ["png", "jpg", "jpeg", "gif", "bmp", "svg","avif","webp"]
         });
 
     </script>
@@ -315,9 +315,9 @@
                     title: {
                         required: true,
                     },
-                    subtitle: {
-                        required: true,
-                    },
+                    // subtitle: {
+                    //     required: true,
+                    // },
                    image: {
                         required: function(){
                                               
@@ -343,9 +343,9 @@
                     title: {
                         required: 'Title is Required',
                     },
-                    subtitle: {
-                        required: 'Sub Title is Required',
-                    },
+                    // subtitle: {
+                    //     required: 'Sub Title is Required',
+                    // },
                     image: {
                         required: 'Image is Required',
                     },

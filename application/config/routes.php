@@ -375,8 +375,10 @@ $route['(:any)/new-theme'] = '$1/home/theme';
 $route['login-register'] = 'shop/login_register';
 $route['shop'] = 'shop/shop';
 $route['shop/(:any)'] = 'shop/shop/$1';
+$route['shop/(:any)/(:num)'] = 'shop/shop/$1/$2';
 $route['cart'] = 'shop/cart';
 $route['about-us'] = 'shop/about_us';
+$route['warranty'] = 'shop/warranty';
 $route['contact'] = 'shop/contact';
 $route['app'] = 'shop/app';
 $route['shop-details'] = 'shop/shop_details';
@@ -416,7 +418,6 @@ $route['admin/seo-url/(:any)/(:num)'] = 'admin/site_management/seo_url/$1/$2';
 $route['account/user-invoice/(:any)'] = 'shop/user_invoice/$1';
 
 $route['index'] = 'shop/index';
-$route['(:any)'] = 'shop/index/$1';
 
 $route['admin/options'] = 'admin/product/options';
 $route['admin/options/(:any)/(:num)'] = 'admin/product/options/$1/$2';
@@ -424,3 +425,21 @@ $route['admin/options/(:any)/(:num)/(:num)'] = 'admin/product/options/$1/$2/$3';
 $route['admin/product-options'] = 'admin/product/product_options';
 $route['admin/product-options/(:any)/(:num)'] = 'admin/product/product_options/$1/$2';
 $route['admin/product-options/(:any)/(:num)/(:num)'] = 'admin/product/product_options/$1/$2/$3';
+
+$route['(:any)'] = function ($key)
+{
+    require_once( BASEPATH .'database/DB.php' );
+    $db =& DB();
+    $query = $db->select('seo_key,seo_value')->where('seo_keyword',$key)->get('seo_url');
+    $result = $query->row();
+    if($result){
+        if('product' == $result->seo_key){
+            return 'shop/shop_details/'.$result->seo_value;
+        }elseif('category' == $result->seo_key){
+            return 'shop/shop/'.$result->seo_value;
+        }else{
+            return  $route['default_controller'];
+        }
+    }
+   
+};

@@ -152,7 +152,9 @@
 														<th>No.</th>
 														<th>Item</th>
 														<th>Quantity</th>
-														<th>Price</th>
+														<th>VAT %</th>
+														<th>VAT Amount</th>
+														<th>Total Amount</th>
 													</tr>
 												</thead>
 
@@ -175,6 +177,8 @@
 														<td>
 															<h5 class="font-size-13 mb-1">{{ ord_pro.quantity }}</h5>
 														</td>
+														<td>5%</td>
+														<td>{{ ord_pro.vat }}</td>
 														<td>{{ ord_pro.amount }}</td>
 													</tr>
 													{% endfor %}
@@ -189,19 +193,20 @@
 		                                                </tr> -->
 
 													<tr>
-														<th scope="row" colspan="3" class="text-end">Sub Total</th>
+														<th scope="row" colspan="5" class="text-end">Sub Total</th>
 														<td class="text-end">{{ invoice_details.total }}</td>
 													</tr>
+													
 													{% if invoice_details.discount > 0 %}
 													<tr>
-														<th scope="row" colspan="3" class="text-end">Discount</th>
+														<th scope="row" colspan="5" class="text-end">Discount</th>
 														<td class="text-end">OMR &nbsp;{{ invoice_details.discount }}
 														</td>
 													</tr>
 													{% endif %}
 													{% if invoice_details.delivery_charge_only > 0 %}
 													<tr>
-														<th scope="row" colspan="3" class="text-end">Delivery Charge
+														<th scope="row" colspan="5" class="text-end">Delivery Charge
 														</th>
 														<td class="text-end">{{ invoice_details.delivery_charge_only }}
 														</td>
@@ -209,7 +214,7 @@
 													{% endif %}
 													{% if invoice_details.shipping_charge_only > 0 %}
 													<tr>
-														<th scope="row" colspan="3" class="text-end">Shipping Charge
+														<th scope="row" colspan="5" class="text-end">Shipping Charge
 														</th>
 														<td class="text-end">{{ invoice_details.shipping_charge_only }}
 														</td>
@@ -217,7 +222,7 @@
 													{% endif %}
 													{% if invoice_details.tax_only > 0 %}
 													<tr>
-														<th scope="row" colspan="3" class="text-end">Tax</th>
+														<th scope="row" colspan="5" class="text-end">Tax</th>
 														<td class="text-end">{{ invoice_details.tax_only }}</td>
 													</tr>
 													{% endif %}
@@ -227,9 +232,9 @@
 		                                                    <td class="border-0 text-end">$12.00</td>
 		                                                </tr> -->
 													<tr>
-														<th scope="row" colspan="3" class="border-0 text-end">Total</th>
+														<th scope="row" colspan="5" class="border-0 text-end">Total</th>
 														<td class="border-0 text-end">
-															<b>{{ invoice_details.total_amount }}</b>
+															<b>{{   grand_total }}</b>
 														</td>
 													</tr>
 												</tbody>

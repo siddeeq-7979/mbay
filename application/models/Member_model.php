@@ -1785,12 +1785,13 @@ class Member_model extends CI_Model {
             $total = 0;
             foreach ($order_products as $op) {
                 $ord['products'][$i]['product_name'] = $op['product_name'];
-                $ord['products'][$i]['amount'] = $this->helper_model->currency_conversion($op['amount']);
+                $ord['products'][$i]['amount'] = $this->helper_model->currency_conversion($op['amount']*$op['quantity']);
                 $ord['products'][$i]['quantity'] = $op['quantity'];
                 $ord['products'][$i]['product_total'] = $this->helper_model->currency_conversion($op['amount'] * $op['quantity']);
                 $ord['products'][$i]['options'] = unserialize($op['option_value']);
+                $ord['products'][$i]['vat'] = ($op['amount'] * $op['quantity'] * 5)/100;
                 $i++;
-                $total += $op['amount'] * $op['quantity'];
+                $total = $op['amount'] * $op['quantity'];
             }
             $ord['total'] = $this->helper_model->currency_conversion($total);
         }
@@ -1998,7 +1999,5 @@ class Member_model extends CI_Model {
        
         return $ord;
     }
-
-
 
 }

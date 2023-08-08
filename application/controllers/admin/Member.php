@@ -1333,7 +1333,6 @@ class Member extends Base_Controller {
 
     public function update_order_status() {
         $request = $this->input->get();
-        // dd($request);
         $this->db->where('id', $request['order_id']);
         $this->db->update('orders', array('order_status' => $request['order_status']));
         
@@ -1349,14 +1348,15 @@ class Member extends Base_Controller {
 
     function invoice_details($ord_id) {
         $invoice_details = $this->member_model->getInvoiceDetails($ord_id);
-        
+        $pro_total = $invoice_details['products']['0']['product_total'];
+        $total = $invoice_details['total_amount'];
         if (!$invoice_details) {
             $this->loadPage(lang('invalid_link'), 'order-history', 'warning');
         }
         $this->setData('invoice_details', $invoice_details);
         $this->setData('title', lang('menu_name_202'));
+        $this->setData('grand_total', $total);
         $this->loadView();
     }
 
-       
 }
