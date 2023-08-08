@@ -18,13 +18,22 @@
     <meta name="geo.position" content="23.67513;58.191426" />
     <meta name="ICBM" content="23.67513, 58.191426" />
     
+    {#<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">#}
+    {#<meta http-equiv="Pragma" content="no-cache">#}
+    {#<meta http-equiv="Expires" content="0">#}
+
     {% if products_status %}
-    <title>Best Online Electronics Store | Oman {{TITLE}}</title>
-    <meta name="description" content="Shop the best electronics online in Oman. Free shipping, top prices, and a wide selection of products. Visit us today for great deals!">
-    <meta name="keywords" content="Online, Electronics store">
+    <title>Buy Products Online - All Categores mbay Oman</title>
+    <meta name="description" content="Explore electronics at mbay Oman - mobiles, tablets, wearables & accessories. Shop top tech deals now!">
+    <meta name="keywords" content="Online, Electronics store, buy, shopping">
     
     {% elseif shop_status %}
-    <title>Best Online Electronics Store | Oman {{TITLE}}</title>
+    <title>Buy Products Online - All Categores mbay Oman</title>
+    <meta name="description" content="Explore electronics at mbay Oman - mobiles, tablets, wearables & accessories. Shop top tech deals now!">
+    <meta name="keywords" content="Online, Electronics store, buy, shopping">
+    
+    {% elseif shop_details_status %}
+    <title>{{TITLE}} Price in Oman</title>
     <meta name="description" content="Shop the best electronics online in Oman. Free shipping, top prices, and a wide selection of products. Visit us today for great deals!">
     <meta name="keywords" content="Online, Electronics store">
 
