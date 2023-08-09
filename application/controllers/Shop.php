@@ -14,6 +14,14 @@ class Shop extends Base_Controller {
      * loading index page.
      * @author Techffodils Technologies LLP
      */
+
+     public function __construct(){
+        parent::__construct();
+        header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+        header('Cache-Control: no-cache,must-revalidate,max-age=0');
+        header('Cache-Control: post-check=0,pre-check=0',false);
+        header('Pragma: no-cache');
+    }
     public function index($product_seo_key = '') {
 
         $prod_view_flag = 0;
