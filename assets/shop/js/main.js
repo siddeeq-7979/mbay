@@ -124,7 +124,7 @@
         autoplaySpeed: 3000,
         fade: false,
         loop: true,
-        dots: true,
+        dots: false,
         arrows: true,
         prevArrow: '<span class="sidebar-icon-prev"><i class="icon-arrow-left"></i></span>',
         nextArrow: '<span class="sidebar-icon-next"><i class="icon-arrow-right"></i></span>',
