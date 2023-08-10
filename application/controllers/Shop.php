@@ -287,7 +287,7 @@ class Shop extends Base_Controller {
         $this->setData('total_items_amount', $this->cart->total());
         $user_name = ($this->aauth->getUserType() == 'employee') ? $this->helper_model->getAdminUsername() : $this->aauth->getUserName();
         $this->setData('user_name', $user_name);
-        $this->setData('TITLE', ' :: '.$products[0]['product_name']);
+        $this->setData('TITLE', '  '.$products[0]['product_name']);
 
         $this->loadView();
     }
