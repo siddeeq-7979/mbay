@@ -234,6 +234,8 @@ $lang['tap_share_icon'] = 'Tap the share icon';
 
 $lang['change_the_app_name'] = 'Change the App name if you want to';
 
+$lang['address1'] = 'Address1';
+
 
 
 
