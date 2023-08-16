@@ -129,7 +129,7 @@ $lang['what_are_you_looking_for'] = 'ما الذي تبحث عنه؟';
 $lang['free_shipping'] = 'ًالشحن مجانا';
 $lang['all_over_oman'] = 'في جميع أنحاء عمان';
 $lang['cash_on_delivery'] = 'الدفع عند الاستلام';
-$lang['available'] = 'متاح';
+$lang['available'] = 'متوفر في مسقط';
 $lang['100_sure'] = 'متأكد 100';
 $lang['payment_online'] = 'الدفع عبر الإنترنت';
 $lang['best_price'] = 'افضل سعر';
@@ -143,6 +143,9 @@ $lang['contact'] = 'اتصال';
 $lang['warrenty'] = 'ضمان';
 $lang['about'] = 'عن';
 $lang['shop'] = 'محل';
+
+$lang['warranty'] = 'ضمان';
+$lang['warranty'] = 'ضمان';
 
 $lang['brand'] = 'ماركة';
 $lang['category'] = 'فئة';
