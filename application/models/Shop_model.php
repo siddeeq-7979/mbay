@@ -97,8 +97,8 @@ class Shop_model extends CI_Model {
             $type = 'home_delivery';
         }else{
             $type = 'click_collect';
-            $discount = $total_amount*0.01;
-            $total_amount -= $discount;
+            // $discount = $total_amount*0.01;
+            // $total_amount -= $discount;
             
         }
         $address = $this->getUserAddress($post['chooseAddress']);
