@@ -105,9 +105,9 @@
 
 											</div>
 											<div class="text-end">
-												<h5 class="mb-0">Invoice Number:</h5>
+												<h5 class="mb-0">Invoice Number : رقم الفاتورة</h5>
 												<p class="mb-0">{{ invoice_details.invoice_id }}</p>
-												<h5 class="mb-0">Order Date:</h5>
+												<h5 class="mb-0">Order Date : تاريخ الطلب</h5>
 												<p class="mb-0">{{ invoice_details.invoice_date }}</p>
 											</div>
 										</div>
@@ -117,7 +117,7 @@
 									<div class="row bill-area">
 										<div class="col-sm-6">
 
-											<h5><b>Billed To</b></h5>
+											<h5><b>Billed To<br>دفع ل</b></h5>
 											<h5>{{ invoice_details.username }}</h5>
 											<h5>{{ invoice_details.phone }}</h5>
 											{% if invoice_details.address1 %}
@@ -133,7 +133,7 @@
 
 										</div>
 										<div class="col-sm-6">
-											<h5><b>Billed From</b></h5>
+											<h5><b>Billed From<br>وصفت من</b></h5>
 											{% set company_data = COMPANY_ADDRESS|split(',')%}
 											<h5>{{ company_data[0]}}</h5>
 											<h5>{{ company_data[1]}}</h5>
@@ -144,17 +144,17 @@
 									</div>
 
 
-									<div class="border mt-3">
+									<div class="mt-3">
 										<div class="table-responsive">
-											<table class="table text-nowrap">
+											<table class="table table-bordered text-nowrap">
 												<thead>
 													<tr>
-														<th>No.</th>
-														<th>Item</th>
-														<th>Quantity</th>
-														<th>VAT %</th>
-														<th>VAT Amount</th>
-														<th>Total Amount</th>
+														<th>No.<br>رقم مسلسل</th>
+														<th>Item<br>بند</th>
+														<th>Quantity<br>الكمية</th>
+														<th>VAT %<br>%ضريبة</th>
+														<th>VAT Amount<br>مبلغ الضريبة</th>
+														<th>Total Amount<br>المبلغ الإجمالي</th>
 													</tr>
 												</thead>
 
@@ -183,30 +183,21 @@
 													</tr>
 													{% endfor %}
 
-													<!-- <tr>
-		                                                    <th scope="row">02</th>
-		                                                    <td>
-		                                                        <h5 class="font-size-15 mb-1">Skote</h5>
-		                                                        <p class="font-size-13 text-muted mb-0">Bootstrap 5 Admin Dashboard </p>
-		                                                    </td>
-		                                                    <td class="text-end">$499.00</td>
-		                                                </tr> -->
-
 													<tr>
-														<th scope="row" colspan="5" class="text-end">Sub Total</th>
+														<th scope="row" colspan="5" class="text-end">Sub Total المجموع الفرعي</th>
 														<td class="text-end">{{ invoice_details.total }}</td>
 													</tr>
 													
 													{% if invoice_details.discount > 0 %}
 													<tr>
-														<th scope="row" colspan="5" class="text-end">Discount</th>
+														<th scope="row" colspan="5" class="text-end">Discount تخفيض</th>
 														<td class="text-end">OMR &nbsp;{{ invoice_details.discount }}
 														</td>
 													</tr>
 													{% endif %}
 													{% if invoice_details.delivery_charge_only > 0 %}
 													<tr>
-														<th scope="row" colspan="5" class="text-end">Delivery Charge
+														<th scope="row" colspan="5" class="text-end">Delivery Charge رسوم التوصيل
 														</th>
 														<td class="text-end">{{ invoice_details.delivery_charge_only }}
 														</td>
@@ -214,7 +205,7 @@
 													{% endif %}
 													{% if invoice_details.shipping_charge_only > 0 %}
 													<tr>
-														<th scope="row" colspan="5" class="text-end">Shipping Charge
+														<th scope="row" colspan="5" class="text-end">Shipping Charge رسوم الشحن
 														</th>
 														<td class="text-end">{{ invoice_details.shipping_charge_only }}
 														</td>
@@ -222,24 +213,22 @@
 													{% endif %}
 													{% if invoice_details.tax_only > 0 %}
 													<tr>
-														<th scope="row" colspan="5" class="text-end">Tax</th>
+														<th scope="row" colspan="5" class="text-end">Tax ضريبة</th>
 														<td class="text-end">{{ invoice_details.tax_only }}</td>
 													</tr>
 													{% endif %}
-													<!-- <tr>
-		                                                    <th scope="row" colspan="2" class="border-0 text-end">
-		                                                        Tax</th>
-		                                                    <td class="border-0 text-end">$12.00</td>
-		                                                </tr> -->
 													<tr>
-														<th scope="row" colspan="5" class="border-0 text-end">Total</th>
-														<td class="border-0 text-end">
+														<th scope="row" colspan="5" class="border-0 text-end">Total المجموع</th>
+														<td class="text-end">
 															<b>{{   grand_total }}</b>
 														</td>
 													</tr>
 												</tbody>
 
 											</table>
+												<p class="mt-4 text-center text-black">
+													C.R: 1464357 M.M | Souq Street, As Sib, Muscat | WhatsApp: 95469799 | Email: helpmbay@gmail.com | Website : www.mbayoman.com
+												</p>
 										</div>
 									</div>
 									<div class="d-print-none mt-3">

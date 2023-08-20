@@ -137,9 +137,9 @@ $lang['what_are_you_looking_for'] = 'What Are You Looking For ?';
 $lang['free_shipping'] = 'Free Shipping';
 $lang['all_over_oman'] = 'All Over Oman';
 $lang['cash_on_delivery'] = 'Cash On Delivery';
-$lang['available'] = 'Available';
-$lang['100_sure'] = '100% Sure';
-$lang['payment_online'] = 'Payment Online';
+$lang['available'] = 'Available in Muscat';
+$lang['100_sure'] = 'Click & Collect';
+$lang['payment_online'] = 'Available';
 $lang['best_price'] = 'Best Price';
 $lang['guaranteed'] = 'Guaranteed';
 $lang['mbay_app'] = 'mbay App';
@@ -197,7 +197,7 @@ $lang['brand_warrenty_1_year'] = 'Brand warrenty 1 year';
 $lang['buy_now'] = 'BUY NOW';
 $lang['choose_shipping_address'] = 'CHOOSE SHIPPING ADDRESS';
 $lang['add_new_address'] = 'Add New Address';
-$lang['introducing_cod']= 'Introducing COD - Cash on Delivery! Shop now and pay later at your doorstep. No online payments or card details required. Simply select COD during checkout, and our delivery team will collect the cash payment upon arrival. Enjoy the convenience and peace of mind with our COD service. Happy shopping!';
+$lang['introducing_cod']= 'Enjoy Free Delivery for Orders Above 20 Rial! Introducing Cash on Delivery (COD) within Muscat area. Shop now and pay later at your doorstep. No online payments or card details needed. Choose COD at checkout, and our delivery team will collect cash upon arrival. Convenience and peace of mind. Happy shopping!';
 $lang['make_ur_payment']= 'Make your payment directly into our bank account, and please use your Order ID as the payment reference. After uploading your payment screenshot, the admin will verify your order.';
 $lang['qr_payment'] = 'QR Payment';
 $lang['get_the_latest'] = 'Get the latest tech products at affordable prices at mbay in Oman! Our electronics store offers a wide range of mobile phones, accessories, wearable devices, and tablets. Enjoy convenient online shopping and find the best deals for your next tech upgrade.';
@@ -233,6 +233,8 @@ $lang['load_in_the_app'] = 'Load mbay.com in the Safari Web
 $lang['tap_share_icon'] = 'Tap the share icon';
 
 $lang['change_the_app_name'] = 'Change the App name if you want to';
+
+$lang['address1'] = 'Address1';
 
 
 
