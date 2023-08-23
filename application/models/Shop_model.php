@@ -117,12 +117,12 @@ class Shop_model extends CI_Model {
                 ->set('confirm_date', date("Y-m-d H:i:s"))
                 ->set('name', $username)
                 ->set('phone', $phone)
-                ->set('address1', $address['address_1'])
-                ->set('address2', $address['address_2'])
-                ->set('country', $address['country_id'])
-                ->set('state', $address['state_id'])
-                ->set('city', $address['city'])
-                ->set('zip_code', $address['zip_code'])
+                ->set('address1', isset($address['address_1'])?$address['address_1']:null)
+                ->set('address2', isset($address['address_2'])?$address['address_2']:null)
+                ->set('country', isset($address['country_id'])?$address['country_id']:null)
+                ->set('state', isset($address['state_id'])?$address['state_id']:null)
+                ->set('city', isset($address['city'])?$address['city']:null)
+                ->set('zip_code', isset($address['zip_code'])?$address['zip_code']:null)
                 ->set('order_status', 5)
                 ->set('delivery_charge', 0)
                 ->set('shipping_charge', 0)
@@ -186,7 +186,7 @@ function getAllProductNames($query) {
             $data['image']= $image;
             $data['name'] = $row['product_name'];
             $data['product_amount'] = $row['product_amount'];
-            $data['url'] = base_url().'/product-details/'.$row['id'];
+            $data['url'] = base_url().'product-details/'.$row['id'];
             
             $json[]=$data;
         }

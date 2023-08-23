@@ -396,10 +396,9 @@ class Shop extends Base_Controller {
             }
 
             if ($payment_status) {
-                if($checkout_data['chooseAddress']){
+                if($checkout_data['shop_checkout'] == 'shop_checkout_home'){
                   $order_id = $this->shop_model->insertOrder($this->aauth->getId(), $checkout_data, $cart, $total_items, $total_amount, $total_pv, $order_status,$upload_data);  
-                }
-                else {
+                } else {
                     $this->loadPage('Update address from account', 'checkout', 'danger');
                 }
 
