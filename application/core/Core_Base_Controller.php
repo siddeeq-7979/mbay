@@ -262,6 +262,13 @@ Class Core_Base_Controller extends CI_Controller {
         }else{
             $this->session->unset_userdata("shop_status");
         }
+        if($method=='shop_details'){
+        $this->main->set_usersession("shop_details_method__status", 1);
+        $this->setData('shop_details_status', $this->session->userdata('shop_details_method__status'));
+
+        }else{
+            $this->session->unset_userdata("shop_details_status");
+        }
 
         $user_type = $this->aauth->getUserType();
         $lock_status = $blacklist = false;

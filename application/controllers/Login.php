@@ -231,7 +231,7 @@ class Login extends Base_Controller {
                 $this->helper_model->insertActivity($userid, 'res_pass', $post);
                 if ($result) {
                     $this->login_model->inactivateResetLink($reset_link);
-                    $this->loadPage(lang('password_reset_successfully'), 'login-site');
+                    $this->loadPage(lang('password_reset_successfully'), 'login-site','success');
                 } else {
                     $this->loadPage(lang('password_reset_failed'), 'login-forgot', 'danger');
                 }
