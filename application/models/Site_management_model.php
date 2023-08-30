@@ -650,7 +650,7 @@ class Site_management_model extends CI_Model {
 
     function getSliderSettings($id) {
         $data = array();
-        $res = $this->db->select("title,subtitle,image,type,link")
+        $res = $this->db->select("title,sort_order,subtitle,image,type,link")
                 ->from("slider_info")
                 ->where('id', $id)
                 ->limit(1)
@@ -661,6 +661,7 @@ class Site_management_model extends CI_Model {
             $data['image'] = $row->image;
             $data['type'] = $row->type;
             $data['link'] = $row->link;
+            $data['sortorder'] = $row->sort_order;
         }
         return $data;
     }
@@ -674,6 +675,7 @@ class Site_management_model extends CI_Model {
                 // ->set('link', $data['link'])
                 ->set('pro_id', $data['product'])
                 ->set('cat_id', $data['category'])
+                ->set('sort_order', $data['sortorder'])
                 ->insert('slider_info');
 
         if ($this->db->affected_rows() > 0) {
@@ -692,6 +694,7 @@ class Site_management_model extends CI_Model {
                 // ->set('link', $data['link'])
                 ->set('pro_id', $data['product'])
                 ->set('cat_id', $data['category'])
+                ->set('sort_order', $data['sortorder'])
                 ->where('id', $data['update_slider'])
                 ->update('slider_info');
         if ($this->db->affected_rows() > 0) {
@@ -702,18 +705,20 @@ class Site_management_model extends CI_Model {
 
     function getSliderLists() {
         $data = array();
-        $res = $this->db->select("id,title,subtitle,image,created_date,type,link,pro_id,cat_id")
-                ->from("slider_info")
+        $res = $this->db->select("id,title,subtitle,image,sort_order,created_date,type,sort_order,link,pro_id,cat_id")
+                ->from("slider_info")->ORDER_BY('sort_order','ASC')
+
                 ->get();
         $i = 0;
         foreach ($res->result() as $row) {
             $data[$i]['id'] = $row->id;
             $data[$i]['title'] = $row->title;
-            $data[$i]['subtitle'] = $row->subtitle;
+            $data[$i]['subtitle'] = $row->subtitle;        
             $data[$i]['image'] = $row->image;
             $data[$i]['created_date'] = $row->created_date;
             $data[$i]['type'] = $row->type;
-            $data[$i]['link'] = $row->link;
+            $data[$i]['link'] = $row->link;   
+            $data[$i]['sortorder'] = $row->sort_order;     
             $data[$i]['pro_id'] = $row->pro_id;
             $data[$i]['cat_id'] = $row->cat_id;
             $i++;
