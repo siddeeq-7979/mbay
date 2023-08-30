@@ -1,56 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+  <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
-<url>
-  <loc>https://www.mbayoman.com/</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://www.mbayoman.com/login-site</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.mbayoman.com/about-us</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.mbayoman.com/products</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.mbayoman.com/contact</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.mbayoman.com/app</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.mbayoman.com/smartphone</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.mbayoman.com/mobile-tablets</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.mbayoman.com/mobile-accessories</loc>
-  <lastmod>2023-07-31T14:20:43+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+  <url>
+    <loc>https://www.mbayoman.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/mobile-phones-store</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/tablets-store</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/mobile-accessories</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/smart-wearables-store</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/login-site</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/about-us</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/products</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/contact</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/app</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mbayoman.com/warranty</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 </urlset>

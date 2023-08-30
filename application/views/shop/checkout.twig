@@ -126,7 +126,7 @@
                             </div>
 
                             {% endfor %}
-                            <div class="your-order-info order-total sub-total-block">
+                            {# <div class="your-order-info order-total sub-total-block">
                                 <ul>
                                     <li class="fw-semibold1">{{lang('sub_total')}}<span class="fw-semibold1">OMR
                                             &nbsp;{{cart_amount|number_format(2, '.', ',')}} </span></li>
@@ -135,7 +135,7 @@
                                     <li class="fw-semibold1">{{lang('dicount')}} <span class="fw-semibold1">OMR
                                             &nbsp;{{cart_amount*0.01|number_format(2, '.', ',')}} </span></li>
                                 </ul>
-                            </div>
+                            </div> #}
                             <div class="your-order-info order-total b-top-dashed">
                                 <ul>
                                     <li class="fw-semibold">{{lang('total_payable')}} <span class="fw-semibold" id="cart-amount">OMR &nbsp;{{cart_amount *0.99|number_format(2, '.', ',')}}
@@ -238,7 +238,8 @@
                 $('#shop_checkout').val('shop_checkout_home');
         }else if(type == 'click'){
                 $('.sub-total-block').show();
-                $('#cart-amount').html('OMR '+ (total*0.99).toFixed(2).toLocaleString('en-US'));
+               // $('#cart-amount').html('OMR '+ (total*0.99).toFixed(2).toLocaleString('en-US'));
+                $('#cart-amount').html('OMR '+total.toFixed(2).toLocaleString('en-US'));
                 $('#shop_checkout').val('shop_checkout_click');
         }
     }

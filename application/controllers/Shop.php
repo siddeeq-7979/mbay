@@ -14,6 +14,14 @@ class Shop extends Base_Controller {
      * loading index page.
      * @author Techffodils Technologies LLP
      */
+
+     public function __construct(){
+        parent::__construct();
+        header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
+        header('Cache-Control: no-cache,must-revalidate,max-age=0');
+        header('Cache-Control: post-check=0,pre-check=0',false);
+        header('Pragma: no-cache');
+    }
     public function index($product_seo_key = '') {
 
         $prod_view_flag = 0;
@@ -279,7 +287,7 @@ class Shop extends Base_Controller {
         $this->setData('total_items_amount', $this->cart->total());
         $user_name = ($this->aauth->getUserType() == 'employee') ? $this->helper_model->getAdminUsername() : $this->aauth->getUserName();
         $this->setData('user_name', $user_name);
-        $this->setData('TITLE', ' :: '.$products[0]['product_name']);
+        $this->setData('TITLE', '  '.$products[0]['product_name']);
 
         $this->loadView();
     }
@@ -388,10 +396,9 @@ class Shop extends Base_Controller {
             }
 
             if ($payment_status) {
-                if($checkout_data['chooseAddress']){
+                if($checkout_data['shop_checkout'] == 'shop_checkout_home'){
                   $order_id = $this->shop_model->insertOrder($this->aauth->getId(), $checkout_data, $cart, $total_items, $total_amount, $total_pv, $order_status,$upload_data);  
-                }
-                else {
+                } else {
                     $this->loadPage('Update address from account', 'checkout', 'danger');
                 }
 

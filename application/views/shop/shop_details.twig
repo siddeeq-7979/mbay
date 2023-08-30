@@ -191,6 +191,33 @@
 
         </div>
     </div>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/", 
+  "@type": "Product", 
+  "name": "{{pro.product_name}}",
+  "image": "assets/shop/images/product/{{ pro.files[0].file_name }}",
+  "description": "{{ pro.description|raw }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ pro.brand_name }}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://mbayoman.com/product-details/{{pro.id}}",
+    "priceCurrency": "OMR",
+    "price": "{{pro.product_amount}}",
+    {%  if pro.quantity < 1 %}
+    "availability": "https://schema.org/OutOfStock"
+    {% else %}         
+         "availability": "https://schema.org/InStock"
+    {% endif %}      
+  }
+}
+</script>
+
 </section>
 <!-- END PRODUCT DEATILS -->
 

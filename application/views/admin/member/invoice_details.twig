@@ -42,9 +42,9 @@
 
                                 </div>
                                 <div class="text-end">
-                                    <h6 class="mb-0">Invoice Number:</h6>
+                                    <h6 class="mb-0">Invoice Number : رقم الفاتورة</h6>
                                     <p class="mb-0">{{ invoice_details.invoice_id }}</p>
-                                    <h6 class="mb-0">Order Date:</h6>
+                                    <h6 class="mb-0">Order Date : تاريخ الطلب</h6>
                                     <p class="mb-0">{{ invoice_details.invoice_date }}</p>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                         <div class="row bill-area">
                             <div class="col-sm-6">
 
-                                <h5><b>Billed To</b></h5>
+                                <h5><b>Billed To<br>دفع ل</b></h5>
                                 <p class="mb-0">{{ invoice_details.username }}</p>
                                 <p>{{ invoice_details.phone }}</p>
                                 {% if invoice_details.address1 %}
@@ -69,7 +69,7 @@
 
                             </div>
                             <div class="col-sm-6">
-                                <h5><b>Billed From</b></h5>
+                                <h5><b>Billed From<br>وصفت من</b></h5>
                                 {% set company_data = COMPANY_ADDRESS|split(',')%}
                                 <p class="mb-0">{{ company_data[0]}}</p>
                                 <p class="mb-0">{{ company_data[1]}}</p>
@@ -85,12 +85,12 @@
                                 <table class="table table-bordered mb-0">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Item</th>
-                                            <th>Quantity</th>
-                                            <th>VAT %</th>
-                                            <th>VAT Amount</th>
-                                            <th>Total Amount</th>
+                                        <th class="text-nowrap">No.<br>رقم مسلسل</th>
+                                        <th class="text-nowrap">Item<br>بند</th>
+                                        <th class="text-nowrap">Quantity<br>الكمية</th>
+                                        <th class="text-nowrap">VAT %<br>%ضريبة</th>
+                                        <th class="text-nowrap">VAT Amount<br>مبلغ الضريبة</th>
+                                        <th class="text-nowrap">Total Amount<br>المبلغ الإجمالي</th>
                                         </tr>
                                     </thead>
 
@@ -118,20 +118,20 @@
                                         {% endfor %}
 
                                         <tr>
-                                            <th scope="row" colspan="5" class="text-end">Sub Total</th>
+                                            <th scope="row" colspan="5" class="text-end">Sub Total المجموع الفرعي</th>
                                             <td class="text-end">{{ invoice_details.total }}</td>
                                         </tr>
                                         
                                         {% if invoice_details.discount > 0 %}
                                         <tr>
-                                            <th scope="row" colspan="5" class="text-end">Discount</th>
+                                            <th scope="row" colspan="5" class="text-end">Discount تخفيض</th>
                                             <td class="text-end">OMR &nbsp;{{ invoice_details.discount }}
                                             </td>
                                         </tr>
                                         {% endif %}
                                         {% if invoice_details.delivery_charge_only > 0 %}
                                         <tr>
-                                            <th scope="row" colspan="5" class="text-end">Delivery Charge
+                                            <th scope="row" colspan="5" class="text-end">Delivery Charge رسوم التوصيل
                                             </th>
                                             <td class="text-end">{{ invoice_details.delivery_charge_only }}
                                             </td>
@@ -139,7 +139,7 @@
                                         {% endif %}
                                         {% if invoice_details.shipping_charge_only > 0 %}
                                         <tr>
-                                            <th scope="row" colspan="5" class="text-end">Shipping Charge
+                                            <th scope="row" colspan="5" class="text-end">Shipping Charge رسوم الشحن
                                             </th>
                                             <td class="text-end">{{ invoice_details.shipping_charge_only }}
                                             </td>
@@ -147,22 +147,24 @@
                                         {% endif %}
                                         {% if invoice_details.tax_only > 0 %}
                                         <tr>
-                                            <th scope="row" colspan="5" class="text-end">Tax</th>
+                                            <th scope="row" colspan="5" class="text-end">Tax ضريبة</th>
                                             <td class="text-end">{{ invoice_details.tax_only }}</td>
                                         </tr>
                                         {% endif %}
 
                                         <tr>
-                                            <th scope="row" colspan="5" class="text-end">Total Amount</th>
+                                            <th scope="row" colspan="5" class="text-end">Total Amount المبلغ الإجمالي</th>
                                             <td class="border-0 text-end">
                                                 <b>&nbsp;{{ grand_total }}</b>
                                             </td>
                                         </tr>
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
+                        <p class="mt-4 text-center text-black">
+                        C.R: 1464357 M.M | Souq Street, As Sib, Muscat | WhatsApp: 95469799 | Email: helpmbay@gmail.com | Website : www.mbayoman.com
+                         </p>
                         <div class="d-print-none mt-3">
                             <div class="float-end">
                                 <a href="javascript:window.print()"
@@ -209,7 +211,7 @@
 	}
 
 	@page {
-		margin: 1cm;
+		margin: 0.5cm;
 	}
 </style>
 
