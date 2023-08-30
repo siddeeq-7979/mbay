@@ -381,8 +381,10 @@ function getAllProductNames($query) {
                 ->update('user_address');
         }
         if ($this->db->affected_rows() > 0) {
+
             return true;
         }
+
         return false;
     }
 

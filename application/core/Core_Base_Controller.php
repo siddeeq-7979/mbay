@@ -391,8 +391,14 @@ Class Core_Base_Controller extends CI_Controller {
                     $user_type = 'admin';
                     $path .= $user_type . '/' . $page_ulr;
                 }elseif($user_type == 'admin'){
-                    $user_type = 'admin';
-                    $path .= $user_type . '/' . $page_ulr;
+                   
+                    if($controller_name == 'account'){
+                       $path .=  '/' . $page_ulr; 
+                    }else{
+                         $user_type = 'admin';
+                         $path .= $user_type . '/' . $page_ulr;
+                    }
+                  
                 }
                 if($user_type == 'user'){
                     $path .=  '/' . $page_ulr;
