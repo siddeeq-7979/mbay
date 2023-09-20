@@ -1020,7 +1020,7 @@ class Product_model extends CI_Model {
                 ->from("products as pro")
                 ->join("category as cat", 'cat.id = pro.category', 'inner')
                 ->join("brand_settings as bnd", 'bnd.id = pro.brand', 'inner')
-                ->where("cat.cat_nav", 1)
+                // ->where("cat.cat_nav", 1)
                 ->where("pro.id", $pro_id)
                 ->get();
         $i = 0;

@@ -396,11 +396,11 @@ class Shop extends Base_Controller {
             }
 
             if ($payment_status) {
-                if($checkout_data['shop_checkout'] == 'shop_checkout_home'){
+                // if($checkout_data['shop_checkout'] == 'shop_checkout_home'){
                   $order_id = $this->shop_model->insertOrder($this->aauth->getId(), $checkout_data, $cart, $total_items, $total_amount, $total_pv, $order_status,$upload_data);  
-                } else {
-                    $this->loadPage('Update address from account', 'checkout', 'danger');
-                }
+                // } else {
+                //     $this->loadPage('Update address from account', 'checkout', 'danger');
+                // }
 
                 if ($order_id) {
                     $encrypt_id = $this->helper_model->encode($order_id);

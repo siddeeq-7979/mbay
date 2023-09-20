@@ -93,6 +93,7 @@ class Shop_model extends CI_Model {
       function insertOrder($user_id, $post, $cart, $total_items, $total_amount, $total_pv, $order_status,$upload_data) {
 
         $order_id = $discount = 0;
+        $address =[];
         if($post['shop_checkout'] == 'shop_checkout_home'){
             $type = 'home_delivery';
         }else{
@@ -101,13 +102,17 @@ class Shop_model extends CI_Model {
             // $total_amount -= $discount;
             
         }
-        $address = $this->getUserAddress($post['chooseAddress']);
+        if(isset($post['chooseAddress'])){
+            $address = $this->getUserAddress($post['chooseAddress']);
+        }
+
 // Array ( [chooseAddress] => 2 [payment_type] => cash_on_delivery [shop_checkout] => shop_checkout_click )
-//Array ( [chooseAddress] => 2 [payment_type] => bank_transfer [shop_checkout] => shop_checkout_click )
+// Array ( [chooseAddress] => 2 [payment_type] => bank_transfer [shop_checkout] => shop_checkout_click )
         
 
         $username = $this->helper_model->getUserFullName($user_id);
         $phone = $this->helper_model->IdToPhone($user_id);
+        // $this->db->save_queries = TRUE;
         $res = $this->db->set('user_id ', $user_id)
                 ->set('total_amount', $total_amount)
                 ->set('total_pv ', $total_pv)
@@ -131,6 +136,9 @@ class Shop_model extends CI_Model {
                 ->set('discount', $discount)
                 ->set('images', serialize($upload_data))
                 ->insert('orders');
+                
+        // print_r($this->db->last_query());die();
+        
         if ($res) {
             $order_id = $this->db->insert_id();
             foreach ($cart as $c) {
@@ -146,8 +154,7 @@ class Shop_model extends CI_Model {
                         ->set('options', serialize($c['options']))
                        ->set('option_value', serialize($c['option_value']))
                         ->insert('order_products');
-
-                $this->updateQuantity($c['id'],$c['qty']);
+                        $this->updateQuantity($c['id'],$c['qty']);
             }
            
             // if (isset($post['address_1'])) {
@@ -165,7 +172,7 @@ class Shop_model extends CI_Model {
         return $order_id;
     }
 
-function getAllProductNames($query) {
+    function getAllProductNames($query) {
         $data = array();
         if ($query != '') {
             $res = $this->db->select("id,product_name,product_amount,images")
@@ -190,6 +197,7 @@ function getAllProductNames($query) {
             
             $json[]=$data;
         }
+        
         return json_encode($json);        
     }
 
@@ -201,14 +209,14 @@ function getAllProductNames($query) {
                     ->from('seo_url')
                     ->where('seo_keyword',$seo_key)
                     ->get();
-    if($res->num_rows() > 0){
-        $data['status']=true;
-        $data['seo_key']=$res->row()->seo_key;
-        $data['seo_value']=$res->row()->seo_value;
-        $data['seo_url']=base_url().$res->row()->seo_key.'/'.$res->row()->seo_value;
-    }
+                    if($res->num_rows() > 0){
+                        $data['status']=true;
+                        $data['seo_key']=$res->row()->seo_key;
+                        $data['seo_value']=$res->row()->seo_value;
+                        $data['seo_url']=base_url().$res->row()->seo_key.'/'.$res->row()->seo_value;
+                    }
 
-    return $data;
+                    return $data;
  }
 
 
@@ -451,7 +459,7 @@ function getAllProductNames($query) {
          }
         return $data;
     }
-
+    
      function deleteUserAddress($add_id) {
        
             $this->db->where('id', $add_id)
@@ -485,22 +493,8 @@ function getAllProductNames($query) {
         // return $data;
 
         // }
-
-    // function decreaseProQuantity($pro_id,$qty) {
-    //     $quantity = 0;
-    //     $query = $this->db->select('quantity')
-    //             ->where('id', $pro_id)
-    //             ->limit(1)
-    //             ->get('products');
-    //     if ($query->num_rows() > 0) {
-    //         $quantity = $query->row()->quantity;
-    //         $updated_qty = $quantity-$qty;
-    //         $qty_update = $this->updateQuantity($pro_id,$updated_qty);
-    //     }
-
-    // }
-
-     public function updateQuantity($pro_id,$qty) {
+        
+        public function updateQuantity($pro_id,$qty) {
          $this->db->set('quantity ', "quantity -$qty",false)
                 ->where('id ', $pro_id)
                 ->update('products');
