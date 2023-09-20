@@ -389,8 +389,10 @@ class Shop_model extends CI_Model {
                 ->update('user_address');
         }
         if ($this->db->affected_rows() > 0) {
+
             return true;
         }
+
         return false;
     }
 

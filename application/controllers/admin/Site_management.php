@@ -616,6 +616,7 @@ class Site_management extends Base_Controller {
         $this->setData('edit_flag', $edit_flag);
         $this->setData('title', lang('menu_name_199'));
         $this->setData('edit_id', $edit_id);
+     
         $this->loadView();
     }
 
