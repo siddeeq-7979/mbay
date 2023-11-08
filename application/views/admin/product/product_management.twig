@@ -463,7 +463,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     var image = {{ cat_img|json_encode|raw }};
     $('.input-images-2').imageUploader({
         preloaded: image,
-        maxFiles: 10
+        maxFiles: 20
     });
 
     $('.delete-image').on('click', function () {
