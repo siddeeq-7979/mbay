@@ -244,7 +244,7 @@ class Product_model extends CI_Model {
      * @param type $prod_id
      * @return type
      */
-    function getProductDetails($prod_id) {
+   function getProductDetails($prod_id) {
         $data = array();
         $res = $this->db->select("id,status,product_name,brand,description,images,product_amount,product_pv,product_code,recurring_type,product_type,inv_cat,investment_amount,expiry_date,quantity,special,category,sub_category, sort_order, keyword,deal_of_the_day,warranty")
                 ->from("products")
@@ -336,7 +336,7 @@ class Product_model extends CI_Model {
      * @return type
      */
     function updateProduct($data, $files = array()) {
-        // print_r($data);die;
+        // print_r($files));die;
         $currency_ratio = 1;
         if ($this->dbvars->MULTI_CURRENCY_STATUS > 0) {
             $currency_ratio = $this->main->get_usersession('mlm_data_currency', 'currency_ratio');
@@ -399,7 +399,7 @@ class Product_model extends CI_Model {
     function changeProductStatus($product_id, $status) {
         $this->db->set('status', $status)
                 ->where('id', $product_id)
-                ->update('products');
+                ->update('mlm_products');
         if ($this->db->affected_rows() > 0) {
             return true;
         }
@@ -948,7 +948,7 @@ class Product_model extends CI_Model {
         return $data;
     }
 
-    function getProducts($cat_id,$min_amt='',$max_amt='',$brand=[],$color=[],$limit='',$offset = '') {
+   function getProducts($cat_id,$min_amt='',$max_amt='',$brand=[],$color=[],$limit='',$offset = '') {
         $data = array();
         $this->db->select("pro.id, pro.product_name, pro.category, pro.description, pro.product_amount, pro.product_pv, pro.quantity, pro.sort_order, pro.keyword, pro.images, pro.brand");
           
@@ -987,7 +987,7 @@ class Product_model extends CI_Model {
                 }elseif($max_amt!=''){
                     $this->db->where('pro.product_amount <=',$max_amt);
                 }
-                $this->db->where("cat.cat_nav", 1);
+                //$this->db->where("cat.cat_nav", 1);
                 $this->db->where("cat.id", $cat_id);
                 $this->db->where("pro.status",1);
 
@@ -1383,7 +1383,6 @@ class Product_model extends CI_Model {
                 ->set('price_change', $data['edit_price_change'])
                 ->where('id', $data['val_id'])
                 ->update('product_option_values');
-                // echo $this->db->last_query();die;
         if ($this->db->affected_rows() > 0) {
             return true;
         }
@@ -1498,47 +1497,7 @@ class Product_model extends CI_Model {
         }
         return $data;
     }
- function getProductsCount($cat_id,$min_amt='',$max_amt='',$brand=[],$color=[]) {
-        $this->db->select("pro.id, pro.product_name, pro.category, pro.description, pro.product_amount, pro.product_pv, pro.quantity, pro.sort_order, pro.keyword, pro.images, pro.brand");
-          
-        $this->db->from("products as pro");
-        $this->db->join("category as cat", 'cat.id = pro.category', 'left');
-        $this->db->join("product_option_values as pro_opt", 'pro.id = pro_opt.pro_id', 'left');
-        $this->db->join("option_values as opt","opt.id=pro_opt.option_value","left");
-        $this->db->group_by("pro.id");
-
-                if($min_amt!='' && $max_amt!='' && is_array($brand) && is_array($color) && count($brand)>0 && count($color)>0){
-                    $this->db->where('pro.product_amount  BETWEEN  "'. $min_amt .'" and "'. $max_amt.'"');
-                    $this->db->where_in("pro.brand",$brand);
-                    $this->db->where_in("opt.id",$color);
-                }elseif($min_amt==''&& $max_amt==''&& is_array($brand) && is_array($color)&& (count($brand)>0)&& (count($color)>0)){
-                    $this->db->where_in("pro.brand",$brand);
-                    $this->db->where_in("opt.id",$color);
-                }elseif($min_amt==''&& $max_amt==''&& is_array($brand) && (count($brand)>0)){
-                    $this->db->where_in("pro.brand",$brand);
-                }elseif($min_amt==''&& $max_amt=='' && is_array($color)&& (count($color)>0)){
-                    $this->db->where_in("opt.id",$color);
-                }elseif($min_amt!=''&& $max_amt!='' && is_array($brand)&& (count($brand)>0)){
-                    $this->db->where('pro.product_amount  BETWEEN  "'. $min_amt .'" and "'. $max_amt.'"');
-                    $this->db->where_in("brand",$brand);
-                }elseif($min_amt!=''&& $max_amt!='' && is_array($color)&& (count($color)>0)){
-                    $this->db->where('pro.product_amount  BETWEEN  "'. $min_amt .'" and "'. $max_amt.'"');
-                    $this->db->where_in("opt.id",$color);
-                }elseif($min_amt!=''&& $max_amt!=''){
-                    $this->db->where('pro.product_amount  BETWEEN  "'. $min_amt .'" and "'. $max_amt.'"');
-                }elseif($min_amt!=''){
-                    $this->db->where('pro.product_amount >=',$min_amt);
-                }elseif($max_amt!=''){
-                    $this->db->where('pro.product_amount <=',$max_amt);
-                }
-                $this->db->where("cat.cat_nav", 1);
-                $this->db->where("cat.id", $cat_id);
-                $this->db->where("pro.status",1);
-
-                return $this->db->count_all_results();
-
-    }
-
+    
     function getAllProCount($min_amt='',$max_amt='',$brand=[],$category=[],$color=[]) {
 
          $this->db->select("pro.id,status,product_name,product_amount,product_pv,product_code,recurring_type,product_type,description,images,brand,category");
@@ -1608,7 +1567,48 @@ class Product_model extends CI_Model {
                 return $this->db->count_all_results();
        
     }
+    
+    function getProductsCount($cat_id,$min_amt='',$max_amt='',$brand=[],$color=[]) {
+        $this->db->select("pro.id, pro.product_name, pro.category, pro.description, pro.product_amount, pro.product_pv, pro.quantity, pro.sort_order, pro.keyword, pro.images, pro.brand");
+          
+        $this->db->from("products as pro");
+        $this->db->join("category as cat", 'cat.id = pro.category', 'left');
+        $this->db->join("product_option_values as pro_opt", 'pro.id = pro_opt.pro_id', 'left');
+        $this->db->join("option_values as opt","opt.id=pro_opt.option_value","left");
+        $this->db->group_by("pro.id");
 
+                if($min_amt!='' && $max_amt!='' && is_array($brand) && is_array($color) && count($brand)>0 && count($color)>0){
+                    $this->db->where('pro.product_amount  BETWEEN  "'. $min_amt .'" and "'. $max_amt.'"');
+                    $this->db->where_in("pro.brand",$brand);
+                    $this->db->where_in("opt.id",$color);
+                }elseif($min_amt==''&& $max_amt==''&& is_array($brand) && is_array($color)&& (count($brand)>0)&& (count($color)>0)){
+                    $this->db->where_in("pro.brand",$brand);
+                    $this->db->where_in("opt.id",$color);
+                }elseif($min_amt==''&& $max_amt==''&& is_array($brand) && (count($brand)>0)){
+                    $this->db->where_in("pro.brand",$brand);
+                }elseif($min_amt==''&& $max_amt=='' && is_array($color)&& (count($color)>0)){
+                    $this->db->where_in("opt.id",$color);
+                }elseif($min_amt!=''&& $max_amt!='' && is_array($brand)&& (count($brand)>0)){
+                    $this->db->where('pro.product_amount  BETWEEN  "'. $min_amt .'" and "'. $max_amt.'"');
+                    $this->db->where_in("brand",$brand);
+                }elseif($min_amt!=''&& $max_amt!='' && is_array($color)&& (count($color)>0)){
+                    $this->db->where('pro.product_amount  BETWEEN  "'. $min_amt .'" and "'. $max_amt.'"');
+                    $this->db->where_in("opt.id",$color);
+                }elseif($min_amt!=''&& $max_amt!=''){
+                    $this->db->where('pro.product_amount  BETWEEN  "'. $min_amt .'" and "'. $max_amt.'"');
+                }elseif($min_amt!=''){
+                    $this->db->where('pro.product_amount >=',$min_amt);
+                }elseif($max_amt!=''){
+                    $this->db->where('pro.product_amount <=',$max_amt);
+                }
+                $this->db->where("cat.cat_nav", 1);
+                $this->db->where("cat.id", $cat_id);
+                $this->db->where("pro.status",1);
+
+                return $this->db->count_all_results();
+
+    }
 
     
+
 }
